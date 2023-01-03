@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <div className="main">
       <div className="mainImg">
-        <img src="/images/grill.jpg"></img>
+        <img src="/images/grill.jpg" alt="img"></img>
       </div>
       <div className="mainItemBox">
         <div className="mainBest">
@@ -15,7 +15,7 @@ const Main = () => {
         <ul className="mainItem">
           <div>
             <li>
-              <img src="/images/meat.jpg"></img>
+              <img src="/images/meat.jpg" alt="img"></img>
               <button>
                 <BsCart3 />
               </button>
@@ -25,7 +25,7 @@ const Main = () => {
           </div>
           <div>
             <li>
-              <img src="/images/meat.jpg"></img>
+              <img src="/images/meat.jpg" alt="img"></img>
               <button>
                 <BsCart3 />
               </button>
@@ -35,7 +35,7 @@ const Main = () => {
           </div>
           <div>
             <li>
-              <img src="/images/meat.jpg"></img>
+              <img src="/images/meat.jpg" alt="img"></img>
               <button>
                 <BsCart3 />
               </button>
@@ -45,7 +45,7 @@ const Main = () => {
           </div>
           <div>
             <li>
-              <img src="/images/meat.jpg"></img>
+              <img src="/images/meat.jpg" alt="img"></img>
               <button>
                 <BsCart3 />
               </button>
@@ -55,7 +55,7 @@ const Main = () => {
           </div>
           <div>
             <li>
-              <img src="/images/meat.jpg"></img>
+              <img src="/images/meat.jpg" alt="img"></img>
               <button>
                 <BsCart3 />
               </button>
@@ -65,7 +65,7 @@ const Main = () => {
           </div>
           <div>
             <li>
-              <img src="/images/meat.jpg"></img>
+              <img src="/images/meat.jpg" alt="img"></img>
               <button>
                 <BsCart3 />
               </button>

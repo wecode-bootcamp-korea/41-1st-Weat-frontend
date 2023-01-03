@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsCart3 } from 'react-icons/bs';
-import './Nav.scss';
+import './Nav2.scss';
 
-const Nav = () => {
+const Nav2 = () => {
   const navigate = useNavigate();
   const moveToMain = () => {
     navigate('/');
@@ -13,6 +13,12 @@ const Nav = () => {
   };
   const moveToCart = () => {
     navigate('/Cart');
+  };
+  const moveToLogin = () => {
+    navigate('/Login');
+  };
+  const moveToSignup = () => {
+    navigate('/Signup');
   };
 
   return (
@@ -30,9 +36,12 @@ const Nav = () => {
       </div>
       <div className="navRight">
         <ul className="navigate">
-          <li>공지사항</li>
-          <li>고객센터</li>
-          <li>마이페이지</li>
+          <li>
+            <button onClick={moveToLogin}>로그인</button>
+          </li>
+          <li>
+            <button onClick={moveToSignup}>회원가입</button>
+          </li>
         </ul>
         <button onClick={moveToCart} className="navLogo">
           <BsCart3 />
@@ -42,4 +51,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Nav2;

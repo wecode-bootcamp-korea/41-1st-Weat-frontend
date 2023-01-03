@@ -7,12 +7,13 @@ import Cart from './pages/cart/Cart';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Nav from './components/nav/Nav';
+import Nav2 from './components/nav/Nav2';
 import Footer from './components/footer/Footer';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav></Nav>
+      <Nav2></Nav2>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/Category" element={<Category />} />

@@ -4,9 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-
   .mainImg {
-    width: 100vw;
     height: 520px;
     img {
       width: 100vw;
@@ -34,7 +32,7 @@
   .mainItemBox {
     width: 80vw;
     .mainBest {
-      width: 100vw;
+      // width: 100vw;
       margin-top: 100px;
       margin-left: 50px;
       font-size: 32px;
