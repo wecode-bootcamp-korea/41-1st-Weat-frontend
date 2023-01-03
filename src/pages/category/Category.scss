@@ -36,6 +36,10 @@
     justify-content: center;
     align-items: center;
     width: 80vw;
+    p {
+      margin-left: 50px;
+      margin-top: 10px;
+    }
     .categoryItem {
       display: flex;
       width: 1184;
@@ -61,6 +65,11 @@
           height: 70px;
           right: 10px;
           bottom: 10px;
+          border: 1px solid black;
+          border-radius: 50%;
+          background-color: white;
+          font-size: 30px;
+          cursor: pointer;
         }
       }
     }

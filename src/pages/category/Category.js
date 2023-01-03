@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsCart3 } from 'react-icons/bs';
 import './Category.scss';
 
 const Category = () => {
@@ -19,34 +20,56 @@ const Category = () => {
       </ul>
       <div className="categoryItemBox">
         <ul className="categoryItem">
-          <li>
-            <img src="/images/meat.jpg"></img>
-            <button>a</button>
-          </li>
-          <li>
-            <img></img>
-            <button>a</button>
-          </li>
-          <li>
-            <img></img>
-            <button>a</button>
-          </li>
-          <li>
-            <img></img>
-            <button>a</button>
-          </li>
-          <li>
-            <img></img>
-            <button>a</button>
-          </li>
-          <li>
-            <img></img>
-            <button>a</button>
-          </li>
-          <li>
-            <img></img>
-            <button>a</button>
-          </li>
+          <div>
+            <li>
+              <img src="/images/meat.jpg"></img>
+              <button>
+                <BsCart3 />
+              </button>
+            </li>
+            <p>초신선 돼지 삼겹살 구이용</p>
+            <p>기준가 19,800원/600g</p>
+          </div>
+          <div>
+            <li>
+              <img src="/images/meat.jpg"></img>
+              <button>
+                <BsCart3 />
+              </button>
+            </li>
+            <p>초신선 돼지 삼겹살 구이용</p>
+            <p>기준가 19,800원/600g</p>
+          </div>
+          <div>
+            <li>
+              <img src="/images/meat.jpg"></img>
+              <button>
+                <BsCart3 />
+              </button>
+            </li>
+            <p>초신선 돼지 삼겹살 구이용</p>
+            <p>기준가 19,800원/600g</p>
+          </div>
+          <div>
+            <li>
+              <img src="/images/meat.jpg"></img>
+              <button>
+                <BsCart3 />
+              </button>
+            </li>
+            <p>초신선 돼지 삼겹살 구이용</p>
+            <p>기준가 19,800원/600g</p>
+          </div>
+          <div>
+            <li>
+              <img src="/images/meat.jpg"></img>
+              <button>
+                <BsCart3 />
+              </button>
+            </li>
+            <p>초신선 돼지 삼겹살 구이용</p>
+            <p>기준가 19,800원/600g</p>
+          </div>
         </ul>
       </div>
     </div>
