@@ -28,7 +28,7 @@ const Signup = () => {
           <div className="inputLine">
             <div className="inputData">휴대폰번호</div>
             <div className="inputNumber">
-              <select>
+              <select className="phoneNumber">
                 <option>010</option>
                 <option>011</option>
                 <option>016</option>
