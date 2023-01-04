@@ -28,19 +28,16 @@ const Footer = () => {
             <FontAwesomeIcon icon={faWeebly} className="leftIcon" />
             <span className="leftName">WEAT</span>
           </div>
-          {FOOTER_DATA.map(obj => (
-            <ul className="footerList" key={obj.id}>
-              <li>
-                {obj.company} 대표이사: {obj.ceo} ㅣ 주소: {obj.address}
-              </li>
-              <br />
-              <li>
-                사업자등록번호: {obj.crn} ㅣ 통신판매업신고번호: {obj.number}
-              </li>
-              <br />
-              <li>개인정보관리책임자: {obj.name}</li>
-            </ul>
-          ))}
+          <div className="infoWrap">
+            <p>
+              (주)WEAT 대표이사: WEAT ㅣ 주소: 서울특별시 강남구 테헤란로 427
+              위워크
+            </p>
+            <p>
+              사업자등록번호: 123-45-6789 ㅣ 통신판매업신고번호: 2023-WEAT-1234
+            </p>
+            <p>개인정보관리책임자: WEAT(Weat@)</p>
+          </div>
           <p className="weatRights">© 2021 WEAT Inc. All rights reserved.</p>
         </div>
         <div className="footerRight">
@@ -64,15 +61,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-const FOOTER_DATA = [
-  {
-    id: 1,
-    company: '(주)WEAT',
-    ceo: 'WEAT',
-    address: '서울특별시 강남구 테헤란로 427 위워크',
-    crn: '123-45-6789',
-    number: '2023-WEAT-1234',
-    name: 'WEAT(Weat@)',
-  },
-];
