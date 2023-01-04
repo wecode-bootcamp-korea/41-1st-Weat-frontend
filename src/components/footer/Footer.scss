@@ -11,16 +11,13 @@
   .footerNav {
     @include base(space-around);
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px 0;
     border-top: 1px solid #c8c8c8;
     border-bottom: 1px solid #eeeeee;
     font-size: 14px;
 
-    .pWrap {
-      display: flex;
-
-      p {
+    .spanWrap {
+      span {
         margin-right: 20px;
 
         b {
@@ -36,18 +33,14 @@
 
   .footerMain {
     @include base(space-around);
-    padding-top: 20px;
-    margin-bottom: 10px;
+    margin: 20px 0;
 
     .footerLeft {
       .leftLogo {
-        display: flex;
-
         .leftName {
           font-weight: bold;
           font-size: larger;
           margin-left: 5px;
-          padding-top: 3px;
         }
 
         .leftIcon {
@@ -81,7 +74,7 @@
       .csTime {
         font-size: 13px;
         line-height: 15px;
-        opacity: 0.5;
+        color: #c8c8c8;
       }
 
       .sendEmail {

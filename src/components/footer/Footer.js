@@ -1,22 +1,21 @@
 import React from 'react';
 import './Footer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWeebly } from '@fortawesome/free-brands-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faWeebly, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <section className="footerNav">
-        <div className="pWrap">
-          <p>인재채용</p>
-          <p>ㅣ</p>
-          <p>이용약관</p>
-          <p>ㅣ</p>
-          <p>
+        <div className="spanWrap">
+          <span>인재채용</span>
+          <span>ㅣ</span>
+          <span>이용약관</span>
+          <span>ㅣ</span>
+          <span>
             <b>개인정보처리방침</b>
-          </p>
+          </span>
         </div>
         <div className="navIcon">
           <FontAwesomeIcon icon={faComment} />
@@ -27,7 +26,7 @@ const Footer = () => {
         <div className="footerLeft">
           <div className="leftLogo">
             <FontAwesomeIcon icon={faWeebly} className="leftIcon" />
-            <p className="leftName">WEAT</p>
+            <span className="leftName">WEAT</span>
           </div>
           {FOOTER_DATA.map(obj => (
             <ul className="footerList" key={obj.id}>
