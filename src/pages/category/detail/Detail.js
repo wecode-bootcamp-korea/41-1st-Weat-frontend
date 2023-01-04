@@ -3,16 +3,26 @@ import './Detail.scss';
 
 const Detail = () => {
   const [count, setCount] = useState(1);
+  const [open, setOpen] = useState(false);
+  const [option, setOption] = useState('보통(16mm)');
+  const handleDrop = () => {
+    setOpen(!open);
+  };
   const addCount = () => {
     setCount(count + 1);
   };
   const DecCount = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
-    } else if (count <= 0) {
+    } else if (count <= 1) {
       setCount(count);
     }
   };
+  const handleOption = e => {
+    setOption(e.target.name);
+    setOpen(false);
+  };
+
   return (
     <div className="deatilPage">
       <div className="detailTop">
@@ -23,7 +33,30 @@ const Detail = () => {
           <p className="meatPriceTotal">기준가 19,800원(600g)</p>
           <div className="detailOptionType">
             <span>옵션</span>
-            <div className="TypeCheckBox">보통</div>
+            <div className="selectOption">
+              <button onClick={handleDrop} className="TypeCheckBox">
+                {option}
+              </button>
+              {open ? (
+                <ul className="menu">
+                  <li className="menu-item">
+                    <button onClick={handleOption} name="두껍게(24mm)">
+                      두껍게(24mm)
+                    </button>
+                  </li>
+                  <li className="menu-item">
+                    <button onClick={handleOption} name="얇게(11mm)">
+                      얇게(11mm)
+                    </button>
+                  </li>
+                  <li className="menu-item">
+                    <button onClick={handleOption} name="보통(16mm)">
+                      보통(16mm)
+                    </button>
+                  </li>
+                </ul>
+              ) : null}
+            </div>
           </div>
           <div className="meatCountBox">
             <span>수량</span>

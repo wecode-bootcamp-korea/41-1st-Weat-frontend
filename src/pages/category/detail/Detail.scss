@@ -45,6 +45,22 @@
           width: 320px;
           height: 50px;
           border: 1px solid #7c7c7c;
+          background-color: #1c1c1c;
+          color: white;
+          font-size: 16px;
+        }
+        .menu {
+          position: absolute;
+          li {
+            button {
+              width: 320px;
+              height: 50px;
+              border: none;
+              background-color: #1c1c1c;
+              color: white;
+              font-size: 16px;
+            }
+          }
         }
       }
       .meatCountBox {
