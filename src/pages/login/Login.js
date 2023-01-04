@@ -1,5 +1,6 @@
 import React from 'react';
 import './Login.scss';
+import '../../styles/common.scss';
 
 const Login = () => {
   return (
@@ -8,12 +9,12 @@ const Login = () => {
       <label className="inputLabel">이메일 로그인</label>
       <div className="input">
         <input
-          className="email"
+          className="inputData"
           type="text"
           placeholder="아이디(이메일 주소)를 입력하세요"
         />
         <input
-          className="password"
+          className="inputData"
           type="password"
           placeholder="비밀번호를 입력하세요"
         />
