@@ -60,47 +60,54 @@
         border: 1px solid #e1dedf;
       }
 
-      select {
-        margin-left: 20px;
-        margin-top: 15px;
-        font-size: 13px;
-        padding-left: 38px;
-        width: 142px;
-        height: 44px;
-        border: 1px solid #e1dedf;
-      }
+      .inputNumber {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0 0 20px;
+        width: 482px;
+        height: 38px;
 
-      .numberContent {
-        margin-left: 20px;
-        margin-top: 15px;
-        padding-left: 38px;
-        font-size: 13px;
-        width: 100px;
-        height: 40px;
-        border: 1px solid #e1dedf;
+        .numberIcon {
+          font-size: 20px;
+          color: gray;
+          margin-top: 5px;
+        }
+
+        select {
+          width: 106px;
+          height: 44px;
+          border: 1px solid #e1dedf;
+          font-size: 13px;
+          text-align: center;
+        }
+
+        .numberContent {
+          width: 100px;
+          height: 40px;
+          border: 1px solid #e1dedf;
+          font-size: 13px;
+          text-align: center;
+        }
       }
     }
   }
 
-  .goToLogin {
+  %buttonUI {
     width: 50%;
     height: 60px;
     border: none;
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background-color: #888888;
     cursor: pointer;
+  }
+  .goToLogin {
+    @extend %buttonUI;
+    background-color: #888888;
   }
 
   .goToSignUp {
-    width: 50%;
-    height: 60px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
+    @extend %buttonUI;
     background-color: #000000;
-    cursor: pointer;
   }
 }

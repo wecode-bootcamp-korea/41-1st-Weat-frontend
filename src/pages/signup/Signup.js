@@ -27,15 +27,19 @@ const Signup = () => {
           </div>
           <div className="inputLine">
             <div className="inputData">휴대폰번호</div>
-            <select>
-              <option>010</option>
-              <option>011</option>
-              <option>016</option>
-              <option>017</option>
-              <option>019</option>
-            </select>
-            <input className="numberContent" type="text" />
-            <input className="numberContent" type="text" />
+            <div className="inputNumber">
+              <select>
+                <option>010</option>
+                <option>011</option>
+                <option>016</option>
+                <option>017</option>
+                <option>019</option>
+              </select>
+              <span className="numberIcon"> - </span>
+              <input className="numberContent" type="text" />
+              <span className="numberIcon"> - </span>
+              <input className="numberContent" type="text" />
+            </div>
           </div>
         </div>
         <button className="goToLogin" type="button">
