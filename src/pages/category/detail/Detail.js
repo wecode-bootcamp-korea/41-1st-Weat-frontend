@@ -1,67 +1,84 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Detail.scss';
 
 const Detail = () => {
+  const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
+
   const [count, setCount] = useState(1);
+
   const [open, setOpen] = useState(false);
+
+  const [dataList, setDataList] = useState({});
+
   const [option, setOption] = useState('보통(16mm)');
+
   const handleDrop = () => {
-    setOpen(!open);
+    setOpen(true);
   };
+
   const addCount = () => {
     setCount(count + 1);
   };
-  const DecCount = () => {
+
+  const decCount = () => {
     if (count > 1) {
       setCount(count - 1);
     } else if (count <= 1) {
-      setCount(count);
+      setCount(1);
     }
   };
+
   const handleOption = e => {
     setOption(e.target.name);
     setOpen(false);
   };
+
+  useEffect(() => {
+    fetch('/data/mockdata.json')
+      .then(res => res.json())
+      .then(data => setDataList(data[0]));
+  }, []);
 
   return (
     <div className="deatilPage">
       <div className="detailTop">
         <div className="detailImg" />
         <div className="meatInfo">
-          <p className="meatName">초신선 돼지 삼겹살 구이용</p>
-          <p className="meatPrice">100g당 3000원</p>
-          <p className="meatPriceTotal">기준가 19,800원(600g)</p>
+          <p className="meatName">{dataList.name}</p>
+          <p className="meatPrice">{dataList.weight}</p>
+          <p className="meatPriceTotal">{dataList.price}</p>
           <div className="detailOptionType">
             <span>옵션</span>
             <div className="selectOption">
-              <button onClick={handleDrop} className="TypeCheckBox">
+              <button
+                disabled={open}
+                onClick={handleDrop}
+                className="TypeCheckBox"
+              >
                 {option}
               </button>
-              {open ? (
-                <ul className="menu">
-                  <li className="menu-item">
-                    <button onClick={handleOption} name="두껍게(24mm)">
-                      두껍게(24mm)
-                    </button>
-                  </li>
-                  <li className="menu-item">
-                    <button onClick={handleOption} name="얇게(11mm)">
-                      얇게(11mm)
-                    </button>
-                  </li>
-                  <li className="menu-item">
-                    <button onClick={handleOption} name="보통(16mm)">
-                      보통(16mm)
-                    </button>
-                  </li>
-                </ul>
-              ) : null}
+              <ul className="menu">
+                {open &&
+                  menuList.map((i, key) => {
+                    return (
+                      <li key={key}>
+                        <button
+                          className="menuItem"
+                          name={i}
+                          onClick={handleOption}
+                        >
+                          {i}
+                        </button>
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
           </div>
           <div className="meatCountBox">
             <span>수량</span>
             <div className="meatCount">
-              <button onClick={DecCount}>-</button>
+              <button onClick={decCount}>-</button>
               <span>{count}</span>
               <button onClick={addCount}>+</button>
             </div>
