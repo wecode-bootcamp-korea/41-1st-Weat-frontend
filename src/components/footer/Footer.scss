@@ -1,3 +1,98 @@
-div {
-  font-size: 15px;
+@mixin base($justify) {
+  display: flex;
+  justify-content: $justify;
+}
+
+.footer {
+  position: relative;
+  margin-top: 100px;
+  transform: translateY(0%);
+
+  .footerNav {
+    @include base(space-around);
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #c8c8c8;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 14px;
+
+    .pWrap {
+      display: flex;
+
+      p {
+        margin-right: 20px;
+
+        b {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .faInstagram {
+      margin-left: 15px;
+    }
+  }
+
+  .footerMain {
+    @include base(space-around);
+    padding-top: 20px;
+    margin-bottom: 10px;
+
+    .footerLeft {
+      .leftLogo {
+        display: flex;
+
+        .leftName {
+          font-weight: bold;
+          font-size: larger;
+          margin-left: 5px;
+          padding-top: 3px;
+        }
+
+        .leftIcon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .footerList {
+        margin-top: 30px;
+      }
+
+      .weatRights {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+    }
+
+    .footerRight {
+      text-align: right;
+
+      .serviceCenter {
+        font-size: 15px;
+      }
+
+      .centerNumber {
+        font-size: 25px;
+      }
+
+      .csTime {
+        font-size: 13px;
+        line-height: 15px;
+        opacity: 0.5;
+      }
+
+      .sendEmail {
+        font-size: 15px;
+        margin-top: 10px;
+
+        a {
+          text-decoration: none;
+          color: #4bb8ce;
+        }
+      }
+    }
+  }
 }
