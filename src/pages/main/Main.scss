@@ -40,6 +40,11 @@
           margin-top: 10px;
         }
 
+        .priceWeight {
+          font-weight: 500;
+          color: #9b9b9b;
+        }
+
         li {
           position: relative;
           display: flex;
@@ -57,17 +62,23 @@
             height: 200px;
           }
 
-          button {
+          .cart {
             position: absolute;
             width: 70px;
             height: 70px;
             right: 10px;
             bottom: 10px;
-            border: 1px solid black;
+            border: 2px solid #eeeeee;
             border-radius: 50%;
             background-color: white;
             font-size: 30px;
+            box-shadow: 0 25px 10px -17px rgb(0 0 0 / 15%);
             cursor: pointer;
+
+            &:hover {
+              color: white;
+              background-color: black;
+            }
           }
         }
       }
