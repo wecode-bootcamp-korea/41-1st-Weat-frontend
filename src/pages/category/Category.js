@@ -49,7 +49,7 @@ const Category = () => {
             return (
               <li key={key}>
                 <div className="items">
-                  <Link to={'Category/Detail'}>
+                  <Link to="/Category/Detail">
                     <img src="/images/meat.jpg" alt="고기사진" />
                   </Link>
                   <button>
