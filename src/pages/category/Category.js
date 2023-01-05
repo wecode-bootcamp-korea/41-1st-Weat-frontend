@@ -45,9 +45,9 @@ const Category = () => {
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map((i, key) => {
+          {items.map(meat => {
             return (
-              <li key={i.id}>
+              <li key={meat.id}>
                 <div className="items">
                   <Link to="/Category/Detail">
                     <img src="/images/meat.jpg" alt="고기사진" />
@@ -57,8 +57,8 @@ const Category = () => {
                   </button>
                 </div>
                 <div>
-                  <p className="itemName">{i.name}</p>
-                  <p className="itemPrice">{i.price}</p>
+                  <p className="itemName">{meat.name}</p>
+                  <p className="itemPrice">{meat.price}</p>
                 </div>
               </li>
             );
