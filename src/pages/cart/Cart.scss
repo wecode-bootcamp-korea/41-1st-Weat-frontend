@@ -2,6 +2,12 @@
 @import 'Cartcount.scss';
 @import 'Cartaside.scss';
 
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
 .cartMain {
   @include flex(center, null);
   margin-top: 100px;
