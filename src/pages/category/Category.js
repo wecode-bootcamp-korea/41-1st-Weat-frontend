@@ -14,7 +14,7 @@ const CATEGORY = [
 
 const Category = () => {
   const [items, setItems] = useState([]);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('돼지');
 
   useEffect(() => {
     fetch('/data/dataCartegory.json')
@@ -35,7 +35,7 @@ const Category = () => {
             <li
               key={key}
               id={i.name}
-              className={'asd' + (name === i.name ? 'active' : '')}
+              className={'btn' + (name === i.name ? 'active' : '')}
               onClick={categorySet}
             >
               {i.name}
@@ -47,7 +47,7 @@ const Category = () => {
         <ul className="categoryItem">
           {items.map((i, key) => {
             return (
-              <li key={key}>
+              <li key={i.id}>
                 <div className="items">
                   <Link to="/Category/Detail">
                     <img src="/images/meat.jpg" alt="고기사진" />
