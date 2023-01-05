@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 import '../../styles/common.scss';
 
@@ -16,12 +16,12 @@ const Login = () => {
     });
   };
 
-  /*const goToMain = () => {
-    navigate('/main');
-  };*/
+  const goToMain = () => {
+    navigate('/Main');
+  };
 
   const handleClick = () => {
-    fetch('http://', {
+    fetch('http://10.58.52.250:3000/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
