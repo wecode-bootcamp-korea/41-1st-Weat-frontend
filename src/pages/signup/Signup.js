@@ -6,29 +6,32 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    name: '',
+    userName: '',
     firstNumber: '010',
     secondNumber: '',
     lastNumber: '',
   });
 
+  console.log(userData);
   //FullNumber = `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`;
 
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
+      console.log(name, value + '123333');
       return { ...prevData, [name]: value };
     });
   };
 
   const handleClick = () => {
-    fetch('', {
+    fetch('http://10.58.52.250:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
         email: userData.email,
         password: userData.password,
-        mobile: `userData.firstNumber userData.secondNumber userData.lastNumber`,
+        mobile: `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`,
+        userName: userData.userName,
       }),
     })
       .then(response => response.json())
@@ -75,8 +78,8 @@ const Signup = () => {
           <div className="inputLine">
             <div className="inputData">이름</div>
             <input
-              name="name"
-              value={userData.name}
+              name="userName"
+              value={userData.userName}
               onChange={handleChange}
               className="inputContent"
               type="text"
