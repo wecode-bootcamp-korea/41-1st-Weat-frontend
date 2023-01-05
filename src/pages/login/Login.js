@@ -20,6 +20,19 @@ const Login = () => {
     navigate('/main');
   };*/
 
+  const handleClick = () => {
+    fetch('http://', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        email: loginData.email,
+        password: loginData.password,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  };
+
   return (
     <div className="login">
       <h1 className="title">로그인</h1>
@@ -41,7 +54,7 @@ const Login = () => {
           placeholder="비밀번호를 입력하세요"
           onChange={handleChange}
         />
-        <button className="button" type="button">
+        <button onClick={handleClick} className="button" type="button">
           로그인
         </button>
 
