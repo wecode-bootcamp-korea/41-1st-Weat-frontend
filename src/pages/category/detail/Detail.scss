@@ -1,0 +1,138 @@
+.deatilPage {
+  width: 100vw;
+  height: 100vh;
+  .detailTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 800px;
+    background-color: #1c1c1c;
+    color: white;
+
+    .detailImg {
+      width: 500px;
+      height: 500px;
+      background-color: white;
+    }
+
+    .meatInfo {
+      width: 380px;
+      margin-left: 100px;
+
+      .meatName {
+        font-size: 28px;
+      }
+
+      .meatPrice {
+        margin-top: 20px;
+        color: #7c7c7c;
+        font-size: 16px;
+      }
+
+      .meatPriceTotal {
+        margin-top: 5px;
+        font-size: 24px;
+      }
+
+      .detailOptionType {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        text-align: center;
+        line-height: 50px;
+        .TypeCheckBox {
+          width: 320px;
+          height: 50px;
+          border: 1px solid #7c7c7c;
+          background-color: #1c1c1c;
+          color: white;
+          font-size: 16px;
+          &:disabled {
+            border-bottom: none;
+          }
+        }
+        .menu {
+          position: absolute;
+
+          li {
+            .menuItem {
+              margin: 0;
+              padding: 0;
+              width: 320px;
+              height: 50px;
+              background-color: #1c1c1c;
+              color: white;
+              font-size: 16px;
+              border: none;
+            }
+            .menuItem:nth-child(3) {
+              border-bottom: 1px solid #7c7c7c;
+            }
+          }
+        }
+      }
+      .meatCountBox {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        text-align: center;
+        line-height: 50px;
+
+        .meatCount {
+          display: flex;
+          justify-content: space-between;
+          width: 320px;
+          height: 50px;
+          border: 1px solid #7c7c7c;
+
+          button {
+            width: 40px;
+            background-color: #1c1c1c;
+            color: white;
+            border: 1px solid #7c7c7c;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .oderBtn {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+
+        button {
+          width: 180px;
+          height: 60px;
+          border: none;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        .buyBtn {
+          background-color: #7c7c7c;
+        }
+        .cartBtn {
+          background-color: red;
+        }
+      }
+    }
+  }
+
+  .detailExplanation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 110px;
+    border-bottom: 1px solid #7c7c7c;
+
+    div {
+      width: 200px;
+      border: none;
+      background-color: white;
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+}
