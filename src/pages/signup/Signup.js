@@ -12,8 +12,6 @@ const Signup = () => {
     lastNumber: '',
   });
 
-  console.log(userData);
-
   //FullNumber = `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`;
 
   const handleChange = event => {
@@ -30,6 +28,7 @@ const Signup = () => {
       body: JSON.stringify({
         email: userData.email,
         password: userData.password,
+        mobile: `userData.firstNumber userData.secondNumber userData.lastNumber`,
       }),
     })
       .then(response => response.json())
