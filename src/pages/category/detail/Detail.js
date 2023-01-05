@@ -86,9 +86,9 @@ const Detail = () => {
           </div>
         </div>
       </div>
-      <div className="detailExplanation">
-        <div>상품리뷰</div>
-      </div>
+      <ul className="detailExplanation">
+        <li>상품리뷰</li>
+      </ul>
       <div />
     </div>
   );
