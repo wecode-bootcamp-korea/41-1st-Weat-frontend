@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Category.scss';
 
-const Category = () => {
-  const navigate = useNavigate();
-  const [items, setItems] = useState([]);
+const CATEGORY = [
+  { id: 1, name: '돼지' },
+  { id: 2, name: '소' },
+  { id: 3, name: '닭' },
+  { id: 4, name: '우유' },
+  { id: 5, name: '달걀' },
+  { id: 6, name: '밀키트' },
+];
 
-  const MoveToDetail = () => {
-    navigate('/Category/Detail');
-  };
+const Category = () => {
+  const [items, setItems] = useState([]);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     fetch('/data/dataCartegory.json')
@@ -17,28 +22,36 @@ const Category = () => {
       .then(data => setItems(data));
   }, []);
 
+  const categorySet = e => {
+    setName(e.target.id);
+  };
+
   return (
     <div className="category">
-      <div className="categoryImg">
-        <img src="/images/grill.jpg" alt="#" />
-      </div>
+      <img src="/images/grill.jpg" alt="메인이미지" />
       <ul className="categoryBtn">
-        <li>돼지</li>
-        <li>소</li>
-        <li>닭</li>
-        <li>수산</li>
-        <li>밀키트</li>
-        <li>우유</li>
-        <li>달걀</li>
-        <li>이유식</li>
+        {CATEGORY.map((i, key) => {
+          return (
+            <li
+              key={key}
+              id={i.name}
+              className={'asd' + (name === i.name ? 'active' : '')}
+              onClick={categorySet}
+            >
+              {i.name}
+            </li>
+          );
+        })}
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
           {items.map((i, key) => {
             return (
               <li key={key}>
-                <div className="items" onClick={MoveToDetail}>
-                  <img src="/images/meat.jpg" alt="#" />
+                <div className="items">
+                  <Link to={'Category/Detail'}>
+                    <img src="/images/meat.jpg" alt="고기사진" />
+                  </Link>
                   <button>
                     <BsCart3 />
                   </button>
