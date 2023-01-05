@@ -3,13 +3,9 @@ import './Detail.scss';
 
 const Detail = () => {
   const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
-
   const [count, setCount] = useState(1);
-
   const [open, setOpen] = useState(false);
-
   const [dataList, setDataList] = useState({});
-
   const [option, setOption] = useState('보통(16mm)');
 
   const handleDrop = () => {
