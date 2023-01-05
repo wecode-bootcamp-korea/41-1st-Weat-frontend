@@ -1,3 +1,58 @@
-div{
-    font-size: 15px;
+.login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .title {
+    text-align: center;
+    margin: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin-top: 60px;
+  }
+  .inputLabel {
+    margin-top: 60px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+
+  .input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 312px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .inputData {
+      height: 46px;
+      border: 1px solid #e1dedf;
+      padding-left: 14px;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .button {
+      height: 48px;
+      border: none;
+      background-color: #000;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 8px;
+      border-radius: 4px;
+    }
+
+    .firstVisit {
+      padding-top: 20px;
+      display: flex;
+    }
+    .goToSignUp {
+      text-decoration: none;
+      color: red;
+    }
+  }
 }
