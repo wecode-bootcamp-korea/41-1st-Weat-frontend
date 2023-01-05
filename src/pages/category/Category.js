@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import './Category.scss';
+
 const Category = () => {
   const navigate = useNavigate();
+  const [items, setItems] = useState([]);
+
   const MoveToDetail = () => {
     navigate('/Category/Detail');
   };
+
+  useEffect(() => {
+    fetch('/data/dataCartegory.json')
+      .then(res => res.json())
+      .then(data => setItems(data));
+  }, []);
+
   return (
     <div className="category">
       <div className="categoryImg">
-        <img src="/images/meat.jpg" alt="#" />
+        <img src="/images/grill.jpg" alt="#" />
       </div>
       <ul className="categoryBtn">
         <li>돼지</li>
@@ -22,59 +32,26 @@ const Category = () => {
         <li>달걀</li>
         <li>이유식</li>
       </ul>
-
-      <ul className="categoryItem">
-        <div onClick={MoveToDetail}>
-          <li>
-            <img src="/images/meat.jpg" alt="#" />
-            <button>
-              <BsCart3 />
-            </button>
-          </li>
-          <p>초신선 돼지 삼겹살 구이용</p>
-          <p>기준가 19,800원/600g</p>
-        </div>
-        <div onClick={MoveToDetail}>
-          <li>
-            <img src="/images/meat.jpg" alt="#" />
-            <button>
-              <BsCart3 />
-            </button>
-          </li>
-          <p>초신선 돼지 삼겹살 구이용</p>
-          <p>기준가 19,800원/600g</p>
-        </div>
-        <div onClick={MoveToDetail}>
-          <li>
-            <img src="/images/meat.jpg" alt="#" />
-            <button>
-              <BsCart3 />
-            </button>
-          </li>
-          <p>초신선 돼지 삼겹살 구이용</p>
-          <p>기준가 19,800원/600g</p>
-        </div>
-        <div onClick={MoveToDetail}>
-          <li>
-            <img src="/images/meat.jpg" alt="#" />
-            <button>
-              <BsCart3 />
-            </button>
-          </li>
-          <p>초신선 돼지 삼겹살 구이용</p>
-          <p>기준가 19,800원/600g</p>
-        </div>
-        <div onClick={MoveToDetail}>
-          <li>
-            <img src="/images/meat.jpg" alt="#" />
-            <button>
-              <BsCart3 />
-            </button>
-          </li>
-          <p>초신선 돼지 삼겹살 구이용</p>
-          <p>기준가 19,800원/600g</p>
-        </div>
-      </ul>
+      <div className="itemList">
+        <ul className="categoryItem">
+          {items.map((i, key) => {
+            return (
+              <li key={key}>
+                <div className="items" onClick={MoveToDetail}>
+                  <img src="/images/meat.jpg" alt="#" />
+                  <button>
+                    <BsCart3 />
+                  </button>
+                </div>
+                <div>
+                  <p className="itemName">{i.name}</p>
+                  <p className="itemPrice">{i.price}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
