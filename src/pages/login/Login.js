@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 import '../../styles/common.scss';
 
@@ -16,9 +16,9 @@ const Login = () => {
     });
   };
 
-  const goToMain = () => {
+  /*const goToMain = () => {
     navigate('/Main');
-  };
+  };*/
 
   const handleClick = () => {
     fetch('http://10.58.52.250:3000/users/login', {
