@@ -2,21 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BsCart3 } from 'react-icons/bs';
 import './Nav.scss';
-import NavLogin from './NavLogin';
 
 const Nav = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const moveToCart = () => {
     navigate('/Cart');
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogin = () => setIsLoggedIn(!isLoggedIn);
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
 
   return (
     <div className="nav">
@@ -36,7 +31,19 @@ const Nav = () => {
       <div className="navRight">
         <ul className="navigate">
           <li>
-            <NavLogin isLoggedIn={isLoggedIn} onClick={handleLogin} />
+            {isLoggedIn === true ? (
+              <button onClick={handleLogin}>
+                <Link to="/" className="moveToMain">
+                  로그아웃
+                </Link>
+              </button>
+            ) : (
+              <button onClick={handleLogin}>
+                <Link to="/Login" className="moveToLogin">
+                  로그인
+                </Link>
+              </button>
+            )}
           </li>
           <li>
             <Link to="/Signup" className="moveToSignup">

@@ -1,8 +1,9 @@
-@mixin often {
+@mixin navColor {
   text-align: center;
   background-color: black;
   color: white;
 }
+
 .nav {
   position: fixed;
   display: flex;
@@ -12,14 +13,13 @@
   height: 100px;
   background-color: black;
   color: white;
-  z-index: 1;
 
   .navLeft {
     display: flex;
     align-items: center;
 
     .navLogo {
-      @include often;
+      @include navColor;
       width: 100px;
       margin-right: 50px;
 
@@ -38,7 +38,7 @@
       display: flex;
 
       .moveToCategory {
-        @include often;
+        @include navColor;
         margin-right: 30px;
         text-decoration: none;
         font-size: 20px;
@@ -59,7 +59,7 @@
         margin-right: 30px;
 
         .moveToSignup {
-          @include often;
+          @include navColor;
           text-decoration: none;
           font-size: 20px;
           border: none;
@@ -67,7 +67,7 @@
       }
 
       button {
-        @include often;
+        @include navColor;
         text-decoration: none;
         font-size: 20px;
         border: none;
@@ -76,7 +76,7 @@
         .moveToLogin,
         .moveToMain,
         .moveToSignup {
-          @include often;
+          @include navColor;
           text-decoration: none;
           font-size: 20px;
           border: none;
@@ -85,7 +85,7 @@
     }
 
     .navLogo {
-      @include often;
+      @include navColor;
       font-size: 30px;
       border: none;
       cursor: pointer;
