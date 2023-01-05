@@ -12,13 +12,9 @@ const Signup = () => {
     lastNumber: '',
   });
 
-  console.log(userData);
-  //FullNumber = `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`;
-
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
-      console.log(name, value + '123333');
       return { ...prevData, [name]: value };
     });
   };
