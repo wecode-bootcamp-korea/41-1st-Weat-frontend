@@ -1,0 +1,62 @@
+@import '../../styles/variable.scss';
+
+.cartItem {
+  @include flex(space-between, center);
+  width: 860px;
+  height: 147px;
+  border-bottom: 1px solid #e1dedf;
+  &Img {
+    width: 109px;
+    height: 109px;
+    padding-left: 10px;
+  }
+
+  &Name {
+    font-size: 16px;
+    line-height: 30px;
+    cursor: pointer;
+  }
+
+  &Option {
+    margin-left: 1px;
+    font-size: 13px;
+    color: #9b9b9b;
+  }
+
+  &Weight {
+    font-size: 14px;
+    color: #9b9b9b;
+  }
+
+  &Count {
+    @include flex(space-between, center);
+    width: 118px;
+    height: 38px;
+    border: 1px solid #dcdcdc;
+  }
+
+  .countClickMinus,
+  .countClickPlus {
+    width: 44px;
+    height: 100%;
+    border: none;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #dcdcdc;
+    background-color: #ffff;
+  }
+
+  &Price {
+    @include flex(null, center);
+    font-size: 16px;
+  }
+
+  &Remove {
+    width: 44px;
+    height: 44px;
+    font-size: 30px;
+    border: none;
+    font-weight: lighter;
+    color: #9b9b9b;
+  }
+}
