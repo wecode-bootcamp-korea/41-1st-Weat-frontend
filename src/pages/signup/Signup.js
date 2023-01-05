@@ -6,17 +6,34 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    userName: '',
+    name: '',
+    firstNumber: '010',
+    secondNumber: '',
+    lastNumber: '',
   });
 
-  const [phoneNumber, setPhoneNumeber] = useState('');
-
   console.log(userData);
+
+  //FullNumber = `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`;
+
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
       return { ...prevData, [name]: value };
     });
+  };
+
+  const handleClick = () => {
+    fetch('', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        email: userData.email,
+        password: userData.password,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
   };
 
   return (
@@ -59,8 +76,8 @@ const Signup = () => {
           <div className="inputLine">
             <div className="inputData">이름</div>
             <input
-              name="userName"
-              value={userData.userName}
+              name="name"
+              value={userData.name}
               onChange={handleChange}
               className="inputContent"
               type="text"
@@ -71,7 +88,7 @@ const Signup = () => {
             <div className="inputNumber">
               <select
                 name="firstNumber"
-                value={userData.phoneNumber.firstNumber}
+                value={userData.firstNumber}
                 onChange={handleChange}
                 className="phoneNumber"
               >
@@ -82,16 +99,30 @@ const Signup = () => {
                 <option value="019">019</option>
               </select>
               <span className="numberIcon"> - </span>
-              <input className="numberContent" type="text" maxLength={4} />
+              <input
+                name="secondNumber"
+                value={userData.secondNumber}
+                onChange={handleChange}
+                className="numberContent"
+                type="text"
+                maxLength={4}
+              />
               <span className="numberIcon"> - </span>
-              <input className="numberContent" type="text" maxLength={4} />
+              <input
+                name="lastNumber"
+                value={userData.lastNumber}
+                onChange={handleChange}
+                className="numberContent"
+                type="text"
+                maxLength={4}
+              />
             </div>
           </div>
         </div>
         <button className="goToLogin" type="button">
           로그인으로
         </button>
-        <button className="goToSignUp" type="button">
+        <button onClick={handleClick} className="goToSignUp" type="button">
           가입하기
         </button>
       </div>
