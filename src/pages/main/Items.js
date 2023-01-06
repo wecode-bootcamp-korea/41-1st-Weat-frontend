@@ -1,12 +1,17 @@
 import React from 'react';
 import { BsCart3 } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 function Items({ itemList }) {
+  const navigate = useNavigate();
+  const moveToDetail = () => {
+    navigate('/Category/Detail');
+  };
   return itemList.map(items => (
     <div key={items.id}>
       <li>
         <img src={items.thumbnail_image} />
-        <button className="cart">
+        <button onClick={moveToDetail} className="cart">
           <BsCart3 />
         </button>
       </li>

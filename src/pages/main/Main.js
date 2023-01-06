@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useParams } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Main.scss';
 import Items from './Items.js';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
+
   //추후 반영 예정
   // const [count, setCount] = useState(1);
   // const [current, setCurrent] = useState(0);
   // const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch('http://10.58.52.76:3000/lists?best')
+    fetch('http://10.58.52.76:3000/products?best')
       .then(result => result.json())
       .then(data => setItemList(data.data));
   }, []);
-  console.log(itemList);
 
   //추후 반영 예정
   // useEffect(() => {
@@ -31,10 +31,12 @@ const Main = () => {
 
   return (
     <div className="main">
-      <div className="flexbox">
-        <img src="/images/meat.jpg" alt="meat" />
-        <img src="/images/grill.jpg" alt="grill" />
-        <img src="/images/porkbelly.jpg" alt="porkbelly" />
+      <div className="mainImg">
+        <div className="flexbox">
+          <img src="/images/meat.jpg" alt="meat" />
+          <img src="/images/grill.jpg" alt="grill" />
+          <img src="/images/porkbelly.jpg" alt="porkbelly" />
+        </div>
       </div>
       <div className="mainItemBox">
         <div className="mainBest">
