@@ -7,11 +7,21 @@ const Nav = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const moveToLogin = () => {
+    navigate('/Login');
+  };
+  const moveToMain = () => {
+    navigate('/');
+  };
   const moveToCart = () => {
     navigate('/Cart');
   };
 
-  const handleLogin = () => setIsLoggedIn(!isLoggedIn);
+  const handleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+    isLoggedIn ? moveToLogin() : moveToMain();
+    console.log(isLoggedIn);
+  };
 
   return (
     <div className="nav">
@@ -32,16 +42,12 @@ const Nav = () => {
         <ul className="navigate">
           <li>
             {isLoggedIn === true ? (
-              <button onClick={handleLogin}>
-                <Link to="/" className="moveToMain">
-                  로그아웃
-                </Link>
+              <button className="moveToMain" onClick={handleLogin}>
+                로그아웃
               </button>
             ) : (
-              <button onClick={handleLogin}>
-                <Link to="/Login" className="moveToLogin">
-                  로그인
-                </Link>
+              <button className="moveToLogin" onClick={handleLogin}>
+                로그인
               </button>
             )}
           </li>

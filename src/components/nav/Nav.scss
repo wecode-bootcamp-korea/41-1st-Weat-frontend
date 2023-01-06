@@ -13,6 +13,7 @@
   height: 100px;
   background-color: black;
   color: white;
+  z-index: 1;
 
   .navLeft {
     display: flex;
@@ -22,7 +23,6 @@
       @include navColor;
       width: 100px;
       margin-right: 50px;
-
       border: none;
       font-size: 25px;
       text-decoration: none;
@@ -68,19 +68,9 @@
 
       button {
         @include navColor;
-        text-decoration: none;
         font-size: 20px;
         border: none;
         cursor: pointer;
-
-        .moveToLogin,
-        .moveToMain,
-        .moveToSignup {
-          @include navColor;
-          text-decoration: none;
-          font-size: 20px;
-          border: none;
-        }
       }
     }
 
