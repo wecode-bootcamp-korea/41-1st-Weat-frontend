@@ -50,7 +50,7 @@ const Category = () => {
               return (
                 <li key={id}>
                   <div className="items">
-                    <Link key={id} to={`/Category/Detail/${id}`}>
+                    <Link to={`/Category/Detail/${id}`}>
                       <img src="/images/meat.jpg" alt="고기사진" />
                     </Link>
                     <button>

@@ -33,26 +33,27 @@ const Detail = () => {
 
   const params = useParams();
   const userId = params.id;
-  const [meats, setMeats] = useState([]);
+  const [meat, setMeat] = useState({});
 
   useEffect(() => {
     fetch(`http://10.58.52.126:3000/pages/detail/${userId}`)
       .then(res => res.json())
-      .then(meat => setMeats(meat.data[0]));
+      .then(data => setMeat(data.data[0]));
   }, [userId]);
 
   // 백 통신
+  const { thumbnail_image, name, price } = meat;
 
   return (
     <div className="deatilPage">
       <div className="detailTop">
         <div className="detailImg">
-          <img src={meats.thumbnail_image} alt="썸네일 이미지" />
+          <img src={thumbnail_image} alt="썸네일 이미지" />
         </div>
         <div className="meatInfo">
-          <p className="meatName">{meats.name}</p>
-          <p className="meatPrice">{meats.price}</p>
-          <p className="meatPriceTotal" />
+          <p className="meatName">{name}</p>
+          <p className="meatPrice">{Math.floor(price)}원</p>
+          <p className="meatPriceTotal">{Math.floor(price)}원</p>
           <div className="detailOptionType">
             <span>옵션</span>
             <div className="selectOption">
