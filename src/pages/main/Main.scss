@@ -8,10 +8,19 @@
   .mainImg {
     width: 100vw;
     height: 520px;
+    margin-left: -0%;
+    transition: all 0.5s ease-out;
+    overflow: hidden;
 
-    img {
-      width: 100vw;
-      height: 520px;
+    .flexbox {
+      display: flex;
+
+      img {
+        width: 100vw;
+        height: 520px;
+        object-fit: contain;
+        flex: none;
+      }
     }
   }
 

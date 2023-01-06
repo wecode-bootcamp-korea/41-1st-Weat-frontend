@@ -4,6 +4,10 @@ import Items from './Items.js';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
+  //추후 반영 예정
+  // const [count, setCount] = useState(1);
+  // const [current, setCurrent] = useState(0);
+  // const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
     fetch('/data/dataCartegory.json')
@@ -11,10 +15,25 @@ const Main = () => {
       .then(data => setItemList(data));
   }, []);
 
+  //추후 반영 예정
+  // useEffect(() => {
+  //   setStyle({ marginLeft: `${current}00%` });
+  // }, [style]);
+
+  // const handleIncrese = () => {
+  //   count < 3 ? setCount(count + 1) && setCurrent(current + 2) : setCount(3);
+  //   console.log(setCurrent, current);
+  // };
+  // const handleDecrese = () => {
+  //   count > 1 ? setCount(count - 1) : setCount(1);
+  // };
+
   return (
     <div className="main">
-      <div className="mainImg">
-        <img src="/images/grill.jpg" />
+      <div className="flexbox">
+        <img src="/images/meat.jpg" alt="meat" />
+        <img src="/images/grill.jpg" alt="grill" />
+        <img src="/images/porkbelly.jpg" alt="porkbelly" />
       </div>
       <div className="mainItemBox">
         <div className="mainBest">
