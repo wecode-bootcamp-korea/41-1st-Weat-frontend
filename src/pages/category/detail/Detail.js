@@ -47,7 +47,7 @@ const Detail = () => {
     <div className="deatilPage">
       <div className="detailTop">
         <div className="detailImg">
-          <img src={meats.thumbnail_image} />
+          <img src={meats.thumbnail_image} alt="썸네일 이미지" />
         </div>
         <div className="meatInfo">
           <p className="meatName">{meats.name}</p>
