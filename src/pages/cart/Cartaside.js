@@ -22,10 +22,10 @@ const Cartaside = () => {
         <div className="cartItemExpectTotalPrice">예상 결제 금액</div>
         <div className="cartItemTotalPriceBold">15,400원</div>
       </div>
-      <Link to="localhost:3000/Category">
+      <Link to="/Category">
         <button className="totalPayButton">전체상품 주문하기</button>
       </Link>
-      <Link to="localhost:3000/Category">
+      <Link to="/Category">
         <button className="goToCategory">쇼핑 계속하기</button>
       </Link>
     </div>
