@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "img": "",
+    "name": "삼겹살",
+    "weight": 300,
+    "option": "얇게 13mm",
+    "price": 1000
+  },
+  {
+    "id": 2,
+    "img": "",
+    "name": "목살",
+    "weight": 250,
+    "option": "보통 16mm",
+    "price": 2000
+  },
+  {
+    "id": 3,
+    "img": "",
+    "name": "항정살",
+    "weight": 200,
+    "option": "두껍게 19mm",
+    "price": 3000
+  },
+  {
+    "id": 4,
+    "img": "",
+    "name": "통오겹살",
+    "weight": 200,
+    "option": "두껍게 19mm",
+    "price": 3000
+  },
+  {
+    "id": 5,
+    "img": "",
+    "name": "갈비살",
+    "weight": 200,
+    "option": "두껍게 19mm",
+    "price": 3000
+  }
+]

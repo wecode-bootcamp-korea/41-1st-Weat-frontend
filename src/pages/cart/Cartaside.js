@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Cartaside = () => {
   return (
     <div className="cartItemTotal">
       <div className="cartItemTotalPrice">
         <div className="cartItemTotalPriceText">총 상품 금액</div>
-        <div className="cartItemTotalPriceNum">15,400원</div>
+        <div className="cartItemTotalPriceNum">3000원</div>
       </div>
       <div className="cartItemShippingPriceContainer">
         <div className="cartItemTotalShippingPrice">
@@ -21,8 +22,12 @@ const Cartaside = () => {
         <div className="cartItemExpectTotalPrice">예상 결제 금액</div>
         <div className="cartItemTotalPriceBold">15,400원</div>
       </div>
-      <button className="totalPayButton">전체상품 주문하기</button>
-      <button className="goToCategory">쇼핑 계속하기</button>
+      <Link to="localhost:3000/Category">
+        <button className="totalPayButton">전체상품 주문하기</button>
+      </Link>
+      <Link to="localhost:3000/Category">
+        <button className="goToCategory">쇼핑 계속하기</button>
+      </Link>
     </div>
   );
 };

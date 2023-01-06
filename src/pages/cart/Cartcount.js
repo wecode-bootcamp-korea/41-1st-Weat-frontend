@@ -1,32 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Cartcount = () => {
+const Cartcount = ({ value, onRemove, array }) => {
+  const [count, setCount] = useState(0);
+
   return (
-    <section className="cartList">
-      <div className="cartListTitle">
-        <span className="cartListTitleItemName">상품정보</span>
-        <span className="cartListTitleWeight">무게</span>
-        <span className="cartListTitleCount">수량</span>
-        <span className="cartListTitlePrice">가격</span>
-      </div>
-      <div className="cartItem">
-        <img className="cartItemImg" src="" alt="meat" />
-        <div className="cartItemNameContainer">
-          <p className="cartItemName">삼겹살</p>
-          <div className="cartItemOption">얇게 13g</div>
-        </div>
-        <div className="cartItemWeight">300g 기준</div>
-        <div className="cartItemCountContainer">
-          <div className="cartItemCount">
-            <button className="countClickMinus">-</button>
-            <p className="cartItemCounterNum">1</p>
-            <button className="countClickPlus">+</button>
-          </div>
-        </div>
-        <div className="cartItemPrice">1,000원</div>
-        <button className="cartItemRemove">x</button>
-      </div>
-    </section>
+    <tbody>
+      <tr className="itemList">
+        <th className="itemImg">
+          <img src={value.img} alt="meat" />
+        </th>
+        <th className="itemName">
+          <p>{value.name}</p>
+          <span className="itemOption"> {value.option}</span>
+        </th>
+        <th className="itemWeight">{value.weight * count}g 기준</th>
+        <th className="itemCount">
+          <button
+            className="clickMinusButton"
+            onClick={() => setCount(count - 1)}
+          >
+            -
+          </button>
+          {count}
+          <button
+            className="clickPlusButton"
+            onClick={() => setCount(count + 1)}
+          >
+            +
+          </button>
+        </th>
+        <th className="itemPrice">{value.price * count}원</th>
+        <th className="itemRemove">
+          <button
+            onClick={() => {
+              onRemove(value.id);
+            }}
+            className="itemRemoveButton"
+            array={array}
+          >
+            x
+          </button>
+        </th>
+      </tr>
+    </tbody>
   );
 };
 

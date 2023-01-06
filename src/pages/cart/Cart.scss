@@ -1,4 +1,3 @@
-@import '../../styles/variable.scss';
 @import 'Cartcount.scss';
 @import 'Cartaside.scss';
 
@@ -9,27 +8,64 @@
 }
 
 .cartMain {
-  @include flex(center, null);
+  @include flex(center, center);
+  flex-direction: column;
   margin-top: 100px;
-
-  .cartContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
-  }
 
   .cartTitle {
     @include flex(center, center);
     font-size: 35px;
-    width: 860px;
   }
 
+  .cartContainer {
+    display: flex;
+    margin-top: 50px;
+  }
+
+  .cartItems {
+    display: flex;
+    flex-direction: column;
+    width: 864px;
+    margin-top: 50px;
+    border-top: 1px solid black;
+
+    .cartItemTitle {
+      @include flex(space-between, center);
+      font-size: 13px;
+      height: 55px;
+      border-bottom: 1px solid #e1dedf;
+    }
+
+    .cartItemTitleImg {
+      width: 135px;
+    }
+
+    .cartItemTitleName {
+      width: 284px;
+    }
+
+    .cartItemTitleWeight {
+      width: 80px;
+    }
+
+    .cartItemTitleCount {
+      width: 120px;
+    }
+
+    .cartItemTitlePrice {
+      width: 143px;
+    }
+
+    .cartItemTitleRemove {
+      width: 50px;
+    }
+  }
   .cartSideContents {
     @include flex(null, center);
     flex-direction: column;
     width: 280px;
     height: 400px;
-    margin-top: 135px;
+    margin-top: 50px;
     margin-left: 40px;
     background-color: #f8f8f8;
     border-top: 1px solid black;
