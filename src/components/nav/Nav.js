@@ -19,8 +19,7 @@ const Nav = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
-    !isLoggedIn ? moveToLogin() : moveToMain();
-    console.log(isLoggedIn);
+    isLoggedIn ? moveToMain() : moveToLogin();
   };
 
   return (
