@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { API_LIST } from '../../../apiData';
 import './Detail.scss';
 
 const Detail = () => {
   const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
+  const [option, setOption] = useState('보통(16mm)');
   const [count, setCount] = useState(1);
   const [open, setOpen] = useState(false);
-  const [dataList, setDataList] = useState({});
-  const [option, setOption] = useState('보통(16mm)');
 
   const handleDrop = () => {
     setOpen(true);
@@ -29,20 +30,31 @@ const Detail = () => {
     setOpen(false);
   };
 
+  // 백 통신
+
+  const params = useParams();
+  const userId = params.id;
+  const [meat, setMeat] = useState({});
+
   useEffect(() => {
-    fetch('/data/mockdata.json')
+    fetch(`${API_LIST}/pages/detail/${userId}`)
       .then(res => res.json())
-      .then(data => setDataList(data[0]));
-  }, []);
+      .then(data => setMeat(data.data[0]));
+  }, [userId]);
+
+  // 백 통신
+  const { thumbnail_image, name, price } = meat;
 
   return (
     <div className="deatilPage">
       <div className="detailTop">
-        <div className="detailImg" />
+        <div className="detailImg">
+          <img src={thumbnail_image} alt="썸네일 이미지" />
+        </div>
         <div className="meatInfo">
-          <p className="meatName">{dataList.name}</p>
-          <p className="meatPrice">{dataList.weight}</p>
-          <p className="meatPriceTotal">{dataList.price}</p>
+          <p className="meatName">{name}</p>
+          <p className="meatPrice">{Math.floor(price)}원</p>
+          <p className="meatPriceTotal">{Math.floor(price)}원</p>
           <div className="detailOptionType">
             <span>옵션</span>
             <div className="selectOption">
