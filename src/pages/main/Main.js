@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useParams } from 'react';
 import './Main.scss';
 import Items from './Items.js';
 
@@ -10,10 +10,11 @@ const Main = () => {
   // const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch('/data/dataCartegory.json')
+    fetch('http://10.58.52.76:3000/lists?best')
       .then(result => result.json())
-      .then(data => setItemList(data));
+      .then(data => setItemList(data.data));
   }, []);
+  console.log(itemList);
 
   //추후 반영 예정
   // useEffect(() => {
