@@ -16,10 +16,6 @@ const Login = () => {
     });
   };
 
-  /*const goToMain = () => {
-    navigate('/Main');
-  };*/
-
   const handleClick = () => {
     fetch('http://10.58.52.250:3000/users/login', {
       method: 'POST',
