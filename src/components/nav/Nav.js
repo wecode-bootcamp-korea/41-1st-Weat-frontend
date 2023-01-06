@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BsCart3 } from 'react-icons/bs';
 import './Nav.scss';
@@ -19,7 +19,7 @@ const Nav = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
-    isLoggedIn ? moveToLogin() : moveToMain();
+    !isLoggedIn ? moveToLogin() : moveToMain();
     console.log(isLoggedIn);
   };
 
@@ -41,7 +41,7 @@ const Nav = () => {
       <div className="navRight">
         <ul className="navigate">
           <li>
-            {isLoggedIn === true ? (
+            {isLoggedIn ? (
               <button className="moveToMain" onClick={handleLogin}>
                 로그아웃
               </button>
