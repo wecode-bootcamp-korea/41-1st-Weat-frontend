@@ -1,3 +1,84 @@
-div {
-  font-size: 15px;
+@mixin navColor {
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+.nav {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  background-color: black;
+  color: white;
+  z-index: 1;
+
+  .navLeft {
+    display: flex;
+    align-items: center;
+
+    .navLogo {
+      @include navColor;
+      width: 100px;
+      margin-right: 50px;
+      border: none;
+      font-size: 25px;
+      text-decoration: none;
+      cursor: pointer;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .navigate {
+      display: flex;
+
+      .moveToCategory {
+        @include navColor;
+        margin-right: 30px;
+        text-decoration: none;
+        font-size: 20px;
+        border: none;
+      }
+    }
+  }
+
+  .navRight {
+    display: flex;
+    align-items: center;
+
+    .navigate {
+      display: flex;
+      align-items: center;
+
+      li {
+        margin-right: 30px;
+
+        .moveToSignup {
+          @include navColor;
+          text-decoration: none;
+          font-size: 20px;
+          border: none;
+        }
+      }
+
+      button {
+        @include navColor;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .navLogo {
+      @include navColor;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+    }
+  }
 }
