@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Signup.scss';
 
 const Signup = () => {
@@ -12,14 +13,14 @@ const Signup = () => {
     lastNumber: '',
   });
 
-  const matchPassword = userData.password === userData.confirmPassword;
-
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
       return { ...prevData, [name]: value };
     });
   };
+
+  const matchPassword = userData.password === userData.confirmPassword;
 
   /*const handleClick = () => {
     fetch('', {
@@ -35,6 +36,11 @@ const Signup = () => {
       .then(response => response.json())
       .then(data => console.log(data));
   };*/
+
+  const navigate = useNavigate();
+  const goToLogin = () => {
+    navigate('/Login');
+  };
 
   return (
     <div className="signUp">
@@ -139,7 +145,7 @@ const Signup = () => {
             </div>
           </div>
         </div>
-        <button className="goToLogin" type="button">
+        <button onClick={goToLogin} className="goToLogin" type="button">
           로그인으로
         </button>
         <button
