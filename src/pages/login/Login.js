@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.scss';
 import '../../styles/common.scss';
 
@@ -28,6 +29,17 @@ const Login = () => {
       .then(data => console.log(data));
   };
 
+  const enterLogin = e => {
+    if (e.key === 'enter') {
+      handleClick();
+    }
+  };
+
+  const navigate = useNavigate();
+  const goToSignUp = () => {
+    navigate('/SignUp');
+  };
+
   return (
     <div className="login">
       <h1 className="title">로그인</h1>
@@ -48,15 +60,16 @@ const Login = () => {
           type="password"
           placeholder="비밀번호를 입력하세요"
           onChange={handleChange}
+          onKeyDown={enterLogin}
         />
         <button onClick={handleClick} className="button" type="button">
           로그인
         </button>
 
         <span className="firstVisit">정육각은 처음이신가요?</span>
-        <a href="" className="goToSignUp">
+        <div onClick={goToSignUp} className="goToSignUp">
           회원가입하기
-        </a>
+        </div>
       </div>
     </div>
   );
