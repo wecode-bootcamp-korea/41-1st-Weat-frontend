@@ -9,6 +9,8 @@ const Login = () => {
     password: '',
   });
 
+  const [message, setMessage] = useState('');
+
   const handleChange = event => {
     setLoginData(preValue => {
       const { name, value } = event.target;
@@ -26,9 +28,16 @@ const Login = () => {
       }),
     })
       .then(response => response.json())
-      .then(data => console.log(data));
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          goToMain();
+        } else {
+          setMessage('이메일, 비밀번호를 확인하세요');
+        }
+      });
   };
-
+  //token 이름 확인하기 (backend)
   const enterLogin = e => {
     if (e.key === 'enter') {
       handleClick();
@@ -38,6 +47,9 @@ const Login = () => {
   const navigate = useNavigate();
   const goToSignUp = () => {
     navigate('/SignUp');
+  };
+  const goToMain = () => {
+    navigate('/Main');
   };
 
   return (
@@ -62,6 +74,7 @@ const Login = () => {
           onChange={handleChange}
           onKeyDown={enterLogin}
         />
+        <div className="errorMessage">{message}</div>
         <button onClick={handleClick} className="button" type="button">
           로그인
         </button>
