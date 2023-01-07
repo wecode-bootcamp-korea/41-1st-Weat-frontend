@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import './Category.scss';
 
 const CATEGORY = [
-  { id: 1, name: '돼지' },
-  { id: 2, name: '소' },
-  { id: 3, name: '닭' },
-  { id: 4, name: '우유' },
-  { id: 5, name: '달걀' },
-  { id: 6, name: '밀키트' },
+  { id: 1, category_name: '돼지' },
+  { id: 2, category_name: '소' },
+  { id: 3, category_name: '닭' },
+  { id: 4, category_name: '우유' },
+  { id: 5, category_name: '달걀' },
+  { id: 6, category_name: '밀키트' },
 ];
 
 const Category = () => {
   const [items, setItems] = useState([]);
-  const [name, setName] = useState('돼지');
+  const [names, setNames] = useState('돼지');
 
   useEffect(() => {
     fetch('/data/dataCartegory.json')
@@ -23,7 +23,7 @@ const Category = () => {
   }, []);
 
   const categorySet = e => {
-    setName(e.target.id);
+    setNames(e.target.id);
   };
 
   return (
@@ -34,34 +34,36 @@ const Category = () => {
           return (
             <li
               key={key}
-              id={i.name}
-              className={'btn' + (name === i.name ? 'active' : '')}
+              id={i.category_name}
+              className={'btn' + (names === i.category_name ? 'active' : '')}
               onClick={categorySet}
             >
-              {i.name}
+              {i.category_name}
             </li>
           );
         })}
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map(meat => {
-            return (
-              <li key={meat.id}>
-                <div className="items">
-                  <Link to="/Category/Detail">
-                    <img src="/images/meat.jpg" alt="고기사진" />
-                  </Link>
-                  <button>
-                    <BsCart3 />
-                  </button>
-                </div>
-                <div>
-                  <p className="itemName">{meat.name}</p>
-                  <p className="itemPrice">{meat.price}</p>
-                </div>
-              </li>
-            );
+          {items.map(({ id, name, price, category }) => {
+            if (names === category) {
+              return (
+                <li key={id}>
+                  <div className="items">
+                    <Link to={`/Category/Detail/${id}`}>
+                      <img src="/images/meat.jpg" alt="고기사진" />
+                    </Link>
+                    <button>
+                      <BsCart3 />
+                    </button>
+                  </div>
+                  <div>
+                    <p className="itemName">{name}</p>
+                    <p className="itemPrice">{price}</p>
+                  </div>
+                </li>
+              );
+            }
           })}
         </ul>
       </div>
