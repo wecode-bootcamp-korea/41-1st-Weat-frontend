@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Signup.scss';
 
 const Signup = () => {
@@ -12,6 +13,8 @@ const Signup = () => {
     lastNumber: '',
   });
 
+  const matchPassword = userData.password === userData.confirmPassword;
+
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
@@ -19,7 +22,7 @@ const Signup = () => {
     });
   };
 
-  const handleClick = () => {
+  /*const handleClick = () => {
     fetch('http://10.58.52.250:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -32,7 +35,7 @@ const Signup = () => {
     })
       .then(response => response.json())
       .then(data => console.log(data));
-  };
+  };*/
 
   return (
     <div className="signUp">
@@ -43,34 +46,54 @@ const Signup = () => {
         <div className="inputBox">
           <div className="inputLine">
             <div className="inputData">아이디(이메일주소)</div>
-            <input
-              name="email"
-              value={userData.email}
-              onChange={handleChange}
-              className="inputContent"
-              type="text"
-            />
+            <div className="inputWrap">
+              <input
+                name="email"
+                value={userData.email}
+                onChange={handleChange}
+                className="inputContent"
+                type="text"
+              />
+              <button className="checkBtn" type="button">
+                아이디 중복확인
+              </button>
+            </div>
           </div>
           <div className="inputLine">
             <div className="inputData">비밀번호</div>
-            <input
-              name="password"
-              value={userData.password}
-              onChange={handleChange}
-              className="inputContent"
-              type="password"
-            />
+            <div className="inputWrap">
+              <input
+                name="password"
+                value={userData.password}
+                onChange={handleChange}
+                className="inputContent"
+                type="password"
+              />
+            </div>
           </div>
           <div className="inputLine">
             <div className="inputData">비밀번호 확인</div>
-            <input
-              name="confirmPassword"
-              value={userData.confirmPassword}
-              onChange={handleChange}
-              className="inputContent"
-              type="password"
-            />
+            <div className="inputWrap">
+              <input
+                name="confirmPassword"
+                value={userData.confirmPassword}
+                onChange={handleChange}
+                className="inputContent"
+                type="password"
+              />
+              <div className="passwordMessage">
+                {userData.confirmPassword.length > 0 &&
+                  (matchPassword ? (
+                    <p className="passwordMessageTrue">
+                      비밀번호가 일치 합니다.
+                    </p>
+                  ) : (
+                    <p>비밀번호 일치하지 않습니다.</p>
+                  ))}
+              </div>
+            </div>
           </div>
+
           <div className="inputLine">
             <div className="inputData">이름</div>
             <input
@@ -117,15 +140,18 @@ const Signup = () => {
             </div>
           </div>
         </div>
-        <button className="goToLogin" type="button">
+        <button Link to="/Login" className="goToLogin" type="button">
           로그인으로
         </button>
-        <button onClick={handleClick} className="goToSignUp" type="button">
+        <button
+          //   onClick={handleClick}
+          className="goToSignUp"
+          type="button"
+        >
           가입하기
         </button>
       </div>
     </div>
   );
 };
-
 export default Signup;
