@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Signup.scss';
 
 const Signup = () => {
@@ -23,7 +22,7 @@ const Signup = () => {
   };
 
   /*const handleClick = () => {
-    fetch('http://10.58.52.250:3000/users/signup', {
+    fetch('', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -140,11 +139,11 @@ const Signup = () => {
             </div>
           </div>
         </div>
-        <button Link to="/Login" className="goToLogin" type="button">
+        <button className="goToLogin" type="button">
           로그인으로
         </button>
         <button
-          //   onClick={handleClick}
+          // onClick={handleClick}
           className="goToSignUp"
           type="button"
         >
