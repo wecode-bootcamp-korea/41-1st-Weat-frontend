@@ -13,6 +13,7 @@ const Signup = () => {
     lastNumber: '',
   });
 
+  const [errorMessage, setErrorMessage] = useState(true);
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
@@ -20,9 +21,35 @@ const Signup = () => {
     });
   };
 
+  const checkEmail = e => {
+    fetch('', {
+      method: '',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        email: userData.email,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  };
   const matchPassword = userData.password === userData.confirmPassword;
+  const validEmail = !userData.email.includes('@') && userData.email.length > 0;
+  /*const validName = userData.Name.length > 0;
+  const validNumber =
+    (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
-  /*const handleClick = () => {
+  const handleClick = () => {
+    if (validEmail) {
+      setErrorMessage(false);
+      return;
+    } else if (matchPassword) {
+      setErrorMessage(false);
+    } else if (!validName) {
+      setErrorMessage(false);
+    } else if (!validNumber) {
+      setErrorMessage(false);
+    }
+
     fetch('', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -35,8 +62,8 @@ const Signup = () => {
     })
       .then(response => response.json())
       .then(data => console.log(data));
-  };*/
-
+  };
+*/
   const navigate = useNavigate();
   const goToLogin = () => {
     navigate('/Login');
@@ -59,10 +86,15 @@ const Signup = () => {
                 className="inputContent"
                 type="text"
               />
-              <button className="checkBtn" type="button">
-                아이디 중복확인
-              </button>
+              {!validEmail ? (
+                <p />
+              ) : (
+                <p className="errorMessage">올바른 이메일양식을 사용하세요.</p>
+              )}
             </div>
+            <button onClick={checkEmail} className="checkBtn" type="button">
+              아이디 중복확인
+            </button>
           </div>
           <div className="inputLine">
             <div className="inputData">비밀번호</div>
@@ -86,14 +118,12 @@ const Signup = () => {
                 className="inputContent"
                 type="password"
               />
-              <div className="passwordMessage">
+              <div className="errorMessage">
                 {userData.confirmPassword.length > 0 &&
                   (matchPassword ? (
-                    <p className="passwordMessageTrue">
-                      비밀번호가 일치 합니다.
-                    </p>
+                    <p className="errorMessageTrue">비밀번호가 일치 합니다.</p>
                   ) : (
-                    <p>비밀번호 일치하지 않습니다.</p>
+                    <p>비밀번호가 일치하지 않습니다.</p>
                   ))}
               </div>
             </div>
@@ -101,47 +131,51 @@ const Signup = () => {
 
           <div className="inputLine">
             <div className="inputData">이름</div>
-            <input
-              name="userName"
-              value={userData.userName}
-              onChange={handleChange}
-              className="inputContent"
-              type="text"
-            />
+            <div className="inputWrap">
+              <input
+                name="userName"
+                value={userData.userName}
+                onChange={handleChange}
+                className="inputContent"
+                type="text"
+              />
+            </div>
           </div>
           <div className="inputLine">
             <div className="inputData">휴대폰번호</div>
-            <div className="inputNumber">
-              <select
-                name="firstNumber"
-                value={userData.firstNumber}
-                onChange={handleChange}
-                className="phoneNumber"
-              >
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="016">016</option>
-                <option value="017">017</option>
-                <option value="019">019</option>
-              </select>
-              <span className="numberIcon"> - </span>
-              <input
-                name="secondNumber"
-                value={userData.secondNumber}
-                onChange={handleChange}
-                className="numberContent"
-                type="text"
-                maxLength={4}
-              />
-              <span className="numberIcon"> - </span>
-              <input
-                name="lastNumber"
-                value={userData.lastNumber}
-                onChange={handleChange}
-                className="numberContent"
-                type="text"
-                maxLength={4}
-              />
+            <div className="inputWrap">
+              <div className="inputNumber">
+                <select
+                  name="firstNumber"
+                  value={userData.firstNumber}
+                  onChange={handleChange}
+                  className="phoneNumber"
+                >
+                  <option value="010">010</option>
+                  <option value="011">011</option>
+                  <option value="016">016</option>
+                  <option value="017">017</option>
+                  <option value="019">019</option>
+                </select>
+                <span className="numberIcon"> - </span>
+                <input
+                  name="secondNumber"
+                  value={userData.secondNumber}
+                  onChange={handleChange}
+                  className="numberContent"
+                  type="text"
+                  maxLength={4}
+                />
+                <span className="numberIcon"> - </span>
+                <input
+                  name="lastNumber"
+                  value={userData.lastNumber}
+                  onChange={handleChange}
+                  className="numberContent"
+                  type="text"
+                  maxLength={4}
+                />
+              </div>
             </div>
           </div>
         </div>
