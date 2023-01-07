@@ -13,7 +13,11 @@ const Signup = () => {
     lastNumber: '',
   });
 
-  const [errorMessage, setErrorMessage] = useState(true);
+  const [emailError, setEailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [numberError, setNumberError] = useState(false);
+
   const handleChange = event => {
     const { name, value } = event.target;
     setUserData(prevData => {
@@ -40,14 +44,14 @@ const Signup = () => {
 
   const handleClick = () => {
     if (validEmail) {
-      setErrorMessage(false);
+      setEmailError(true);
       return;
-    } else if (matchPassword) {
-      setErrorMessage(false);
+    } else if (!matchPassword) {
+      setPasswordError(true);
     } else if (!validName) {
-      setErrorMessage(false);
+      setNameError(true);
     } else if (!validNumber) {
-      setErrorMessage(false);
+      setNumberError(true);
     }
 
     fetch('', {
@@ -86,7 +90,7 @@ const Signup = () => {
                 className="inputContent"
                 type="text"
               />
-              {!validEmail ? (
+              {!emailError || !validEmail ? (
                 <p />
               ) : (
                 <p className="errorMessage">올바른 이메일양식을 사용하세요.</p>
@@ -139,6 +143,9 @@ const Signup = () => {
                 className="inputContent"
                 type="text"
               />
+              <div className="errorMessage">
+                {nameError && <p>이름을 입력하세요.</p>}
+              </div>
             </div>
           </div>
           <div className="inputLine">
@@ -175,6 +182,9 @@ const Signup = () => {
                   type="text"
                   maxLength={4}
                 />
+              </div>
+              <div className="errorMessage">
+                {numberError && <p>번호를 입력하세요.</p>}
               </div>
             </div>
           </div>
