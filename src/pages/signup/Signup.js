@@ -57,25 +57,25 @@ const Signup = () => {
       setNameError(true);
     } else if (!validNumber) {
       setNumberError(true);
-    }
-
-    fetch('', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      body: JSON.stringify({
-        email: userData.email,
-        password: userData.password,
-        mobile: `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`,
-        userName: userData.userName,
-      }),
-    })
-      .then(res => {
-        if (res.ok) {
-          alert('회원가입을 축하합니다.');
-          navigate('/Login');
-        }
+    } else {
+      fetch('', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        body: JSON.stringify({
+          email: userData.email,
+          password: userData.password,
+          mobile: `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`,
+          userName: userData.userName,
+        }),
       })
-      .then(data => {});
+        .then(res => {
+          if (res.ok) {
+            alert('회원가입을 축하합니다.');
+            navigate('/Login');
+          }
+        })
+        .then(data => {});
+    }
   };
 
   const navigate = useNavigate();
