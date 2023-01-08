@@ -5,15 +5,14 @@
 }
 
 .nav {
-  position: fixed;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 100px;
   width: 100vw;
   height: 100px;
   background-color: black;
   color: white;
-  z-index: 1;
 
   .navLeft {
     display: flex;
