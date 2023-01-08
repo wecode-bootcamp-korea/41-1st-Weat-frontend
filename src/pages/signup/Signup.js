@@ -14,7 +14,6 @@ const Signup = () => {
   });
 
   const [emailError, setEailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [numberError, setNumberError] = useState(false);
 
@@ -25,7 +24,7 @@ const Signup = () => {
     });
   };
 
-  const checkEmail = e => {
+  /*const checkEmail = e => {
     fetch('', {
       method: '',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -33,21 +32,28 @@ const Signup = () => {
         email: userData.email,
       }),
     })
-      .then(response => response.json())
-      .then(data => console.log(data));
+      .then(res =>{
+        if(res.status === ){
+          setEmailError(false)
+        
+        } if(res.status === ){
+          setEmailError(true)
+        }
+      })
+      .then(data => {});
   };
+  */
   const matchPassword = userData.password === userData.confirmPassword;
   const validEmail = !userData.email.includes('@') && userData.email.length > 0;
-  /*const validName = userData.Name.length > 0;
+  const validName = userData.userName.length > 0;
   const validNumber =
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
-  const handleClick = () => {
-    if (validEmail) {
-      setEmailError(true);
+  /*  const handleClick = () => {
+    if (!emailError) {
       return;
     } else if (!matchPassword) {
-      setPasswordError(true);
+      return;
     } else if (!validName) {
       setNameError(true);
     } else if (!validNumber) {
@@ -64,8 +70,13 @@ const Signup = () => {
         userName: userData.userName,
       }),
     })
-      .then(response => response.json())
-      .then(data => console.log(data));
+      .then(res => {
+         if(res.status === ){
+          alert('회원가입을 축하합니다.')
+          navigate('/Login')
+        } 
+      })
+      .then(data => {});
   };
 */
   const navigate = useNavigate();
@@ -90,10 +101,15 @@ const Signup = () => {
                 className="inputContent"
                 type="text"
               />
-              {!emailError || !validEmail ? (
+              {!validEmail ? (
                 <p />
               ) : (
                 <p className="errorMessage">올바른 이메일양식을 사용하세요.</p>
+              )}
+              {emailError ? (
+                <p className="errorMessage">중복된 아이디입니다. </p>
+              ) : (
+                <p className="errorMessage">사용가능한 아이디입니다.</p>
               )}
             </div>
             <button onClick={checkEmail} className="checkBtn" type="button">
