@@ -5,6 +5,8 @@
 }
 
 .nav {
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,6 +15,7 @@
   height: 100px;
   background-color: black;
   color: white;
+  z-index: 1;
 
   .navLeft {
     display: flex;
