@@ -11,9 +11,9 @@ const Main = () => {
   // const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch('http://10.58.52.76:3000/products?best')
+    fetch('/data/dataCartegory.json')
       .then(result => result.json())
-      .then(data => setItemList(data.data));
+      .then(data => setItemList(data));
   }, []);
 
   //추후 반영 예정
@@ -32,7 +32,7 @@ const Main = () => {
   return (
     <div className="main">
       <div className="mainImg">
-        <div className="flexbox">
+        <div className="flexBox">
           <img src="/images/meat.jpg" alt="meat" />
           <img src="/images/grill.jpg" alt="grill" />
           <img src="/images/porkbelly.jpg" alt="porkbelly" />

@@ -10,9 +10,9 @@
     height: 520px;
     margin-left: -0%;
     transition: all 0.5s ease-out;
-    // overflow: hidden;
+    overflow: hidden;
 
-    .flexbox {
+    .flexBox {
       display: flex;
 
       img {
@@ -70,7 +70,11 @@
             width: 300px;
             height: 200px;
           }
-
+          .imgButton {
+            border: none;
+            background-color: #f9f7f8;
+            cursor: pointer;
+          }
           .cart {
             position: absolute;
             width: 70px;

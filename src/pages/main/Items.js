@@ -10,8 +10,10 @@ function Items({ itemList }) {
   return itemList.map(items => (
     <div key={items.id}>
       <li>
-        <img src={items.thumbnail_image} />
-        <button onClick={moveToDetail} className="cart">
+        <button className="imgButton" onClick={moveToDetail}>
+          <img src={items.thumbnail_image} />
+        </button>
+        <button className="cart" onClick={moveToDetail}>
           <BsCart3 />
         </button>
       </li>
