@@ -1,42 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import './Main.scss';
 import Items from './Items.js';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
 
-  //추후 반영 예정
-  // const [count, setCount] = useState(1);
-  // const [current, setCurrent] = useState(0);
-  // const [style, setStyle] = useState({ marginLeft: `${current}00%` });
+  const [count, setCount] = useState(1);
+  const [current, setCurrent] = useState(0);
+  const [style, setStyle] = useState({ marginLeft: `${current}00%` });
+  const [custominterval, setCustomInterval] = useState(3000);
 
   useEffect(() => {
-    fetch('/data/dataCartegory.json')
+    fetch('data/dataCartegory.json')
       .then(result => result.json())
       .then(data => setItemList(data));
   }, []);
 
-  //추후 반영 예정
-  // useEffect(() => {
-  //   setStyle({ marginLeft: `${current}00%` });
-  // }, [style]);
+  useEffect(() => {
+    setStyle({ marginLeft: `${current}00%` });
+  }, [current]);
 
-  // const handleIncrese = () => {
-  //   count < 3 ? setCount(count + 1) && setCurrent(current + 2) : setCount(3);
-  //   console.log(setCurrent, current);
-  // };
-  // const handleDecrese = () => {
-  //   count > 1 ? setCount(count - 1) : setCount(1);
-  // };
+  const handleIncrese = () => {
+    count < 3 ? setCount(count + 1) : setCount(3);
+    if (count === 1) {
+      setCurrent(current - 2);
+    } else if (count === 2) {
+      setCurrent(current - 2);
+    }
+  };
+  const handleDecrese = () => {
+    count > 1 ? setCount(count - 1) : setCount(1);
+    if (count === 2) {
+      setCurrent(current + 2);
+    } else if (count === 3) {
+      setCurrent(current + 2);
+    }
+  };
 
   return (
     <div className="main">
-      <div className="mainImg">
+      <div className="mainImg" style={style}>
         <div className="flexBox">
           <img src="/images/meat.jpg" alt="meat" />
           <img src="/images/grill.jpg" alt="grill" />
           <img src="/images/porkbelly.jpg" alt="porkbelly" />
         </div>
+      </div>
+      <div className="slideWrap">
+        <button onClick={handleDecrese}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </button>
+        <span>
+          <b>{count}</b> / 3
+        </span>
+        <button onClick={handleIncrese}>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
       </div>
       <div className="mainItemBox">
         <div className="mainBest">
