@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "img": "",
+    "img": "./images/meat.jpg",
     "name": "삼겹살",
     "weight": 300,
     "option": "얇게 13mm",
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "img": "",
+    "img": "./images/grill.jpg",
     "name": "목살",
     "weight": 250,
     "option": "보통 16mm",
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "img": "",
+    "img": "./images/meat.jpg",
     "name": "항정살",
     "weight": 200,
     "option": "두껍게 19mm",
@@ -25,7 +25,7 @@
   },
   {
     "id": 4,
-    "img": "",
+    "img": "./images/grill.jpg",
     "name": "통오겹살",
     "weight": 200,
     "option": "두껍게 19mm",
@@ -33,7 +33,7 @@
   },
   {
     "id": 5,
-    "img": "",
+    "img": "./images/meat.jpg",
     "name": "갈비살",
     "weight": 200,
     "option": "두껍게 19mm",

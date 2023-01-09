@@ -9,13 +9,32 @@ export default function Cart() {
   const onRemove = id => {
     setCartData(cartData.filter(value => value.id !== id));
   };
-
+  const changeCount = (index, offset) => {
+    setCartData(prev => {
+      return prev.map((item, i) => {
+        if (i === index) {
+          item.count += offset;
+          if (item.count < 0) {
+            item.count = 0;
+          }
+        }
+        return item;
+      });
+    });
+  };
   useEffect(() => {
     fetch('/data/meatData.json')
       .then(result => result.json())
-      .then(data => setCartData(data));
+      .then(data => {
+        const newData = data.map(item => ({ ...item, count: 0 }));
+        setCartData(newData);
+      });
   }, []);
-
+  const totalPrice =
+    cartData.reduce((prev, cur) => {
+      prev += cur.price * cur.count;
+      return prev;
+    }, 0) || 0;
   return (
     <div className="cartMain">
       <div className="cartTitle">장바구니</div>
@@ -31,19 +50,20 @@ export default function Cart() {
               <th className="cartItemTitleRemove">취소</th>
             </tr>
           </thead>
-          {cartData.map(data => {
+          {cartData.map((data, index) => {
             return (
               <Cartcount
-                value={data}
                 key={data.id}
+                value={data}
                 onRemove={onRemove}
-                cartData={cartData}
+                plusCount={() => changeCount(index, 1)}
+                minusCount={() => changeCount(index, -1)}
               />
             );
           })}
         </table>
         <aside className="cartSideContents">
-          <Cartaside />
+          <Cartaside totalPrice={totalPrice} />
         </aside>
       </div>
     </div>
