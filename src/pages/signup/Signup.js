@@ -13,7 +13,7 @@ const Signup = () => {
     lastNumber: '',
   });
 
-  const [emailError, setEmailError] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const [nameError, setNameError] = useState(false);
   const [numberError, setNumberError] = useState(false);
 
@@ -24,7 +24,7 @@ const Signup = () => {
     });
   };
 
-  /*const checkEmail = e => {
+  const checkEmail = e => {
     fetch('http://10.58.52.137:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -33,26 +33,25 @@ const Signup = () => {
       }),
     })
       .then(res => {
-        if (res.status === 409) {
-          setEmailError(true);
+        if (res.status === '200') {
+          alert('사용가능한 아이디입니다.');
         } else {
-          setEmailError(false);
+          alert('중복된 아이디입니다.');
         }
       })
       .then(data => console.log(data));
-  };*/
+  };
 
   const matchPassword = userData.password === userData.confirmPassword;
-  const validEmail = !userData.email.includes('@') && userData.email.length > 0;
   const validPassword = /^[A-Za-z0-9]{8,20}$/;
   const validName = userData.userName.length > 0;
   const validNumber =
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
   const handleClick = () => {
-    /* if (!emailError) {
+    if (!emailError) {
       return;
-    }*/
+    }
     if (!matchPassword) {
       return;
     } else if (!validName) {
@@ -102,23 +101,10 @@ const Signup = () => {
                 className="inputContent"
                 type="text"
               />
-              {!validEmail ? (
-                <p />
-              ) : (
-                <p className="errorMessage">올바른 이메일양식을 사용하세요.</p>
-              )}
-              {userData.email.length > 0 &&
-                (emailError ? (
-                  <p className="errorMessage">중복된 아이디입니다. </p>
-                ) : (
-                  <p className="errorMessage">사용가능한 아이디입니다.</p>
-                ))}
+
+              <p className="errorMessage">{err.Message} </p>
             </div>
-            <button
-              // onClick={checkEmail}
-              className="checkBtn"
-              type="button"
-            >
+            <button onClick={checkEmail} className="checkBtn" type="button">
               아이디 중복확인
             </button>
           </div>
