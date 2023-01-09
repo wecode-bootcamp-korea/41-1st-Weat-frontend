@@ -17,9 +17,29 @@ const Nav = () => {
     navigate('/Cart');
   };
 
+  const moveToMyPage = () => {
+    navigate('/mypage');
+  };
+
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
     isLoggedIn ? moveToMain() : moveToLogin();
+  };
+
+  const handleLoginToMyPage = () => {
+    if (!isLoggedIn) {
+      alert('로그인 후 이용 가능합니다.');
+    } else {
+      moveToMyPage();
+    }
+  };
+
+  const handleLoginToCart = () => {
+    if (!isLoggedIn) {
+      alert('로그인 후 이용 가능합니다.');
+    } else {
+      moveToCart();
+    }
   };
 
   return (
@@ -55,8 +75,13 @@ const Nav = () => {
               회원가입
             </Link>
           </li>
+          <li>
+            <button className="moveToMyPage" onClick={handleLoginToMyPage}>
+              마이페이지
+            </button>
+          </li>
         </ul>
-        <button onClick={moveToCart} className="navLogo">
+        <button onClick={handleLoginToCart} className="navLogo">
           <BsCart3 />
         </button>
       </div>
