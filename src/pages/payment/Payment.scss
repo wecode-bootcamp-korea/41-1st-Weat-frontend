@@ -19,6 +19,13 @@
     height: 120px;
     background-color: #f7f7f7;
     text-align: center;
+
+    .blur {
+      display: flex;
+      align-items: center;
+      opacity: 0.3;
+    }
+
     img {
       width: 51px;
       height: 45.6px;
@@ -73,7 +80,8 @@
             left: 29px;
           }
           .getInfo {
-            width: 620px;
+            width: 80%;
+            border-width: 0;
             height: 30px;
             border: 1px solid #efefef;
           }

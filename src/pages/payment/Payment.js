@@ -9,8 +9,10 @@ const Payment = () => {
         <img src="/images/contract.png" alt="write" />
         <span className="orderInfo">01.배송지 정보</span>
         <img src="/images/next.png" alt="write" />
-        <img src="/images/payment.png" alt="write" />
-        <span className="orderInfo">02.결제 정보</span>
+        <div className="blur">
+          <img src="/images/payment.png" alt="write" />
+          <span className="orderInfo">02.결제 정보</span>
+        </div>
       </div>
       <div className="box">
         <div className="inputContainer">
