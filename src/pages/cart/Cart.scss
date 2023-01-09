@@ -31,42 +31,44 @@
       font-size: 13px;
       height: 55px;
       border-bottom: 1px solid #e1dedf;
-    }
 
-    &TitleImg {
-      width: 135px;
-    }
+      &Img {
+        width: 135px;
+        visibility: hidden;
+      }
 
-    &TitleName {
-      width: 284px;
-    }
+      &Name {
+        width: 284px;
+      }
 
-    &TitleWeight {
-      width: 80px;
-    }
+      &Weight {
+        width: 80px;
+      }
 
-    &TitleCount {
-      width: 120px;
-    }
+      &Count {
+        width: 120px;
+      }
 
-    &TitlePrice {
-      width: 143px;
-    }
+      &Price {
+        width: 143px;
+      }
 
-    &TitleRemove {
-      width: 50px;
+      &Remove {
+        width: 50px;
+        visibility: hidden;
+      }
     }
-  }
-  .cartSideContents {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 280px;
-    height: 400px;
-    margin-top: 50px;
-    margin-left: 40px;
-    background-color: #f8f8f8;
-    border-top: 1px solid black;
-    padding-bottom: 30px;
+    .cartSideContents {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 280px;
+      height: 400px;
+      margin-top: 50px;
+      margin-left: 40px;
+      background-color: #f8f8f8;
+      border-top: 1px solid black;
+      padding-bottom: 30px;
+    }
   }
 }
