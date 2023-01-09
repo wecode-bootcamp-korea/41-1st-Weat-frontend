@@ -10,7 +10,7 @@ function Items({ itemList }) {
   const { thumbnail_image, name, price, id, base_unit } = item;
 
   useEffect(() => {
-    fetch(`data/dataCartegory.json/
+    fetch(`http://10.58.52.126:3000/products/detail/
     ${itemId}`)
       .then(result => result.json())
       .then(data => setItem(data));
@@ -23,7 +23,7 @@ function Items({ itemList }) {
   return itemList.map(items => (
     <div key={items.id}>
       <li>
-        <Link to={`/Category/detail/${items.id}`}>
+        <Link to={`/Category/Detail/${items.id}`}>
           <img src={items.thumbnail_image} alt="thumbnail" />
         </Link>
         <button className="cart" onClick={moveToDetail}>

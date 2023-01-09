@@ -13,12 +13,11 @@ const Main = () => {
   const [count, setCount] = useState(1);
   const [current, setCurrent] = useState(0);
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
-  const [custominterval, setCustomInterval] = useState(3000);
 
   useEffect(() => {
-    fetch('data/dataCartegory.json')
+    fetch('http://10.58.52.126:3000/products?best')
       .then(result => result.json())
-      .then(data => setItemList(data));
+      .then(data => setItemList(data.data));
   }, []);
 
   useEffect(() => {
@@ -46,7 +45,7 @@ const Main = () => {
     <div className="main">
       <div className="mainImg" style={style}>
         <div className="flexBox">
-          <img src="/images/meat.jpg" alt="meat" />
+          <img src="/images/slide1.jpg" alt="meat" />
           <img src="/images/grill.jpg" alt="grill" />
           <img src="/images/porkbelly.jpg" alt="porkbelly" />
         </div>
