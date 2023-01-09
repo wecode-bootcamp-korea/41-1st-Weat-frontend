@@ -34,9 +34,9 @@ const Signup = () => {
     })
       .then(res => {
         if (res.status === '200') {
-          alert('사용가능한 아이디입니다.');
+          setEmailError('사용가능한 아이디입니다.');
         } else {
-          alert('중복된 아이디입니다.');
+          setEmailError('중복된 아이디입니다.');
         }
       })
       .then(data => console.log(data));
@@ -49,9 +49,6 @@ const Signup = () => {
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
   const handleClick = () => {
-    if (!emailError) {
-      return;
-    }
     if (!matchPassword) {
       return;
     } else if (!validName) {
@@ -102,7 +99,7 @@ const Signup = () => {
                 type="text"
               />
 
-              <p className="errorMessage">{err.Message} </p>
+              <p className="errorMessage">{emailError} </p>
             </div>
             <button onClick={checkEmail} className="checkBtn" type="button">
               아이디 중복확인
