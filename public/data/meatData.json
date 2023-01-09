@@ -4,7 +4,7 @@
     "thumbnail_image": "./images/meat.jpg",
     "name": "삼겹살",
     "base_unit": 300,
-    "name": "얇게 13mm",
+    "option": "얇게 13mm",
     "price": 1000
   },
   {
@@ -12,7 +12,7 @@
     "thumbnail_image": "./images/grill.jpg",
     "name": "목살",
     "base_unit": 250,
-    "name": "보통 16mm",
+    "option": "보통 16mm",
     "price": 2000
   },
   {
@@ -20,7 +20,7 @@
     "thumbnail_image": "./images/meat.jpg",
     "name": "항정살",
     "base_unit": 200,
-    "name": "두껍게 19mm",
+    "option": "두껍게 19mm",
     "price": 3000
   },
   {
@@ -28,7 +28,7 @@
     "thumbnail_image": "./images/grill.jpg",
     "name": "통오겹살",
     "base_unit": 200,
-    "name": "두껍게 19mm",
+    "option": "두껍게 19mm",
     "price": 3000
   },
   {
@@ -36,7 +36,7 @@
     "thumbnail_image": "./images/meat.jpg",
     "name": "갈비살",
     "base_unit": 200,
-    "name": "두껍게 19mm",
+    "option": "두껍게 19mm",
     "price": 3000
   }
 ]
