@@ -16,7 +16,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    fetch('http://10.58.52.250:3000/users/login', {
+    fetch('http://10.58.52.126:3000/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

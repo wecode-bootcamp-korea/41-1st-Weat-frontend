@@ -22,6 +22,13 @@ const Nav = () => {
   };
 
   const handleLogin = () => {
+    // const getToken = () => {
+    //   localStorage.getItem('token');
+    //   console.log(localStorage.getItem('token'));
+    // };
+
+    // isLoggedIn = getToken();
+
     setIsLoggedIn(!isLoggedIn);
     isLoggedIn ? moveToMain() : moveToLogin();
   };
