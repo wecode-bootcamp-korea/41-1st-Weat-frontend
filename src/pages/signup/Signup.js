@@ -31,15 +31,14 @@ const Signup = () => {
       body: JSON.stringify({
         email: userData.email,
       }),
-    })
-      .then(res => {
-        if (res.status === '200') {
-          setEmailError('사용가능한 아이디입니다.');
-        } else {
-          setEmailError('중복된 아이디입니다.');
-        }
-      })
-      .then(data => console.log(data));
+    }).then(response => {
+      console.log(response.status);
+      if (response.status === 209) {
+        setEmailError('사용불가한 이메일입니다.');
+      } else {
+        setEmailError('사용가능한 이메일입니다.');
+      }
+    });
   };
 
   const matchPassword = userData.password === userData.confirmPassword;
@@ -72,7 +71,7 @@ const Signup = () => {
             navigate('/Login');
           }
         })
-        .then(data => {});
+        .then(data => console.log(data));
     }
   };
 
@@ -99,7 +98,7 @@ const Signup = () => {
                 type="text"
               />
 
-              <p className="errorMessage">{emailError} </p>
+              <p className="errorMessage">{emailError}</p>
             </div>
             <button onClick={checkEmail} className="checkBtn" type="button">
               아이디 중복확인
