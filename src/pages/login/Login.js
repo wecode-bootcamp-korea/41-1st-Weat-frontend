@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { API_LIST } from '../../apiData';
 import './Login.scss';
 import '../../styles/common.scss';
 
@@ -19,7 +20,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    fetch('http://10.58.52.137:3000/users/login', {
+    fetch(`${API_LIST}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -30,7 +31,6 @@ const Login = () => {
       .then(response => response.json())
       .then(data => {
         if (data.accessToken) {
-          console.log(data);
           localStorage.setItem('token', data.accessToken);
           goToMain();
         } else {
