@@ -8,6 +8,9 @@ const Payment = () => {
       <div className="info">
         <img src="/images/contract.png" alt="write" />
         <span className="orderInfo">01.배송지 정보</span>
+        <img src="/images/next.png" alt="write" />
+        <img src="/images/payment.png" alt="write" />
+        <span className="orderInfo">02.결제 정보</span>
       </div>
       <div className="box">
         <div className="inputContainer">
@@ -55,7 +58,11 @@ const Payment = () => {
                   </td>
                   <td className="indexInfo">
                     <div className="indexInfoName">
-                      <input type="text" placeholder="이름을 입력하세요." />
+                      <input
+                        className="getInfo"
+                        type="text"
+                        placeholder="이름을 입력하세요."
+                      />
                     </div>
                   </td>
                 </tr>
@@ -65,7 +72,11 @@ const Payment = () => {
                   </td>
                   <td className="indexInfo">
                     <div className="indexInfoName">
-                      <input type="text" placeholder="전화번호를 입력하세요." />
+                      <input
+                        className="getInfo"
+                        type="text"
+                        placeholder="전화번호를 입력하세요."
+                      />
                     </div>
                   </td>
                 </tr>
@@ -74,7 +85,13 @@ const Payment = () => {
                     <div className="indexName">주소</div>
                   </td>
                   <td className="indexInfo">
-                    <div className="indexInfoName" />
+                    <div className="indexInfoName">
+                      <input
+                        className="getInfo"
+                        type="text"
+                        placeholder="주소를 입력하세요."
+                      />
+                    </div>
                   </td>
                 </tr>
               </tbody>

@@ -23,6 +23,7 @@
       width: 51px;
       height: 45.6px;
       margin-right: 20px;
+      margin-left: 20px;
     }
     .orderInfo {
       font-size: 15px;
@@ -70,6 +71,15 @@
             font-size: 13px;
             top: 13px;
             left: 29px;
+          }
+          .getInfo {
+            width: 620px;
+            height: 30px;
+            border: 1px solid #efefef;
+          }
+
+          .getInfo:focus {
+            outline: 1px solid #efefef;
           }
         }
       }
