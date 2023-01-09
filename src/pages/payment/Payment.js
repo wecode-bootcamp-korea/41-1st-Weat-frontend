@@ -2,6 +2,35 @@ import React, { useState } from 'react';
 import './Payment.scss';
 
 const Payment = () => {
+  const [addressData, setAddressData] = useState({
+    userName: '',
+    mobile: '',
+    address: '',
+  });
+
+  const handelChange = e => {
+    const { name, value } = e.target;
+    setAddressData(prev => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  const handleClick = e => {
+    fetch('', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        userName: addressData.userName,
+        mobile: addressData.mobile,
+        address: addressData.address,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  };
+
   return (
     <div className="payment">
       <h1 className="title">주문하기</h1>
@@ -61,6 +90,9 @@ const Payment = () => {
                   <td className="indexInfo">
                     <div className="indexInfoName">
                       <input
+                        name="userName"
+                        value={addressData.userName}
+                        onChange={handelChange}
                         className="getInfo"
                         type="text"
                         placeholder="이름을 입력하세요."
@@ -75,6 +107,9 @@ const Payment = () => {
                   <td className="indexInfo">
                     <div className="indexInfoName">
                       <input
+                        name="mobile"
+                        value={addressData.mobile}
+                        onChange={handelChange}
                         className="getInfo"
                         type="text"
                         placeholder="전화번호를 입력하세요."
@@ -89,6 +124,9 @@ const Payment = () => {
                   <td className="indexInfo">
                     <div className="indexInfoName">
                       <input
+                        name="address"
+                        value={addressData.address}
+                        onChange={handelChange}
                         className="getInfo"
                         type="text"
                         placeholder="주소를 입력하세요."
@@ -102,7 +140,7 @@ const Payment = () => {
           <button className="goToBack" type="button">
             이전으로
           </button>
-          <button className="goToNext" type="button">
+          <button onClick={handleClick} className="goToNext" type="button">
             다음으로
           </button>
         </div>
