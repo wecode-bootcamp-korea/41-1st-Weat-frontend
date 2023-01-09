@@ -24,41 +24,43 @@ const Signup = () => {
     });
   };
 
-  /* const checkEmail = e => {
-    fetch('', {
-      method: '',
+  /*const checkEmail = e => {
+    fetch('http://10.58.52.137:3000/users/signup', {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
         email: userData.email,
       }),
     })
       .then(res => {
-        if (res.ok) {
-          setEmailError(false);
-        } else {
+        if (res.status === 409) {
           setEmailError(true);
+        } else {
+          setEmailError(false);
         }
       })
-      .then(data => {});
-  };
-*/
+      .then(data => console.log(data));
+  };*/
+
   const matchPassword = userData.password === userData.confirmPassword;
   const validEmail = !userData.email.includes('@') && userData.email.length > 0;
+  const validPassword = /^[A-Za-z0-9]{8,20}$/;
   const validName = userData.userName.length > 0;
   const validNumber =
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
   const handleClick = () => {
-    if (!emailError) {
+    /* if (!emailError) {
       return;
-    } else if (!matchPassword) {
+    }*/
+    if (!matchPassword) {
       return;
     } else if (!validName) {
       setNameError(true);
     } else if (!validNumber) {
       setNumberError(true);
     } else {
-      fetch('', {
+      fetch('http://10.58.52.137:3000/users/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
@@ -113,7 +115,7 @@ const Signup = () => {
                 ))}
             </div>
             <button
-              //onClick={checkEmail}
+              // onClick={checkEmail}
               className="checkBtn"
               type="button"
             >
@@ -130,6 +132,14 @@ const Signup = () => {
                 className="inputContent"
                 type="password"
               />
+              {userData.password.length > 0 &&
+                (validPassword ? (
+                  <p />
+                ) : (
+                  <p className="errorMessage">
+                    숫자,알파벳,특수문자를 입력하시오.
+                  </p>
+                ))}
             </div>
           </div>
           <div className="inputLine">
