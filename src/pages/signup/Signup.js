@@ -30,33 +30,32 @@ const Signup = () => {
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
   const handleClick = () => {
-    if (!matchPassword) {
+     if (!matchPassword) {
       return;
     } else if (!validName) {
       setNameError(true);
     } else if (!validNumber) {
       setNumberError(true);
     } else {
-      fetch('http://10.58.52.137:3000/users/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        body: JSON.stringify({
-          email: userData.email,
-          password: userData.password,
-          mobile: `${userData.firstNumber}${userData.secondNumber}${userData.lastNumber}`,
-          userName: userData.userName,
-        }),
+      
+
+    fetch('http://10.58.52.137:3000/users/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        email: userData.email,
+        password: userData.password,
+        mobile: `${userData.firstNumber}-${userData.secondNumber}-${userData.lastNumber}`,
+        username: userData.userName,
+      }),
+    })
+      .then(res => {
+        if (res.ok) {
+          alert('회원가입을 축하합니다.');
+          navigate('/Login');
+        }
       })
-        .then(res => {
-          if (res.ok) {
-            alert('회원가입을 축하합니다.');
-            navigate('/Login');
-          } else {
-            alert('error');
-          }
-        })
-        .then(res => {});
-    }
+      .then(res => {});
   };
 
   const navigate = useNavigate();
