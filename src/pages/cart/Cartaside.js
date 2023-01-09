@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Cartaside.scss';
 
 const Cartaside = ({ totalPrice }) => {
   const shippingPrice = 3500;

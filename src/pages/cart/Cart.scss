@@ -1,18 +1,12 @@
-@import 'Cartcount.scss';
-@import 'Cartaside.scss';
-
-@mixin flex($justify, $align) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $align;
-}
-
 .cartMain {
-  @include flex(center, center);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 
   .cartTitle {
-    @include flex(center, null);
+    display: flex;
+    justify-content: center;
     font-size: 35px;
     height: 200px;
     line-height: 450px;
@@ -31,38 +25,41 @@
     border-top: 1px solid black;
 
     .cartItemTitle {
-      @include flex(space-between, center);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 13px;
       height: 55px;
       border-bottom: 1px solid #e1dedf;
     }
 
-    .cartItemTitleImg {
+    &TitleImg {
       width: 135px;
     }
 
-    .cartItemTitleName {
+    &TitleName {
       width: 284px;
     }
 
-    .cartItemTitleWeight {
+    &TitleWeight {
       width: 80px;
     }
 
-    .cartItemTitleCount {
+    &TitleCount {
       width: 120px;
     }
 
-    .cartItemTitlePrice {
+    &TitlePrice {
       width: 143px;
     }
 
-    .cartItemTitleRemove {
+    &TitleRemove {
       width: 50px;
     }
   }
   .cartSideContents {
-    @include flex(null, center);
+    display: flex;
+    align-items: center;
     flex-direction: column;
     width: 280px;
     height: 400px;

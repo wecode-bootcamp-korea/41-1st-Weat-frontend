@@ -1,72 +1,68 @@
-@mixin flex($justify, $align) {
+.cartItemList {
   display: flex;
-  justify-content: $justify;
-  align-items: $align;
-}
-
-.itemList {
-  @include flex(space-between, center);
+  justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
-}
 
-.itemImg {
-  width: 135px;
-  .imgSize {
-    width: 109px;
-    height: 109px;
+  .cartItemImg {
+    width: 135px;
+    .imgSize {
+      width: 109px;
+      height: 109px;
+    }
   }
-}
 
-.itemName {
-  text-align: left;
-  line-height: 25px;
-  font-size: 16px;
-  width: 284px;
-}
+  .cartItemName {
+    align-items: left;
+    line-height: 25px;
+    font-size: 16px;
+    width: 284px;
+  }
 
-.itemOption {
-  font-size: 13px;
-  color: #9b9b9b;
-}
+  .cartItemOption {
+    font-size: 13px;
+    color: #9b9b9b;
+  }
 
-.itemWeight {
-  width: 80px;
-}
+  .cartItemWeight {
+    width: 80px;
+  }
 
-.itemCount {
-  font-size: 14px;
-  color: #9b9b9b;
-  width: 120px;
-}
+  .cartItemCount {
+    font-size: 14px;
+    color: #9b9b9b;
+    width: 120px;
+  }
 
-.itemPrice {
-  font-size: 16px;
-  width: 143px;
-}
+  .cartItemPrice {
+    font-size: 16px;
+    width: 143px;
+  }
 
-.itemRemove {
-  width: 50px;
-}
+  .cartItemRemove {
+    width: 50px;
+  }
 
-%buttonEffect {
-  width: 44px;
-  border: none;
-  font-weight: lighter;
-}
+  %buttonEffect {
+    width: 44px;
+    border: none;
+    font-weight: lighter;
+  }
 
-.clickMinusButton,
-.clickPlusButton {
-  @extend %buttonEffect;
-  height: 100%;
-  font-size: 20px;
-  color: #dcdcdc;
-  background-color: #ffff;
-}
+  .clickMinusButton,
+  .clickPlusButton {
+    @extend %buttonEffect;
+    height: 100%;
+    font-size: 20px;
+    color: #dcdcdc;
+    background-color: #ffff;
+  }
 
-.itemRemoveButton {
-  @extend %buttonEffect;
-  height: 40px;
-  font-size: 30px;
-  color: #9b9b9b;
+  .cartItemRemoveButton {
+    @extend %buttonEffect;
+    height: 40px;
+    font-size: 30px;
+    color: #9b9b9b;
+  }
 }

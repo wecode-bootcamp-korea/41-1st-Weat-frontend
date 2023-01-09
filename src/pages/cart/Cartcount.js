@@ -1,16 +1,19 @@
+import React from 'react';
+import './Cartcount.scss';
+
 const Cartcount = ({ value, onRemove, plusCount, minusCount }) => {
   return (
     <tbody>
-      <tr className="itemList">
-        <th className="itemImg">
+      <tr className="cartItemList">
+        <th className="cartItemImg">
           <img className="imgSize" src={value.img} alt="meat" />
         </th>
-        <th className="itemName">
+        <th className="cartItemName">
           <p>{value.name}</p>
-          <span className="itemOption"> {value.option}</span>
+          <span className="cartItemOption"> {value.option}</span>
         </th>
-        <th className="itemWeight">{value.weight * value.count}g 기준</th>
-        <th className="itemCount">
+        <th className="cartItemWeight">{value.weight * value.count}g 기준</th>
+        <th className="cartItemCount">
           <button className="clickMinusButton" onClick={minusCount}>
             -
           </button>
@@ -19,15 +22,15 @@ const Cartcount = ({ value, onRemove, plusCount, minusCount }) => {
             +
           </button>
         </th>
-        <th className="itemPrice">
+        <th className="cartItemPrice">
           {(value.price * value.count).toLocaleString()}원
         </th>
-        <th className="itemRemove">
+        <th className="cartItemRemove">
           <button
             onClick={() => {
               onRemove(value.id);
             }}
-            className="itemRemoveButton"
+            className="cartItemRemoveButton"
           >
             x
           </button>

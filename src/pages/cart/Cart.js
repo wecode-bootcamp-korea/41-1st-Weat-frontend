@@ -9,6 +9,7 @@ export default function Cart() {
   const onRemove = id => {
     setCartData(cartData.filter(value => value.id !== id));
   };
+
   const changeCount = (index, offset) => {
     setCartData(prev => {
       return prev.map((item, i) => {
@@ -22,6 +23,7 @@ export default function Cart() {
       });
     });
   };
+
   useEffect(() => {
     fetch('/data/meatData.json')
       .then(result => result.json())
@@ -30,11 +32,13 @@ export default function Cart() {
         setCartData(newData);
       });
   }, []);
+
   const totalPrice =
     cartData.reduce((prev, cur) => {
       prev += cur.price * cur.count;
       return prev;
     }, 0) || 0;
+
   return (
     <div className="cartMain">
       <div className="cartTitle">장바구니</div>
