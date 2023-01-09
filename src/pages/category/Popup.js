@@ -36,9 +36,9 @@ const Popup = props => {
       </button>
       <div className="name">{props.name}</div>
       <div className="peace">
-        <button onClick={decCount}>-</button>
+        <button onClick={decCount}> - </button>
         <div>{count}</div>
-        <button onClick={addCount}>+</button>
+        <button onClick={addCount}> + </button>
       </div>
       <div className="detailOptionType">
         <span>옵션</span>
