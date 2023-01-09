@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    fetch('http://10.58.52.250:3000/users/login', {
+    fetch('http://10.58.52.137:3000/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -29,15 +29,16 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
+        if (data.accessToken) {
+          console.log(data);
+          localStorage.setItem('token', data.accessToken);
           goToMain();
         } else {
           setMessage('이메일, 비밀번호를 확인하세요');
         }
       });
   };
-  //token 이름 확인하기 (backend)
+
   const enterLogin = e => {
     if (e.key === 'enter') {
       handleClick();
