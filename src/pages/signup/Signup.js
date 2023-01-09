@@ -23,24 +23,6 @@ const Signup = () => {
       return { ...prevData, [name]: value };
     });
   };
-
-  const checkEmail = e => {
-    fetch('http://10.58.52.137:3000/users/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      body: JSON.stringify({
-        email: userData.email,
-      }),
-    }).then(response => {
-      console.log(response.status);
-      if (response.status === 209) {
-        setEmailError('사용불가한 이메일입니다.');
-      } else {
-        setEmailError('사용가능한 이메일입니다.');
-      }
-    });
-  };
-
   const matchPassword = userData.password === userData.confirmPassword;
   const validPassword = /^[A-Za-z0-9]{8,20}$/;
   const validName = userData.userName.length > 0;
@@ -69,9 +51,11 @@ const Signup = () => {
           if (res.ok) {
             alert('회원가입을 축하합니다.');
             navigate('/Login');
+          } else {
+            alert('error');
           }
         })
-        .then(data => console.log(data));
+        .then(res => {});
     }
   };
 
@@ -100,9 +84,6 @@ const Signup = () => {
 
               <p className="errorMessage">{emailError}</p>
             </div>
-            <button onClick={checkEmail} className="checkBtn" type="button">
-              아이디 중복확인
-            </button>
           </div>
           <div className="inputLine">
             <div className="inputData">비밀번호</div>
