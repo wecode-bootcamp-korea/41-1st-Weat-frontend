@@ -1,0 +1,118 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  z-index: 1;
+  background-color: rgba($color: #ffff, $alpha: 1);
+  text-align: center;
+  line-height: 50px;
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #9b9b9b;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+  }
+  .name {
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+  }
+  .peace {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    height: 50px;
+    border: 1px solid #9b9b9b;
+    margin-top: 30px;
+    button {
+      width: 50px;
+      border: none;
+      background-color: white;
+      cursor: pointer;
+    }
+  }
+  .detailOptionType {
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+    margin-top: 40px;
+    border: 1px solid #7c7c7c;
+    text-align: center;
+    line-height: 50px;
+    span {
+      width: 50px;
+      text-align: center;
+    }
+    .TypeCheckBox {
+      align-items: center;
+      width: 250px;
+      height: 50px;
+      border: none;
+      background-color: white;
+      font-size: 16px;
+
+      &:disabled {
+        border-bottom: none;
+      }
+    }
+    .menu {
+      position: absolute;
+      text-align: center;
+      border: 1px solid black;
+
+      li {
+        .menuItem {
+          margin: 0;
+          padding: 0;
+          width: 250px;
+          height: 50px;
+          background-color: white;
+          // border: 1px solid #7c7c7c;
+          font-size: 16px;
+          border: none;
+        }
+        .menuItem:nth-child(3) {
+          border-bottom: 1px solid #7c7c7c;
+        }
+      }
+    }
+  }
+}
+
+.price {
+  text-align: right;
+  width: 300px;
+  height: 50px;
+}
+.btnList {
+  display: flex;
+  width: 376px;
+  button {
+    cursor: pointer;
+  }
+
+  .buyBtn {
+    width: 188px;
+    height: 80px;
+    border: none;
+    background-color: #9b9b9b;
+  }
+
+  .toCartBtn {
+    width: 188px;
+    height: 80px;
+    border: none;
+    color: white;
+    background-color: black;
+  }
+}

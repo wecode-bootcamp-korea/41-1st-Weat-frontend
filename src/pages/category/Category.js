@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BsCart3 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
 import './Category.scss';
+import CategoryList from './CategoryList';
 
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
@@ -21,6 +20,13 @@ const Category = () => {
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
+
+  // 메뉴 목록
+  // useEffect(() => {
+  //   fetch('/data/dataCartegory.json')
+  //     .then(res => res.json())
+  //     .then(data => setItems(data));
+  // }, []);
 
   const categorySet = e => {
     setNames(e.target.id);
@@ -48,20 +54,7 @@ const Category = () => {
           {items.map(({ id, name, price, category }) => {
             if (names === category) {
               return (
-                <li key={id}>
-                  <div className="items">
-                    <Link to={`/Category/Detail/${id}`}>
-                      <img src="/images/meat.jpg" alt="고기사진" />
-                    </Link>
-                    <button>
-                      <BsCart3 />
-                    </button>
-                  </div>
-                  <div>
-                    <p className="itemName">{name}</p>
-                    <p className="itemPrice">{price}</p>
-                  </div>
-                </li>
+                <CategoryList key={id} id={id} name={name} price={price} />
               );
             }
           })}
