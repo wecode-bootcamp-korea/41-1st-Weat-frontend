@@ -45,9 +45,7 @@ const Payment = () => {
         </div>
         <div className="inputContainer">
           <label className="sendTitle">받으시는분</label>
-          <button className="addressBtn" type="button">
-            주소검색
-          </button>
+
           <div className="inputBox">
             <table className="table">
               <tbody>
@@ -56,7 +54,9 @@ const Payment = () => {
                     <div className="indexName">이름</div>
                   </td>
                   <td className="indexInfo">
-                    <div className="indexInfoName" />
+                    <div className="indexInfoName">
+                      <input type="text" placeholder="이름을 입력하세요." />
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -64,7 +64,9 @@ const Payment = () => {
                     <div className="indexName">전화번호</div>
                   </td>
                   <td className="indexInfo">
-                    <div className="indexInfoName" />
+                    <div className="indexInfoName">
+                      <input type="text" placeholder="전화번호를 입력하세요." />
+                    </div>
                   </td>
                 </tr>
                 <tr>
