@@ -66,7 +66,9 @@ const Main = () => {
           <p>WEAT 베스트 상품</p>
         </div>
         <ul className="mainItem">
-          <Items itemList={itemList} />
+          {itemList.map(items => (
+            <Items itemList={itemList} />
+          ))}
         </ul>
       </div>
     </div>
