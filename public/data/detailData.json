@@ -49,33 +49,24 @@
     "weight": "300g 가준",
     "count": "1",
     "price": "3,000원",
-    "category": "소"
+    "category": "돼지"
   },
   {
     "id": 7,
     "img": "blahblahblah",
-    "name": "꽃갈비   ",
+    "name": "등갈비",
     "weight": "300g 가준",
     "count": "1",
     "price": "3,000원",
-    "category": "소"
+    "category": "돼지"
   },
   {
     "id": 8,
     "img": "blahblahblah",
-    "name": "등심",
+    "name": "등갈비",
     "weight": "300g 가준",
     "count": "1",
     "price": "3,000원",
-    "category": "소"
-  },
-  {
-    "id": 9,
-    "img": "blahblahblah",
-    "name": "닭다리",
-    "weight": "300g 가준",
-    "count": "1",
-    "price": "3,000원",
-    "category": "닭"
+    "category": "돼지"
   }
 ]
