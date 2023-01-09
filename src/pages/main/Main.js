@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Main.scss';
-import Items from './Items.js';
+import Item from './Item.js';
 import {
   faChevronLeft,
   faChevronRight,
@@ -15,9 +15,9 @@ const Main = () => {
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch('http://10.58.52.126:3000/products?best')
+    fetch('data/dataCartegory.json')
       .then(result => result.json())
-      .then(data => setItemList(data.data));
+      .then(data => setItemList(data));
   }, []);
 
   useEffect(() => {
@@ -66,8 +66,8 @@ const Main = () => {
           <p>WEAT 베스트 상품</p>
         </div>
         <ul className="mainItem">
-          {itemList.map(items => (
-            <Items itemList={itemList} />
+          {itemList.map(item => (
+            <Item key={item.id} item={item} />
           ))}
         </ul>
       </div>
