@@ -16,7 +16,7 @@ const Main = () => {
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch(`${API_LIST}/products/`)
+    fetch(`${API_BASE}/products/`)
       .then(result => result.json())
       .then(data => setItemList(data));
   }, []);
