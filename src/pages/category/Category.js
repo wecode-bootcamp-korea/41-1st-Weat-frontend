@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import './Category.scss';
 import { API_BASE } from '../../apiData';
-
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
   { id: 2, category_name: '소' },
@@ -12,61 +11,88 @@ const CATEGORY = [
   { id: 5, category_name: '달걀' },
   { id: 6, category_name: '밀키트' },
 ];
-
 const Category = () => {
   const [items, setItems] = useState([]);
-  const [names, setNames] = useState('돼지');
-
+  const [itemLength, setItemLength] = useState();
+  const [names, setNames] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get('category');
+  const page = searchParams.get('page');
+  const categorySet = id => {
+    setNames(id);
+    searchParams.set('category', id);
+    searchParams.set('page', 1);
+    setSearchParams(searchParams);
+  };
   useEffect(() => {
+    // 백 통신으로 전체 아이템 혹은 카테고리나 페이지 별로 불러오기
     fetch(`${API_BASE}/products?${searchParams.toString()}`)
       .then(res => res.json())
-      .then(data => setItems(data));
-  }, []);
-
-  const categorySet = e => {
-    setNames(e.target.id);
+      .then(({ productList, listLength }) => {
+        setItemLength(listLength);
+        setItems(productList);
+      });
+  }, [searchParams]);
+  const movePage = pageNumber => {
+    searchParams.set('page', pageNumber);
+    setSearchParams(searchParams);
   };
-
+  const num = Math.ceil(60 / 6);
+  // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
   return (
     <div className="category">
       <img src="/images/grill.jpg" alt="메인이미지" />
       <ul className="categoryBtn">
-        {CATEGORY.map((i, key) => {
+        {CATEGORY.map(({ category_name, id }) => {
           return (
             <li
-              key={key}
-              id={i.category_name}
-              className={'btn' + (names === i.category_name ? 'active' : '')}
-              onClick={categorySet}
+              key={id}
+              id={id}
+              className={'btn' + (names === id ? 'active' : '')}
+              onClick={() => categorySet(id)}
             >
-              {i.category_name}
+              {category_name}
             </li>
           );
         })}
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map(({ id, name, price, category }) => {
-            if (names === category) {
-              return (
-                <li key={id}>
-                  <div className="items">
-                    <Link to={`/Category/Detail/${id}`}>
-                      <img src="/images/meat.jpg" alt="고기사진" />
-                    </Link>
-                    <button>
-                      <BsCart3 />
-                    </button>
-                  </div>
-                  <div>
-                    <p className="itemName">{name}</p>
-                    <p className="itemPrice">{price}</p>
-                  </div>
-                </li>
-              );
-            }
+          {items.map(({ id, name, price, thumbnail_image }) => {
+            return (
+              <li key={id}>
+                <div className="items">
+                  <Link to={`/Category/Detail/${id}`}>
+                    <img src={thumbnail_image} alt="고기사진" />
+                  </Link>
+                  <button>
+                    <BsCart3 />
+                  </button>
+                </div>
+                <div>
+                  <p className="itemName">{name}</p>
+                  <p className="itemPrice">{price}</p>
+                </div>
+              </li>
+            );
           })}
         </ul>
+      </div>
+      <div>
+        {Array(num)
+          .fill()
+          .map((_, item) => {
+            return (
+              <button
+                className="pageNum"
+                onClick={() => movePage(item + 1)}
+                key={item + 1}
+                disabled={page === num}
+              >
+                {item + 1}
+              </button>
+            );
+          })}
       </div>
     </div>
   );
