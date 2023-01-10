@@ -32,7 +32,7 @@ const Signup = () => {
   const validNumber =
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
-  const signUp = () => {
+  const clickSignUp = () => {
     if (!validEmail) {
       setEmailError(true);
     } else if (!matchPassword) {
@@ -188,7 +188,7 @@ const Signup = () => {
         <button onClick={goToLogin} className="goToPage" type="button">
           로그인으로
         </button>
-        <button onClick={signUp} className="goToPageSignUp" type="button">
+        <button onClick={clickSignUp} className="goToPageSignUp" type="button">
           가입하기
         </button>
       </div>
