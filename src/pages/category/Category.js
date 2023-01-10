@@ -20,28 +20,30 @@ const Category = () => {
   const category = searchParams.get('category');
   const page = searchParams.get('page');
 
+  const categorySet = id => {
+    setNames(id);
+    searchParams.set('category', id);
+    searchParams.set('page', 1);
+    setSearchParams(searchParams);
+  };
+
   useEffect(() => {
     // 백 통신으로 전체 아이템 혹은 카테고리나 페이지 별로 불러오기
-    fetch(`http://10.58.52.137:3000/products?${searchParams.toString()}`)
+    fetch(`http://10.58.52.225:3000/products?${searchParams.toString()}`)
       .then(res => res.json())
       .then(({ productList, listLength }) => {
         setItemLength(listLength);
         setItems(productList);
-        searchParams.set('category', 1);
       });
   }, [category, page]);
 
-  const categorySet = id => {
-    searchParams.set('category', id);
-    setSearchParams(searchParams);
-  };
-
   const movePage = pageNumber => {
-    if (page) searchParams.set('page', pageNumber);
+    searchParams.set('page', pageNumber);
     setSearchParams(searchParams);
   };
 
-  let num = Math.ceil(60 / 6);
+  let num = Math.ceil(itemLength / 6);
+
   // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
 
   return (
@@ -84,20 +86,20 @@ const Category = () => {
         </ul>
       </div>
       <div>
-        {Array(num)
+        {/* {Array(num)
           .fill()
-          .map((_, i) => {
+          .map((_, item) => {
             return (
               <button
                 className="pageNum"
-                onClick={() => movePage(i + 1)}
-                key={i + 1}
+                onClick={() => movePage(item + 1)}
+                key={item + 1}
                 disabled={page === num}
               >
-                {i + 1}
+                {item + 1}
               </button>
             );
-          })}
+          })} */}
       </div>
     </div>
   );
