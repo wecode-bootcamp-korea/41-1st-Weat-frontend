@@ -23,7 +23,6 @@
     .blur {
       display: flex;
       align-items: center;
-      opacity: 0.3;
     }
 
     img {
@@ -93,6 +92,7 @@
       }
     }
   }
+
   %buttonUI {
     width: 50%;
     height: 60px;

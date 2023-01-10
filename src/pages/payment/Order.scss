@@ -1,0 +1,147 @@
+.paymentContents {
+  display: flex;
+  flex-direction: column;
+  width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  .paymentContentsTitle {
+    font-size: 15px;
+    line-height: 25px;
+  }
+  .paymentPoint {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e1dedf;
+    font-size: 17px;
+    padding-left: 15px;
+    margin-top: 15px;
+    height: 65px;
+  }
+  .paymentFinalTitle {
+    margin-top: 50px;
+    font-size: 15px;
+    line-height: 25px;
+  }
+  .paymentFinal {
+    .paymentFinalItems {
+      border: 1px solid #e1dedf;
+      padding: 10px 5px 5px 10px;
+      font-size: 16px;
+      margin-top: 15px;
+      .paymentFinalItemMap {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 45px;
+        overflow: hidden;
+        border-bottom: 1px solid #e1dedf;
+        line-height: 25px;
+        width: 755px;
+        .paymentFinalItemLeft {
+          font-size: 17px;
+          color: #555555;
+          float: left;
+        }
+        .paymentFinalItemRight {
+          display: flex;
+          width: 265px;
+          font-size: 17px;
+          color: #555555;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+      .totalPriceList {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100px;
+        background-color: #f7f7f7;
+        margin-top: 40px;
+        margin-right: auto;
+        margin-bottom: 20px;
+        margin-left: auto;
+        .totalPrice {
+          margin-left: 35px;
+          &Name {
+            font-size: 15px;
+            line-height: 43px;
+            color: #9b9b9b;
+          }
+          &Num {
+            font-size: 25px;
+            font-weight: bold;
+          }
+          &Won {
+            font-size: 15px;
+          }
+        }
+        .plusIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 50px;
+          height: 50px;
+          font-size: 30px;
+        }
+        .totalShippingPrice {
+          margin-left: 35px;
+          &Name {
+            font-size: 15px;
+            line-height: 43px;
+            color: #9b9b9b;
+          }
+          &Num {
+            font-size: 25px;
+            font-weight: bold;
+          }
+          &Won {
+            font-size: 15px;
+          }
+        }
+        .equalIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 50px;
+          font-size: 30px;
+        }
+        .estimatedAmount {
+          margin-left: 35px;
+          margin-right: 35px;
+          &Name {
+            font-size: 15px;
+            line-height: 43px;
+            color: #9b9b9b;
+          }
+          &Num {
+            font-size: 25px;
+            font-weight: bold;
+            color: #d0021b;
+          }
+          &Won {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+  .shippingInformationTitle {
+    margin-top: 50px;
+    font-size: 15px;
+    line-height: 25px;
+    .shippingInformation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #e1dedf;
+      font-size: 18px;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      height: 65px;
+      letter-spacing: 3px;
+      color: #4bb8ce;
+    }
+  }
+}

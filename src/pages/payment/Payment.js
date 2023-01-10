@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Order from './Order';
 import './Payment.scss';
 
 const Payment = () => {
@@ -137,13 +138,14 @@ const Payment = () => {
               </tbody>
             </table>
           </div>
-          <button className="goToBack" type="button">
-            이전으로
-          </button>
-          <button onClick={handleClick} className="goToNext" type="button">
-            다음으로
-          </button>
         </div>
+        <Order />
+        <button className="goToBack" type="button">
+          이전으로
+        </button>
+        <button onClick={handleClick} className="goToNext" type="button">
+          다음으로
+        </button>
       </div>
     </div>
   );
