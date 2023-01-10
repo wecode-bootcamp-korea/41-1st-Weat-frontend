@@ -42,7 +42,7 @@ const Category = () => {
     setSearchParams(searchParams);
   };
 
-  let num = Math.ceil(itemLength / 6);
+  const num = Math.ceil(60 / 6);
 
   // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
 
@@ -86,7 +86,7 @@ const Category = () => {
         </ul>
       </div>
       <div>
-        {/* {Array(num)
+        {Array(num)
           .fill()
           .map((_, item) => {
             return (
@@ -99,7 +99,7 @@ const Category = () => {
                 {item + 1}
               </button>
             );
-          })} */}
+          })}
       </div>
     </div>
   );
