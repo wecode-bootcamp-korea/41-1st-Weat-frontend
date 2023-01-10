@@ -7,6 +7,10 @@ import { API_LIST } from '../../apiData';
 const Nav = () => {
   const [cartList, setCartList] = useState([]);
 
+  const navigate = useNavigate();
+
+  const isToken = Boolean(localStorage.getItem('token'));
+
   useEffect(() => {
     fetch(`${API_LIST}`, {
       headers: {
@@ -17,12 +21,6 @@ const Nav = () => {
       .then(response => response.json())
       .then(data => setCartList(data));
   }, []);
-
-  console.log(cartList);
-
-  const navigate = useNavigate();
-
-  const isToken = Boolean(localStorage.getItem('token'));
 
   const moveToLogin = () => {
     navigate('/Login');
