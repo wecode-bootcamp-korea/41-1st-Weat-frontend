@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_LIST } from '../../apiData';
 import './Login.scss';
-import '../../styles/common.scss';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -19,7 +18,7 @@ const Login = () => {
     });
   };
 
-  const handleClick = () => {
+  const Login = () => {
     fetch(`${API_LIST}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -41,7 +40,7 @@ const Login = () => {
 
   const enterLogin = e => {
     if (e.key === 'enter') {
-      handleClick();
+      Login();
     }
   };
 
@@ -76,7 +75,7 @@ const Login = () => {
           onKeyDown={enterLogin}
         />
         <div className="errorMessage">{message}</div>
-        <button onClick={handleClick} className="button" type="button">
+        <button onClick={Login} className="button" type="button">
           로그인
         </button>
 
