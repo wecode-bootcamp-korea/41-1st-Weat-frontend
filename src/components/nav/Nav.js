@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BsCart3 } from 'react-icons/bs';
 import './Nav.scss';
+import { API_LIST } from '../../apiData';
 
 const Nav = () => {
+  const [cartList, setCartList] = useState([]);
+
+  useEffect(() => {
+    fetch(`${API_LIST}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => setCartList(data));
+  }, []);
+
+  console.log(cartList);
+
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isToken = Boolean(localStorage.getItem('token'));
 
   const moveToLogin = () => {
     navigate('/Login');
@@ -17,35 +34,18 @@ const Nav = () => {
     navigate('/Cart');
   };
 
-  const moveToMyPage = () => {
-    navigate('/mypage');
+  const handleLogout = () => {
+    localStorage.clear();
+    moveToMain();
+    alert('로그아웃 되었습니다.');
+    window.location.reload();
   };
 
-  const handleLogin = () => {
-    // const getToken = () => {
-    //   localStorage.getItem('token');
-    //   console.log(localStorage.getItem('token'));
-    // };
-
-    // isLoggedIn = getToken();
-
-    setIsLoggedIn(!isLoggedIn);
-    isLoggedIn ? moveToMain() : moveToLogin();
-  };
-
-  const handleLoginToMyPage = () => {
-    if (!isLoggedIn) {
-      alert('로그인 후 이용 가능합니다.');
-    } else {
-      moveToMyPage();
-    }
-  };
-
-  const handleLoginToCart = () => {
-    if (!isLoggedIn) {
-      alert('로그인 후 이용 가능합니다.');
-    } else {
+  const handleMoveToCart = () => {
+    if (isToken) {
       moveToCart();
+    } else {
+      alert('로그인 후 이용 가능합니다.');
     }
   };
 
@@ -67,12 +67,12 @@ const Nav = () => {
       <div className="navRight">
         <ul className="navigate">
           <li>
-            {isLoggedIn ? (
-              <button className="moveToMain" onClick={handleLogin}>
+            {isToken ? (
+              <button className="moveToMain" onClick={handleLogout}>
                 로그아웃
               </button>
             ) : (
-              <button className="moveToLogin" onClick={handleLogin}>
+              <button className="moveToLogin" onClick={moveToLogin}>
                 로그인
               </button>
             )}
@@ -82,15 +82,11 @@ const Nav = () => {
               회원가입
             </Link>
           </li>
-          <li>
-            <button className="moveToMyPage" onClick={handleLoginToMyPage}>
-              마이페이지
-            </button>
-          </li>
         </ul>
-        <button onClick={handleLoginToCart} className="navLogo">
+        <button className="navLogo" onClick={handleMoveToCart}>
           <BsCart3 />
         </button>
+        <button className="cartCount">{cartList.length}</button>
       </div>
     </div>
   );

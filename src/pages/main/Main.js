@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Main.scss';
 import Item from './Item.js';
+import { API_LIST } from '../../apiData';
 import {
   faChevronLeft,
   faChevronRight,
@@ -9,15 +10,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
+  console.log('itemList :', itemList);
 
   const [count, setCount] = useState(1);
   const [current, setCurrent] = useState(0);
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch(`${API_LIST}/pages/detail/${userId}`)
+    fetch(`${API_LIST[0].api}/products`)
       .then(result => result.json())
-      .then(data => setItemList(data.data));
+      .then(data => setItemList(data));
   }, []);
 
   useEffect(() => {
