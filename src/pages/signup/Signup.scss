@@ -114,13 +114,14 @@
     color: white;
     cursor: pointer;
   }
-  .goToLogin {
+
+  .goToPage {
     @extend %buttonUI;
     background-color: #888888;
-  }
 
-  .goToSignUp {
-    @extend %buttonUI;
-    background-color: #000000;
+    &SignUp {
+      @extend %buttonUI;
+      background-color: #000000;
+    }
   }
 }

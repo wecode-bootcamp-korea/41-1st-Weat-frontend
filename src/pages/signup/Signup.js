@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_LIST } from '../../apiData';
 import './Signup.scss';
 
 const Signup = () => {
@@ -13,7 +14,7 @@ const Signup = () => {
     lastNumber: '',
   });
 
-  const [emailError, setEmailError] = useState('');
+  const [emailError, setEmailError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [numberError, setNumberError] = useState(false);
 
@@ -23,21 +24,25 @@ const Signup = () => {
       return { ...prevData, [name]: value };
     });
   };
+
+  const validEmail = userData.email.length > 0;
   const matchPassword = userData.password === userData.confirmPassword;
   const validPassword = /^[A-Za-z0-9]{8,20}$/;
   const validName = userData.userName.length > 0;
   const validNumber =
     (userData.secondNumber.length && userData.lastNumber.length) === 4;
 
-  const handleClick = () => {
-    if (!matchPassword) {
+  const signUp = () => {
+    if (!validEmail) {
+      setEmailError(true);
+    } else if (!matchPassword) {
       return;
     } else if (!validName) {
       setNameError(true);
     } else if (!validNumber) {
       setNumberError(true);
     } else {
-      fetch('http://10.58.52.137:3000/users/signup', {
+      fetch(`${API_LIST}/user /signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
@@ -46,14 +51,11 @@ const Signup = () => {
           mobile: `${userData.firstNumber}-${userData.secondNumber}-${userData.lastNumber}`,
           username: userData.userName,
         }),
-      })
-        .then(res => {
-          if (res.ok) {
-            alert('회원가입을 축하합니다.');
-            navigate('/Login');
-          }
-        })
-        .then(res => {});
+      }).then(res => {
+        if (!res.ok) return;
+        alert('회원가입을 축하합니다.');
+        navigate('/Login');
+      });
     }
   };
 
@@ -79,8 +81,9 @@ const Signup = () => {
                 className="inputContent"
                 type="text"
               />
-
-              <p className="errorMessage">{emailError}</p>
+              {emailError && (
+                <p className="errorMessage">이메일을 입력하세요</p>
+              )}
             </div>
           </div>
           <div className="inputLine">
@@ -180,10 +183,10 @@ const Signup = () => {
             </div>
           </div>
         </div>
-        <button onClick={goToLogin} className="goToLogin" type="button">
+        <button onClick={goToLogin} className="goToPage" type="button">
           로그인으로
         </button>
-        <button onClick={handleClick} className="goToSignUp" type="button">
+        <button onClick={signUp} className="goToPageSignUp" type="button">
           가입하기
         </button>
       </div>
