@@ -45,6 +45,8 @@ const Detail = () => {
 
   // 백 통신
   const { thumbnail_image, name, price } = meat;
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA';
 
   return (
     <div className="deatilPage">
@@ -103,8 +105,7 @@ const Detail = () => {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json;charset=utf-8',
-                    Authorization:
-                      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+                    Authorization: token,
                   },
                   body: JSON.stringify({
                     productId: itemId,
