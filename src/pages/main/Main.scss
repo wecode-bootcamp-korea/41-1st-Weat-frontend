@@ -1,3 +1,118 @@
-div {
-  font-size: 15px;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  overflow: hidden;
+
+  .mainImg {
+    width: 100vw;
+    height: 520px;
+    margin-left: -0%;
+    transition: all 0.5s ease-out;
+
+    .flexBox {
+      display: flex;
+
+      img {
+        width: 100vw;
+        height: 520px;
+        object-fit: cover;
+        flex: none;
+      }
+    }
+  }
+
+  .slideWrap {
+    margin-top: 30px;
+
+    button {
+      border: none;
+      background-color: white;
+
+      &:hover {
+        opacity: 0.3;
+        cursor: pointer;
+      }
+    }
+
+    span {
+      margin: 0px 20px;
+
+      b {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .mainItemBox {
+    width: 90%;
+
+    .mainBest {
+      margin-top: 100px;
+      margin-bottom: 30px;
+      margin-left: 40px;
+      font-size: 32px;
+    }
+
+    .mainItem {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: auto;
+      grid-gap: 30px 0px;
+
+      div {
+        margin-left: 10px;
+        text-align: center;
+
+        p {
+          font-weight: 700;
+          margin-top: 10px;
+        }
+
+        .priceWeight {
+          font-weight: 500;
+          color: #9b9b9b;
+        }
+
+        li {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 376px;
+          height: 416px;
+          margin: auto;
+          background-color: #f9f7f8;
+          text-align: center;
+
+          img {
+            width: 300px;
+            height: 200px;
+          }
+
+          .cart {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #eeeeee;
+            border-radius: 50%;
+            background-color: white;
+            font-size: 30px;
+            box-shadow: 0 25px 10px -17px rgb(0 0 0 / 15%);
+            cursor: pointer;
+
+            &:hover {
+              color: white;
+              background-color: black;
+            }
+          }
+        }
+      }
+    }
+  }
 }

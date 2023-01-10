@@ -3,32 +3,32 @@
     "id": 1,
     "img": "blahblahblah",
     "name": "삼겹살",
-    "weight": "100g당 3,300원",
+    "base_unit": "100g당 3,300원",
     "price": "기준가 19,000원(600g)"
   },
   {
     "id": 2,
-    "img": "blahblahblah",
+    "thumbnail_image": "https://images.ctfassets.net/hrltx12pl8hq/3E5SSUuJCKt1KyebMAdr7f/6b98ce27789b03a6b4a62092ea4566b6/Group_5_B.jpg?fit=fill&w=600&h=400",
     "name": "목살",
-    "weight": "300g 가준",
+    "base_unit": "300g 가준",
     "count": "1",
     "price": "2,000원",
     "category": "돼지"
   },
   {
     "id": 3,
-    "img": "blahblahblah",
+    "thumbnail_image": "blahblahblah",
     "name": "등갈비",
-    "weight": "300g 가준",
+    "base_unit": "300g 가준",
     "count": "1",
     "price": "3,000원",
     "category": "돼지"
   },
   {
     "id": 4,
-    "img": "blahblahblah",
+    "thumbnail_image": "blahblahblah",
     "name": "갈비",
-    "weight": "300g 가준",
+    "base_unit": "300g 가준",
     "count": "1",
     "price": "4,000원",
     "category": "돼지"
