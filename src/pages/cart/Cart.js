@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cartcount from './Cartcount';
 import Cartaside from './Cartaside';
 import './Cart.scss';
+import { API_BASE } from '../../apiData';
 
 export default function Cart() {
   const [cartData, setCartData] = useState([]);

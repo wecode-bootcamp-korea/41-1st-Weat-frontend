@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Login.scss';
 import '../../styles/common.scss';
+import { API_BASE } from '../../apiData';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({

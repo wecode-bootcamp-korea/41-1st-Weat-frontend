@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Main.scss';
 import Item from './Item.js';
-import { API_LIST } from '../../apiData';
+import { API_BASE } from '../../apiData';
 import {
   faChevronLeft,
   faChevronRight,
