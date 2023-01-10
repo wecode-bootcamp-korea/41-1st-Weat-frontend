@@ -21,26 +21,28 @@ const Category = () => {
   const page = searchParams.get('page');
 
   useEffect(() => {
+    // 백 통신으로 전체 아이템 혹은 카테고리나 페이지 별로 불러오기
     fetch(`http://10.58.52.137:3000/products?${searchParams.toString()}`)
       .then(res => res.json())
       .then(({ productList, listLength }) => {
         setItemLength(listLength);
         setItems(productList);
+        searchParams.set('category', 1);
       });
   }, [category, page]);
 
   const categorySet = id => {
-    setNames(id);
     searchParams.set('category', id);
     setSearchParams(searchParams);
   };
 
   const movePage = pageNumber => {
-    searchParams.set('page', pageNumber);
+    if (page) searchParams.set('page', pageNumber);
     setSearchParams(searchParams);
   };
 
-  let num = Math.ceil(itemLength / 6);
+  let num = Math.ceil(60 / 6);
+  // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
 
   return (
     <div className="category">
@@ -84,10 +86,15 @@ const Category = () => {
       <div>
         {Array(num)
           .fill()
-          .map(i => {
+          .map((_, i) => {
             return (
-              <button onClick={() => movePage(i + 1)} key={i + 1}>
-                {i}
+              <button
+                className="pageNum"
+                onClick={() => movePage(i + 1)}
+                key={i + 1}
+                disabled={page === num}
+              >
+                {i + 1}
               </button>
             );
           })}
