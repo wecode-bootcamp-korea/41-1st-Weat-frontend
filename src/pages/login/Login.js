@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API_LIST } from '../../apiData';
 import './Login.scss';
-import '../../styles/common.scss';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
+
+  const [message, setMessage] = useState('');
 
   const handleChange = event => {
     setLoginData(preValue => {
@@ -15,8 +18,8 @@ const Login = () => {
     });
   };
 
-  const handleClick = () => {
-    fetch('http://10.58.52.250:3000/users/login', {
+  const clickLogin = () => {
+    fetch(`${API_LIST}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -25,7 +28,28 @@ const Login = () => {
       }),
     })
       .then(response => response.json())
-      .then(data => console.log(data));
+      .then(data => {
+        if (data.accessToken) {
+          localStorage.setItem('token', data.accessToken);
+          goToMain();
+        } else {
+          setMessage('이메일, 비밀번호를 확인하세요');
+        }
+      });
+  };
+
+  const enterLogin = e => {
+    if (e.key === 'enter') {
+      Login();
+    }
+  };
+
+  const navigate = useNavigate();
+  const goToSignUp = () => {
+    navigate('/SignUp');
+  };
+  const goToMain = () => {
+    navigate('/Main');
   };
 
   return (
@@ -48,15 +72,17 @@ const Login = () => {
           type="password"
           placeholder="비밀번호를 입력하세요"
           onChange={handleChange}
+          onKeyDown={enterLogin}
         />
-        <button onClick={handleClick} className="button" type="button">
+        <div className="errorMessage">{message}</div>
+        <button onClick={clickLogin} className="button" type="button">
           로그인
         </button>
 
         <span className="firstVisit">정육각은 처음이신가요?</span>
-        <a href="" className="goToSignUp">
+        <div onClick={goToSignUp} className="goToSignUp">
           회원가입하기
-        </a>
+        </div>
       </div>
     </div>
   );
