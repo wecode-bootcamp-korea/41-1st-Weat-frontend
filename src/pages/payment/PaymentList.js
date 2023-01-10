@@ -1,7 +1,7 @@
 import React from 'react';
-import './Order.scss';
+import './PaymentList.scss';
 
-const order = () => {
+const PaymentList = () => {
   return (
     <div>
       <div className="paymentContents">
@@ -52,4 +52,4 @@ const order = () => {
   );
 };
 
-export default order;
+export default PaymentList;

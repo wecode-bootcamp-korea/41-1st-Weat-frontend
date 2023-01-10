@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Order from './Order';
+import PaymentList from './PaymentList';
 import './Payment.scss';
 
 const Payment = () => {
@@ -37,11 +37,11 @@ const Payment = () => {
       <h1 className="title">주문하기</h1>
       <div className="info">
         <img src="/images/contract.png" alt="write" />
-        <span className="orderInfo">01.배송지 정보</span>
+        <span className="orderInfo">배송지 정보</span>
         <img src="/images/next.png" alt="write" />
         <div className="blur">
           <img src="/images/payment.png" alt="write" />
-          <span className="orderInfo">02.결제 정보</span>
+          <span className="orderInfo">결제 정보</span>
         </div>
       </div>
       <div className="box">
@@ -139,7 +139,7 @@ const Payment = () => {
             </table>
           </div>
         </div>
-        <Order />
+        <PaymentList />
         <button className="goToBack" type="button">
           이전으로
         </button>
