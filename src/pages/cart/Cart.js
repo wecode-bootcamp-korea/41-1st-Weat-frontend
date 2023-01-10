@@ -25,7 +25,7 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    fetch('/data/meatData.json')
+    fetch(`${API_BASE}/carts`)
       .then(result => result.json())
       .then(data => {
         const newData = data.map(item => ({ ...item, count: 0 }));

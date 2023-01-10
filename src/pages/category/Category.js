@@ -17,7 +17,7 @@ const Category = () => {
   const [names, setNames] = useState('돼지');
 
   useEffect(() => {
-    fetch('/data/dataCartegory.json')
+    fetch(`${API_BASE}/products?${searchParams.toString()}`)
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
