@@ -38,6 +38,7 @@ const Detail = () => {
   const [meat, setMeat] = useState({});
 
   useEffect(() => {
+
     fetch(`10.58.52.137:3000/products/${itemId}`)
       .then(res => res.json())
       .then(data => setMeat(data.data[0]));
