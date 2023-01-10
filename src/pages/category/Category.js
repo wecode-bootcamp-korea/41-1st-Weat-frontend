@@ -35,7 +35,7 @@ const Category = () => {
         setItemLength(listLength);
         setItems(productList);
       });
-  }, [category, page]);
+  }, [searchParams]);
 
   const movePage = pageNumber => {
     searchParams.set('page', pageNumber);
