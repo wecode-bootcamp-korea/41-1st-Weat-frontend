@@ -23,7 +23,7 @@
     line-height: 25px;
   }
   .paymentFinal {
-    .paymentFinalItems {
+    &Items {
       border: 1px solid #e1dedf;
       padding: 10px 5px 5px 10px;
       font-size: 16px;
@@ -108,8 +108,7 @@
           font-size: 30px;
         }
         .estimatedAmount {
-          margin-left: 35px;
-          margin-right: 35px;
+          margin: 0 35px;
           &Name {
             font-size: 15px;
             line-height: 43px;

@@ -1,7 +1,9 @@
+@import '../../styles/common.scss';
+
 .payment {
   display: flex;
   flex-direction: column;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   width: 1180px;
 
   .title {
@@ -23,14 +25,12 @@
     .blur {
       display: flex;
       align-items: center;
-      opacity: 0.3;
     }
 
     img {
       width: 51px;
       height: 45.6px;
-      margin-right: 20px;
-      margin-left: 20px;
+      margin: 0 20px;
     }
     .orderInfo {
       font-size: 15px;
@@ -86,22 +86,14 @@
             border: 1px solid #efefef;
           }
 
-          .getInfo:focus {
+          &:focus {
             outline: 1px solid #efefef;
           }
         }
       }
     }
   }
-  %buttonUI {
-    width: 50%;
-    height: 60px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-  }
+
   .goToBack {
     @extend %buttonUI;
     background-color: #888888;
