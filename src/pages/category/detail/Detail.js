@@ -45,6 +45,21 @@ const Detail = () => {
   // 백 통신
   const { thumbnail_image, name, price } = meat;
 
+  useEffect(() => {
+    fetch(`${API_LIST}/pages/detail/${userId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        title: 'update title',
+        content: '서버에 요청할때 담아서 보내는 정보',
+      }),
+    })
+      .then(res => res.json())
+      .then();
+  }, []);
+
   return (
     <div className="deatilPage">
       <div className="detailTop">
