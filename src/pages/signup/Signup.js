@@ -42,7 +42,7 @@ const Signup = () => {
     } else if (!validNumber) {
       setNumberError(true);
     } else {
-      fetch(`${API_LIST}/user /signup`, {
+      fetch(`${API_LIST}/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
