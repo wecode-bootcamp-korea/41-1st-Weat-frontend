@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main/Main';
-import Category from './pages/Category/Category';
-import Detail from './pages/Category/detail/Detail';
+import Category from './pages/category/Category';
+import Detail from './pages/category/detail/Detail';
 import Cart from './pages/cart/Cart';
 import Payment from './pages/payment/Payment';
 import Login from './pages/login/Login';
