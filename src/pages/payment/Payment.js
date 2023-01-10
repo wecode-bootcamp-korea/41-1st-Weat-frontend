@@ -3,6 +3,8 @@ import PaymentList from './PaymentList';
 import './Payment.scss';
 
 const Payment = () => {
+  const content = ['이메일', '이름', '전화번호'];
+
   const [addressData, setAddressData] = useState({
     userName: '',
     mobile: '',
@@ -50,30 +52,18 @@ const Payment = () => {
           <div className="inputBox">
             <table className="table">
               <tbody>
-                <tr>
-                  <td className="index">
-                    <div className="indexName">이름</div>
-                  </td>
-                  <td className="indexInfo">
-                    <div className="indexInfoName">이름</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="index">
-                    <div className="indexName">전화번호</div>
-                  </td>
-                  <td className="indexInfo">
-                    <div className="indexInfoName">010</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="index">
-                    <div className="indexName">이메일</div>
-                  </td>
-                  <td className="indexInfo">
-                    <div className="indexInfoName">이메일</div>
-                  </td>
-                </tr>
+                {content.map((data, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="index">
+                        <div className="indexName">{data}</div>
+                      </td>
+                      <td className="indexInfo">
+                        <div className="indexInfoName">1</div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
