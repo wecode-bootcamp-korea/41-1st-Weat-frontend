@@ -32,10 +32,10 @@ const Cartaside = ({ totalPrice }) => {
           {(totalPrice + shippingPrice).toLocaleString()}원
         </div>
       </div>
-      <Link to="/Payment">
+      <Link to="/orders">
         <button className="totalPayButton">전체상품 주문하기</button>
       </Link>
-      <Link to="/Category">
+      <Link to="/products?page=2&category=2">
         <button className="goToCategory">쇼핑 계속하기</button>
       </Link>
     </div>

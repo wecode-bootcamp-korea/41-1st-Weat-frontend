@@ -12,30 +12,65 @@ export default function Cart() {
 
   const changeCount = (index, offset) => {
     setCartData(prev => {
-      return prev.map((item, i) => {
+      return prev.map((product, i) => {
         if (i === index) {
-          item.count += offset;
-          if (item.count < 0) {
-            item.count = 0;
+          product.quantity += offset;
+          if (product.quantity < 0) {
+            product.quantity = 0;
           }
         }
-        return item;
+        return product;
       });
     });
   };
 
   useEffect(() => {
-    fetch('/data/meatData.json')
+    fetch('http://10.58.52.225:3000/carts/', {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+    })
       .then(result => result.json())
       .then(data => {
-        const newData = data.map(item => ({ ...item, count: 0 }));
+        const newData = data.map(product => ({ ...product, quantity: 0 }));
+        setCartData(newData);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch('http://10.58.52.225:3000/carts/', {
+      method: 'POST',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+    })
+      .then(result => result.json())
+      .then(data => {
+        const newData = data.map(product => ({ ...product, quantity: 0 }));
+        setCartData(newData);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch('http://10.58.52.225:3000/carts/', {
+      method: 'DELETE',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+    })
+      .then(result => result.json())
+      .then(data => {
+        const newData = data.map(product => ({ ...product, quantity: 0 }));
         setCartData(newData);
       });
   }, []);
 
   const totalPrice =
     cartData.reduce((prev, cur) => {
-      prev += cur.price * cur.count;
+      prev += cur.price * cur.quantity;
       return prev;
     }, 0) || 0;
 
