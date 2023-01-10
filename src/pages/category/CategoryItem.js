@@ -5,11 +5,11 @@ import { BsCart3 } from 'react-icons/bs';
 
 import { Link } from 'react-router-dom';
 
-const CategoryList = ({ id, name, price }) => {
+const CategoryItem = ({ id, name, price }) => {
   const [isPopup, setIsPopup] = useState(false);
 
   const onPopup = () => {
-    isPopup ? setIsPopup(false) : setIsPopup(true);
+    setIsPopup(!isPopup);
   };
   return (
     <li className="itemList">
@@ -30,4 +30,4 @@ const CategoryList = ({ id, name, price }) => {
   );
 };
 
-export default CategoryList;
+export default CategoryItem;

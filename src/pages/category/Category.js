@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Category.scss';
-import CategoryList from './CategoryList';
+import CategoryList from './CategoryItem';
 
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
@@ -12,7 +12,7 @@ const CATEGORY = [
 ];
 
 const Category = () => {
-  const [items, setItems] = useState([{}]);
+  const [items, setItems] = useState([]);
   const [names, setNames] = useState('돼지');
 
   useEffect(() => {
@@ -20,8 +20,7 @@ const Category = () => {
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
-  console.log(items);
-  console.log(names);
+
   const categorySet = e => {
     setNames(e.target.id);
   };
