@@ -1,3 +1,5 @@
+@import '../../styles/common.scss';
+
 .signUp {
   display: flex;
   justify-content: center;
@@ -103,16 +105,6 @@
         }
       }
     }
-  }
-
-  %buttonUI {
-    width: 50%;
-    height: 60px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
   }
 
   .goToPage {

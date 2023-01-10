@@ -100,7 +100,7 @@ const Signup = () => {
               />
               {userData.password.length > 0 &&
                 (validPassword ? (
-                  <p />
+                  ''
                 ) : (
                   <p className="errorMessage">
                     숫자,알파벳,특수문자를 입력하시오.
