@@ -3,9 +3,9 @@ import './Popup.scss';
 
 const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
 
-const Popup = props => {
+const Popup = ({ onPopup, id, name, price }) => {
   const [count, setCount] = useState(1);
-  const [option, setOption] = useState('보통(16mm)');
+  const [detilOption, setDetailOption] = useState('보통(16mm)');
   const [open, setOpen] = useState(false);
 
   const addCount = () => {
@@ -21,7 +21,7 @@ const Popup = props => {
   };
 
   const handleOption = e => {
-    setOption(e.target.name);
+    setDetailOption(e.target.name);
     setOpen(false);
   };
 
@@ -31,10 +31,10 @@ const Popup = props => {
 
   return (
     <div className="popup">
-      <button onClick={props.onPopup} className="close">
+      <button onClick={onPopup} className="close">
         x
       </button>
-      <div className="name">{props.name}</div>
+      <div className="name">{name}</div>
       <div className="peace">
         <button onClick={decCount}> - </button>
         <div>{count}</div>
@@ -44,7 +44,7 @@ const Popup = props => {
         <span>옵션</span>
         <div className="selectOption">
           <button disabled={open} onClick={handleDrop} className="TypeCheckBox">
-            {option}
+            {detilOption}
           </button>
           <ul className="menu">
             {open &&
@@ -65,7 +65,7 @@ const Popup = props => {
         </div>
       </div>
 
-      <div className="price">{props.price}</div>
+      <div className="price">{price}</div>
       <div className="btnList">
         <button className="buyBtn">바로구매</button>
         <button className="toCartBtn">장바구니</button>

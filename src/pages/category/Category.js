@@ -12,7 +12,7 @@ const CATEGORY = [
 ];
 
 const Category = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([{}]);
   const [names, setNames] = useState('돼지');
 
   useEffect(() => {
@@ -20,14 +20,8 @@ const Category = () => {
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
-
-  // 메뉴 목록
-  // useEffect(() => {
-  //   fetch('/data/dataCartegory.json')
-  //     .then(res => res.json())
-  //     .then(data => setItems(data));
-  // }, []);
-
+  console.log(items);
+  console.log(names);
   const categorySet = e => {
     setNames(e.target.id);
   };
@@ -36,15 +30,15 @@ const Category = () => {
     <div className="category">
       <img src="/images/grill.jpg" alt="메인이미지" />
       <ul className="categoryBtn">
-        {CATEGORY.map((i, key) => {
+        {CATEGORY.map(({ id, category_name }) => {
           return (
             <li
-              key={key}
-              id={i.category_name}
-              className={'btn' + (names === i.category_name ? 'active' : '')}
+              key={id}
+              id={category_name}
+              className={'btn' + (names === category_name ? 'active' : '')}
               onClick={categorySet}
             >
-              {i.category_name}
+              {category_name}
             </li>
           );
         })}

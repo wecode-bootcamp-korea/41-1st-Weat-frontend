@@ -9,17 +9,11 @@ const CategoryList = ({ id, name, price }) => {
   const [isPopup, setIsPopup] = useState(false);
 
   const onPopup = () => {
-    if (isPopup === false) {
-      setIsPopup(true);
-    } else if (isPopup === true) {
-      setIsPopup(false);
-    }
+    isPopup ? setIsPopup(false) : setIsPopup(true);
   };
   return (
-    <li key={id} className="itemList">
-      {isPopup ? (
-        <Popup onPopup={onPopup} id={id} name={name} price={price} />
-      ) : null}
+    <li className="itemList">
+      {isPopup && <Popup onPopup={onPopup} id={id} name={name} price={price} />}
       <div className="items">
         <Link to={`/Category/Detail/${id}`}>
           <img src="/images/meat.jpg" alt="고기사진" />
