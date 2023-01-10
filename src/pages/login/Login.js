@@ -19,7 +19,9 @@ const Login = () => {
   };
 
   const clickLogin = () => {
-    fetch(`${API_LIST}/login`, {
+
+    fetch(`${API_LIST[0].api}/users/login`, {
+
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
