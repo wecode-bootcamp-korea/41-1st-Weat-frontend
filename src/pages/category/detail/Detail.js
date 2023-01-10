@@ -45,8 +45,22 @@ const Detail = () => {
 
   // 백 통신
   const { thumbnail_image, name, price } = meat;
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA';
+  const toCart = () => {
+    fetch(`http://10.58.52.225:3000/carts/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        productId: itemId,
+        productOptionId: optionNum,
+        quantity: count,
+      }),
+    })
+      .then(res => res.json())
+      .then();
+  };
 
   return (
     <div className="deatilPage">
@@ -98,25 +112,7 @@ const Detail = () => {
           <div />
           <div className="oderBtn">
             <button className="buyBtn">바로구매</button>
-            <button
-              className="cartBtn"
-              onClick={() => {
-                fetch(`http://10.58.52.225:3000/carts/`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
-                    Authorization: token,
-                  },
-                  body: JSON.stringify({
-                    productId: itemId,
-                    productOptionId: optionNum,
-                    quantity: count,
-                  }),
-                })
-                  .then(res => res.json())
-                  .then();
-              }}
-            >
+            <button className="cartBtn" onClick={toCart}>
               장바구니
             </button>
           </div>
