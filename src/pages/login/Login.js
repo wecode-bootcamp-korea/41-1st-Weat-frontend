@@ -18,7 +18,7 @@ const Login = () => {
     });
   };
 
-  const Login = () => {
+  const clickLogin = () => {
     fetch(`${API_LIST}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -75,7 +75,7 @@ const Login = () => {
           onKeyDown={enterLogin}
         />
         <div className="errorMessage">{message}</div>
-        <button onClick={Login} className="button" type="button">
+        <button onClick={clickLogin} className="button" type="button">
           로그인
         </button>
 
