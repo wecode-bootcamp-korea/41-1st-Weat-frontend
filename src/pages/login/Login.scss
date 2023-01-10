@@ -33,9 +33,13 @@
       border: 1px solid #e1dedf;
       padding-left: 14px;
       font-size: 14px;
-      margin-top: 8px;
+      margin: 8px 0 10px 0;
     }
-
+    .errorMessage {
+      height: 20px;
+      color: red;
+      font-size: 12px;
+    }
     .button {
       height: 48px;
       border: none;
@@ -44,6 +48,9 @@
       font-size: 16px;
       margin-top: 8px;
       border-radius: 4px;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .firstVisit {
@@ -53,6 +60,9 @@
     .goToSignUp {
       text-decoration: none;
       color: red;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
