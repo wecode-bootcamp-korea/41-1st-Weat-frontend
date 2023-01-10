@@ -51,11 +51,13 @@ const Signup = () => {
           mobile: `${userData.firstNumber}-${userData.secondNumber}-${userData.lastNumber}`,
           username: userData.userName,
         }),
-      }).then(res => {
-        if (!res.ok) return;
-        alert('회원가입을 축하합니다.');
-        navigate('/Login');
-      });
+      })
+        .then(res => {
+          if (!res.ok) return;
+          alert('회원가입을 축하합니다.');
+          navigate('/Login');
+        })
+        .then();
     }
   };
 
