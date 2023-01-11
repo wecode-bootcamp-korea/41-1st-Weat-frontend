@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { API_BASE } from '../../apiData';
 import './Popup.scss';
 
 const menuList = ['보통(16mm)', '얇게(11mm)', '두껍게(24mm)'];
 
 const Popup = ({ onPopup, id, name, price }) => {
+  const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [optionNum, setOptionNum] = useState(1);
   const [detilOption, setDetailOption] = useState('보통(16mm)');
@@ -48,7 +49,8 @@ const Popup = ({ onPopup, id, name, price }) => {
     })
       .then(res => res.json())
       .then();
-    <Link to="/Cart" />;
+
+    navigate('/Cart');
   };
 
   return (
