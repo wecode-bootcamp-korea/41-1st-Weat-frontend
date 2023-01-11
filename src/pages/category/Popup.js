@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../../apiData';
 import './Popup.scss';
 
-const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
+const menuList = ['보통(16mm)', '얇게(11mm)', '두껍게(24mm)'];
 
 const Popup = ({ onPopup, id, name, price }) => {
+  const navigate = useNavigate();
   const [count, setCount] = useState(1);
+  const [optionNum, setOptionNum] = useState(1);
   const [detilOption, setDetailOption] = useState('보통(16mm)');
   const [toCart, setToCart] = useState(false);
 
@@ -22,11 +26,27 @@ const Popup = ({ onPopup, id, name, price }) => {
 
   const handleOption = e => {
     setDetailOption(e.target.name);
+    setOptionNum(e.target.id + 1);
     setToCart(false);
   };
 
   const handleDrop = () => {
     setToCart(true);
+  };
+
+  const detailToCart = () => {
+    return fetch(`${API_BASE}/carts/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        productId: id,
+        productOptionId: optionNum,
+        quantity: count,
+      }),
+    });
   };
 
   return (
@@ -58,6 +78,7 @@ const Popup = ({ onPopup, id, name, price }) => {
                     <button
                       className="menuItem"
                       name={menu}
+                      id={key}
                       onClick={handleOption}
                     >
                       {menu}
@@ -69,10 +90,24 @@ const Popup = ({ onPopup, id, name, price }) => {
         </div>
       </div>
 
-      <div className="price">{price}</div>
+      <div className="price">{Math.floor(price)}원</div>
       <div className="btnList">
-        <button className="buyBtn">바로구매</button>
-        <button className="toCartBtn">장바구니</button>
+        <button
+          className="buyBtn"
+          onClick={() => {
+            detailToCart().then(() => navigate('/Cart'));
+          }}
+        >
+          바로구매
+        </button>
+        <button
+          className="toCartBtn"
+          onClick={() => {
+            detailToCart().then(() => window.location.reload());
+          }}
+        >
+          장바구니
+        </button>
       </div>
     </div>
   );
