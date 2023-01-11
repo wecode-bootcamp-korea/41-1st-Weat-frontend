@@ -3,7 +3,7 @@ import { API_BASE } from '../../apiData';
 import './PaymentList.scss';
 
 const PaymentList = () => {
-  const [cartData, setCartData] = useState('');
+  const [cartData, setCartData] = useState([]);
   useEffect(() => {
     fetch(`${API_BASE}/carts`, {
       headers: {
@@ -17,12 +17,13 @@ const PaymentList = () => {
       });
   }, []);
 
-  const totalAmount = () => {
+  const totalAmount =
     cartData.reduce((acc, cur) => {
       acc += cur.price * cur.count;
       return acc;
-    }, 0);
-  };
+    }, 0) || 0;
+
+  const shipPrice = 3500;
 
   return (
     <div>
@@ -55,14 +56,14 @@ const PaymentList = () => {
               <div className="plusIcon">+</div>
               <div className="totalShippingPrice">
                 <h5 className="totalShippingPriceName">배송비</h5>
-                <span className="totalShippingPriceNum">3,500 </span>
+                <span className="totalShippingPriceNum">{shipPrice} </span>
                 <span className="totalShippingPriceWon">원</span>
               </div>
               <div className="equalIcon">=</div>
               <div className="estimatedAmount">
                 <h5 className="estimatedAmountName">예상 결제 금액</h5>
                 <span className="estimatedAmountNum">
-                  {{ totalAmount } + 3500}
+                  {totalAmount + shipPrice}
                 </span>
                 <span className="estimatedAmountWon">원</span>
               </div>
