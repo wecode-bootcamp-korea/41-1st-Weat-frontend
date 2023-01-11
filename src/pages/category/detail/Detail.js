@@ -38,7 +38,7 @@ const Detail = () => {
   const [meat, setMeat] = useState({});
 
   useEffect(() => {
-    fetch(`${API_BASE}/products/detail/${userId}`)
+    fetch(`${API_BASE}/products/detail/${itemId}`)
       .then(res => res.json())
       .then(data => setMeat(data.data[0]));
   }, [itemId]);
@@ -46,7 +46,7 @@ const Detail = () => {
   // 백 통신
   const { thumbnail_image, name, price } = meat;
   const toCart = () => {
-    fetch(`http://10.58.52.225:3000/carts/`, {
+    fetch(`${API_BASE}/carts/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

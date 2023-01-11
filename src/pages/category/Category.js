@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './Category.scss';
-import CategoryList from './CategoryItem';
+import { BsCart3 } from 'react-icons/bs';
+import { Link, useSearchParams } from 'react-router-dom';
 import { API_BASE } from '../../apiData';
-
+import './Category.scss';
 
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
@@ -15,29 +15,48 @@ const CATEGORY = [
 
 const Category = () => {
   const [items, setItems] = useState([]);
-  const [names, setNames] = useState('돼지');
+  const [itemLength, setItemLength] = useState(0);
+  const [names, setNames] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page');
+
+  const categorySet = id => {
+    setNames(id);
+    searchParams.set('category', id);
+    searchParams.set('page', 1);
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
-    fetch(`${API_BASE}`)
+    // 백 통신으로 전체 아이템 혹은 카테고리나 페이지 별로 불러오기
+    fetch(`${API_BASE}/products?${searchParams.toString()}`)
       .then(res => res.json())
-      .then(data => setItems(data));
-  }, []);
+      .then(({ productList, listLength }) => {
+        setItemLength(listLength);
+        setItems(productList);
+      });
+  }, [searchParams]);
 
-  const categorySet = e => {
-    setNames(e.target.id);
+  const movePage = pageNumber => {
+    searchParams.set('page', pageNumber);
+    setSearchParams(searchParams);
   };
+
+  const num = Math.ceil(itemLength / 6);
+
+  // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
 
   return (
     <div className="category">
       <img src="/images/grill.jpg" alt="메인이미지" />
       <ul className="categoryBtn">
-        {CATEGORY.map(({ id, category_name }) => {
+        {CATEGORY.map(({ category_name, id }) => {
           return (
             <li
               key={id}
-              id={category_name}
-              className={'btn' + (names === category_name ? 'active' : '')}
-              onClick={categorySet}
+              id={id}
+              className={'btn' + (names === id ? 'active' : '')}
+              onClick={() => categorySet(id)}
             >
               {category_name}
             </li>
@@ -46,14 +65,41 @@ const Category = () => {
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map(({ id, name, price, category }) => {
-            if (names === category) {
-              return (
-                <CategoryList key={id} id={id} name={name} price={price} />
-              );
-            }
+          {items.map(({ id, name, price, thumbnail_image }) => {
+            return (
+              <li key={id}>
+                <div className="items">
+                  <Link to={`/Category/Detail/${id}`}>
+                    <img src={thumbnail_image} alt="고기사진" />
+                  </Link>
+                  <button>
+                    <BsCart3 />
+                  </button>
+                </div>
+                <div>
+                  <p className="itemName">{name}</p>
+                  <p className="itemPrice">{price}</p>
+                </div>
+              </li>
+            );
           })}
         </ul>
+      </div>
+      <div>
+        {Array(num)
+          .fill()
+          .map((_, item) => {
+            return (
+              <button
+                className="pageNum"
+                onClick={() => movePage(item + 1)}
+                key={item + 1}
+                disabled={page === num}
+              >
+                {item + 1}
+              </button>
+            );
+          })}
       </div>
     </div>
   );
