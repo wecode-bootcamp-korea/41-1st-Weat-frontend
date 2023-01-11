@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { API_BASE } from '../../apiData';
 import './Popup.scss';
 
-const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
+const menuList = ['보통(16mm)', '얇게(11mm)', '두껍게(24mm)'];
 
 const Popup = ({ onPopup, item }) => {
   const [count, setCount] = useState(1);
@@ -72,7 +74,25 @@ const Popup = ({ onPopup, item }) => {
       <div className="price">{parseInt(item.price)}원</div>
       <div className="btnList">
         <button className="buyBtn">바로구매</button>
-        <button className="toCartBtn">장바구니</button>
+        <button
+          className="toCartBtn"
+          onClick={useEffect(() => {
+            fetch(`${API_BASE}/carts`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                Authoriztion: localStorage.getItem('token'),
+              },
+              body: JSON.stringify({
+                productId: item.id,
+                productOptionId: detilOption,
+                quantity: count,
+              }),
+            }).then(response => response.json());
+          }, [count, detilOption])}
+        >
+          장바구니
+        </button>
       </div>
     </div>
   );
