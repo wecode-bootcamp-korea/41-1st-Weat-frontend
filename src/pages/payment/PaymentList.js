@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './PaymentList.scss';
 
 const PaymentList = () => {
+  const [cartData, setCartData] = useState('');
+  useEffect(() => {
+    fetch('http://10.58.52.225:3000/carts/', {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+    })
+      .then(result => result.json())
+      .then(data => {
+        setCartData(data);
+      });
+  }, []);
+
+  const totalAmount = () => {
+    cartData.reduce((acc, cur) => {
+      acc += cur.price * cur.count;
+      return acc;
+    }, 0);
+  };
+
   return (
     <div>
       <div className="paymentContents">
@@ -12,18 +33,22 @@ const PaymentList = () => {
           <div className="paymentFinalItems">
             <div className="paymentFinalItemMap">
               <div className="paymentFinalItemLeft">
-                초신선 초원에서 자연 방목한 삼겹살
+                {cartData.productId}삼겹살
               </div>
               <div className="paymentFinalItemRight">
-                <div className="paymentFinalItemWeight">300g 기준</div>
-                <div className="paymentFinalItemCount">1팩</div>
-                <div className="paymentFinalItemPrice">11,900원</div>
+                <div className="paymentFinalItemWeight">
+                  {cartData.baseUnit} 중량
+                </div>
+                <div className="paymentFinalItemCount">1팩 갯수</div>
+                <div className="paymentFinalItemPrice">
+                  {cartData.price} 가격
+                </div>
               </div>
             </div>
             <div className="totalPriceList">
               <div className="totalPrice">
                 <h5 className="totalPriceName">총 상품금액</h5>
-                <span className="totalPriceNum">10,000 </span>
+                <span className="totalPriceNum">{totalAmount}</span>
                 <span className="totalPriceWon">원</span>
               </div>
               <div className="plusIcon">+</div>
@@ -35,7 +60,9 @@ const PaymentList = () => {
               <div className="equalIcon">=</div>
               <div className="estimatedAmount">
                 <h5 className="estimatedAmountName">예상 결제 금액</h5>
-                <span className="estimatedAmountNum">10,000 </span>
+                <span className="estimatedAmountNum">
+                  {{ totalAmount } + 3500}
+                </span>
                 <span className="estimatedAmountWon">원</span>
               </div>
             </div>

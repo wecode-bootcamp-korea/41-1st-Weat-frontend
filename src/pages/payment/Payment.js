@@ -1,37 +1,67 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PaymentList from './PaymentList';
 import './Payment.scss';
 
 const Payment = () => {
-  const content = ['이메일', '이름', '전화번호'];
+  const content = [
+    { title: '이메일', value: '' },
+    { title: '이름', value: '' },
+    { title: '전화번호', value: '' },
+  ];
 
-  const [addressData, setAddressData] = useState({
+  const [fromData, setFromData] = useState([]);
+
+  const [toData, setToData] = useState({
     userName: '',
     mobile: '',
     address: '',
   });
 
+  useEffect(() => {
+    fetch('http://10.58.52.225:3000/orders', {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+    })
+      .then(result => result.json())
+      .then(data => {
+        // setFromData.email(data.email);
+        // setFromData.name(data.username);
+        // setFromData.mobile(data.mobile);
+        //적립금 받기
+        setFromData(data);
+      });
+  }, []);
+  console.log(fromData);
   const handelChange = e => {
     const { name, value } = e.target;
-    setAddressData(prev => {
+    setToData(prev => {
       return { ...prev, [name]: value };
     });
   };
 
-  const handleClick = e => {
+  const goToOrder = e => {
     fetch('', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        userName: addressData.userName,
-        mobile: addressData.mobile,
-        address: addressData.address,
+        toName: toData.userName,
+        toMobile: toData.mobile,
+        toAddress: toData.address,
       }),
     })
       .then(response => response.json())
       .then(data => {});
+    Order();
+  };
+
+  const navigate = useNavigate();
+  const Order = () => {
+    navigate('/Payment');
   };
 
   return (
@@ -56,10 +86,10 @@ const Payment = () => {
                   return (
                     <tr key={index}>
                       <td className="index">
-                        <div className="indexName">{data}</div>
+                        <div className="indexName">{data.title}</div>
                       </td>
                       <td className="indexInfo">
-                        <div className="indexInfoName">1</div>
+                        <div className="indexInfoName">{data.value}hi</div>
                       </td>
                     </tr>
                   );
@@ -82,7 +112,7 @@ const Payment = () => {
                     <div className="indexInfoName">
                       <input
                         name="userName"
-                        value={addressData.userName}
+                        value={toData.userName}
                         onChange={handelChange}
                         className="getInfo"
                         type="text"
@@ -99,7 +129,7 @@ const Payment = () => {
                     <div className="indexInfoName">
                       <input
                         name="mobile"
-                        value={addressData.mobile}
+                        value={toData.mobile}
                         onChange={handelChange}
                         className="getInfo"
                         type="text"
@@ -116,7 +146,7 @@ const Payment = () => {
                     <div className="indexInfoName">
                       <input
                         name="address"
-                        value={addressData.address}
+                        value={toData.address}
                         onChange={handelChange}
                         className="getInfo"
                         type="text"
@@ -133,7 +163,7 @@ const Payment = () => {
         <button className="goToBack" type="button">
           이전으로
         </button>
-        <button onClick={handleClick} className="goToNext" type="button">
+        <button onClick={goToOrder} className="goToNext" type="button">
           다음으로
         </button>
       </div>
