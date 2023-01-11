@@ -18,7 +18,7 @@ const Main = () => {
   useEffect(() => {
     fetch(`${API_BASE}/products`)
       .then(result => result.json())
-      .then(({ productList }) => setItemList(productList));
+      .then(data => setItemList(data.productList));
   }, []);
 
   useEffect(() => {

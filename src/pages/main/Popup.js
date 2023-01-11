@@ -69,7 +69,7 @@ const Popup = ({ onPopup, item }) => {
         </div>
       </div>
 
-      <div className="price">{item.price}</div>
+      <div className="price">{parseInt(item.price)}원</div>
       <div className="btnList">
         <button className="buyBtn">바로구매</button>
         <button className="toCartBtn">장바구니</button>
