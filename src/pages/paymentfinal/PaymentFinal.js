@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../../apiData';
 import './PaymentFinal.scss';
 
 const PaymentFinal = () => {
   const [cartData, setCartData] = useState([]);
   useEffect(() => {
-    fetch('/data/meatData.json')
+    fetch(`${API_BASE}/pr/`)
       .then(result => result.json())
       .then(data => {
         setCartData(data);
@@ -35,7 +36,6 @@ const PaymentFinal = () => {
         </thead>
         <tbody>
           {cartData.map((data, index) => (
-            // { setCartData(...cartData, (data.price * 1).toLocaleString())}
             <tr className="paymentFinalItems" key={index}>
               <th className="paymentFinalItemsName">{data.productId}</th>
               <th className="paymentFinalItemsOption">

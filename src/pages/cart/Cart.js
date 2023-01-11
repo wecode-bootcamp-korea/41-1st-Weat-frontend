@@ -10,21 +10,6 @@ export default function Cart() {
   const onRemove = id => {
     setCartData(cartData.filter(value => value.id !== id));
   };
-
-  const changeCount = (index, offset) => {
-    setCartData(prev => {
-      return prev.map((item, i) => {
-        if (i === index) {
-          item.quantity += offset;
-          if (item.quantity < 0) {
-            item.quantity = 0;
-          }
-        }
-        return item;
-      });
-    });
-  };
-
   useEffect(() => {
     fetch(`${API_BASE}/carts`)
       .then(result => result.json())
@@ -55,15 +40,7 @@ export default function Cart() {
             </tr>
           </thead>
           {cartData.map((data, index) => {
-            return (
-              <Cartcount
-                key={data.id}
-                value={data}
-                onRemove={onRemove}
-                plusCount={() => changeCount(index, 1)}
-                minusCount={() => changeCount(index, -1)}
-              />
-            );
+            return <Cartcount key={data.id} value={data} onRemove={onRemove} />;
           })}
         </table>
         <aside className="cartSideContents">
