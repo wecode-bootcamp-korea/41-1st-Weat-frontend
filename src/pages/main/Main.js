@@ -6,6 +6,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { API_LIST } from '../../apiData';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);

@@ -6,26 +6,26 @@ const Cartcount = ({ value, onRemove, plusCount, minusCount }) => {
     <tbody>
       <tr className="cartItemList">
         <th className="cartItemImg">
-          <img className="imgSize" src={value.thumbnail_image} alt="meat" />
+          <img className="imgSize" src={value.thumbnail} alt="meat" />
         </th>
         <th className="cartItemName">
-          <p className="cartItemNameTitle">{value.name}</p>
-          <span className="cartItemOption"> {value.option}</span>
+          <p className="cartItemNameTitle">{value.productId}</p>
+          <span className="cartItemOption"> {value.productOptionId}</span>
         </th>
         <th className="cartItemWeight">
-          {(value.base_unit * value.count).toLocaleString()}g 기준
+          {(value.baseUnit * value.quantity).toLocaleString()}g 기준
         </th>
         <th className="cartItemCount">
           <button className="clickMinusButton" onClick={minusCount}>
             -
           </button>
-          {value.count}
+          {value.quantity || 0}
           <button className="clickPlusButton" onClick={plusCount}>
             +
           </button>
         </th>
         <th className="cartItemPrice">
-          {(value.price * value.count).toLocaleString()}원
+          {(value.price * value.quantity).toLocaleString()}원
         </th>
         <th className="cartItemRemove">
           <button

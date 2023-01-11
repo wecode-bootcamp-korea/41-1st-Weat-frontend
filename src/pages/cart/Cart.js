@@ -14,9 +14,9 @@ export default function Cart() {
     setCartData(prev => {
       return prev.map((item, i) => {
         if (i === index) {
-          item.count += offset;
-          if (item.count < 0) {
-            item.count = 0;
+          item.quantity += offset;
+          if (item.quantity < 0) {
+            item.quantity = 0;
           }
         }
         return item;
@@ -28,14 +28,13 @@ export default function Cart() {
     fetch('/data/meatData.json')
       .then(result => result.json())
       .then(data => {
-        const newData = data.map(item => ({ ...item, count: 0 }));
-        setCartData(newData);
+        setCartData(data);
       });
   }, []);
 
   const totalPrice =
     cartData.reduce((prev, cur) => {
-      prev += cur.price * cur.count;
+      prev += cur.price * cur.quantity;
       return prev;
     }, 0) || 0;
 
