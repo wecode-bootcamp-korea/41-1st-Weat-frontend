@@ -14,7 +14,7 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    fetch(`${API_BASE}/orders`, {
+    fetch(`${API_BASE}/users/userinfo`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
@@ -35,10 +35,11 @@ const Payment = () => {
 
   const goToOrder = e => {
     fetch(`${API_BASE}/orders`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
       },
       body: JSON.stringify({
         toName: toData.userName,
@@ -53,7 +54,7 @@ const Payment = () => {
 
   const navigate = useNavigate();
   const goToFinal = () => {
-    navigate('/PaymentFinal');
+    navigate('/Login');
   };
 
   return (
@@ -167,7 +168,7 @@ const Payment = () => {
         <button className="goToBack" type="button">
           이전으로
         </button>
-        <button onClick={goToFinal} className="goToNext" type="button">
+        <button onClick={goToOrder} className="goToNext" type="button">
           다음으로
         </button>
       </div>

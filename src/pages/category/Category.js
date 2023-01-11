@@ -3,7 +3,6 @@ import './Category.scss';
 import CategoryList from './CategoryItem';
 import { API_BASE } from '../../apiData';
 
-
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
   { id: 2, category_name: '소' },

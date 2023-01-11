@@ -22,34 +22,35 @@
     font-size: 15px;
     line-height: 25px;
   }
+
   .paymentFinal {
     &Items {
       border: 1px solid #e1dedf;
       padding: 10px 5px 5px 10px;
       font-size: 16px;
       margin-top: 15px;
+
       .paymentFinalItemMap {
         display: flex;
-        justify-content: space-between;
-        margin-top: 45px;
+        justify-content: center;
+        flex-direction: column;
+        margin: 20px 40px 0 40px;
         overflow: hidden;
-        border-bottom: 1px solid #e1dedf;
-        line-height: 25px;
-        width: 755px;
-        .paymentFinalItemLeft {
-          font-size: 17px;
-          color: #555555;
-          float: left;
-        }
-        .paymentFinalItemRight {
+        line-height: 40px;
+
+        .list {
           display: flex;
-          width: 265px;
+          justify-content: space-between;
+          border-bottom: 1px solid #e1dedf;
           font-size: 17px;
           color: #555555;
-          flex-direction: row;
-          justify-content: space-between;
+
+          .paymentFinalItemLeft {
+            width: 300px;
+          }
         }
       }
+
       .totalPriceList {
         display: flex;
         justify-content: space-around;

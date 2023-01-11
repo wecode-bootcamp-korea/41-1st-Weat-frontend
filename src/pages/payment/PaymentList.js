@@ -18,9 +18,9 @@ const PaymentList = ({ point }) => {
   }, []);
 
   const totalAmount =
-    cartData.reduce((acc, cur) => {
-      acc += cur.price * cur.count;
-      return acc;
+    cartData.reduce((prev, cur) => {
+      prev += parseInt(cur.price) * cur.quantity;
+      return prev;
     }, 0) || 0;
 
   const shipPrice = 3500;
@@ -34,20 +34,24 @@ const PaymentList = ({ point }) => {
         <div className="paymentFinal">
           <div className="paymentFinalItems">
             <div className="paymentFinalItemMap">
-              <div className="paymentFinalItemLeft">
-                {cartData.productName}삼겹살
-              </div>
-              <div className="paymentFinalItemRight">
-                <div className="paymentFinalItemWeight">
-                  {cartData.baseUnit} 중량
-                </div>
-                <div className="paymentFinalItemCount">
-                  {cartData.quantity}1팩 갯수
-                </div>
-                <div className="paymentFinalItemPrice">
-                  {cartData.price} 가격
-                </div>
-              </div>
+              {cartData.map((item, key) => {
+                return (
+                  <div className="list" key={key}>
+                    <div className="paymentFinalItemLeft">
+                      {item.productName}삼겹살
+                    </div>
+                    <div className="paymentFinalItemWeight">
+                      {item.optionName}옵션
+                    </div>
+                    <div className="paymentFinalItemCount">
+                      {item.quantity}1팩 갯수
+                    </div>
+                    <div className="paymentFinalItemPrice">
+                      {item.price}가격
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             <div className="totalPriceList">
               <div className="totalPrice">
