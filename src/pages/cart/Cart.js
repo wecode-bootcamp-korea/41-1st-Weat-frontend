@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cartcount from './Cartcount';
 import Cartaside from './Cartaside';
 import './Cart.scss';
+import { API_BASE } from '../../apiData';
 
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
@@ -25,46 +26,43 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.225:3000/carts/', {
+    fetch(`${API_BASE}/carts`, {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
       },
     })
       .then(result => result.json())
       .then(data => {
-        const newData = data.map(product => ({ ...product, quantity: 0 }));
-        setCartData(newData);
+        setCartData(data);
       });
   }, []);
 
   useEffect(() => {
-    fetch('http://10.58.52.225:3000/carts/', {
+    fetch(`${API_BASE}/carts`, {
       method: 'POST',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
       },
     })
       .then(result => result.json())
       .then(data => {
-        const newData = data.map(product => ({ ...product, quantity: 0 }));
-        setCartData(newData);
+        setCartData(data);
       });
   }, []);
 
   useEffect(() => {
-    fetch('http://10.58.52.225:3000/carts/', {
+    fetch(`${API_BASE}/carts`, {
       method: 'DELETE',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
       },
     })
       .then(result => result.json())
       .then(data => {
-        const newData = data.map(product => ({ ...product, quantity: 0 }));
-        setCartData(newData);
+        setCartData(data);
       });
   }, []);
 

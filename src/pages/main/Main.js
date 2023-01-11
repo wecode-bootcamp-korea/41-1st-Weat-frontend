@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Main.scss';
 import Item from './Item.js';
+import { API_BASE } from '../../apiData';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { API_LIST } from '../../apiData';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
@@ -15,9 +17,9 @@ const Main = () => {
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch(`${API_LIST}/pages/detail/${userId}`)
+    fetch(`${API_BASE}/products/`)
       .then(result => result.json())
-      .then(data => setItemList(data.data));
+      .then(data => setItemList(data));
   }, []);
 
   useEffect(() => {
