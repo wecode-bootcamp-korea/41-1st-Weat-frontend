@@ -7,7 +7,6 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { API_LIST } from '../../apiData';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
@@ -17,7 +16,7 @@ const Main = () => {
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch(`${API_BASE}/products/`)
+    fetch('data/dataCartegory.json')
       .then(result => result.json())
       .then(data => setItemList(data));
   }, []);
