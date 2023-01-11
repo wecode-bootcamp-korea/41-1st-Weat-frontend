@@ -7,7 +7,6 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { API_LIST } from '../../apiData';
 
 const Main = () => {
   const [itemList, setItemList] = useState([]);
@@ -19,7 +18,7 @@ const Main = () => {
   useEffect(() => {
     fetch(`${API_BASE}/products/`)
       .then(result => result.json())
-      .then(data => setItemList(data));
+      .then(data => setItemList(data.productList));
   }, []);
 
   useEffect(() => {
