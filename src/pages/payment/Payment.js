@@ -14,10 +14,9 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    fetch(`${API_BASE}/orders`, {
+    fetch(`${API_BASE}/signup`, {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+        Authorization: localStorage.getItem('token'),
       },
     })
       .then(result => result.json())
@@ -38,7 +37,7 @@ const Payment = () => {
   };
 
   const goToOrder = e => {
-    fetch('', {
+    fetch(`${API_BASE}/orders`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
