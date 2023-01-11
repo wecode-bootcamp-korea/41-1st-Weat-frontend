@@ -3,7 +3,7 @@ import { BsCart3 } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Popup from './Popup';
 
-const CategoryItem = ({ id, name, price, thumbnail_img }) => {
+const CategoryItem = ({ id, name, price, thumbnail_image }) => {
   const [isPopup, setIsPopup] = useState(false);
 
   const onPopup = () => {
@@ -14,7 +14,7 @@ const CategoryItem = ({ id, name, price, thumbnail_img }) => {
       {isPopup && <Popup onPopup={onPopup} id={id} name={name} price={price} />}
       <div className="items">
         <Link to={`/Category/Detail/${id}`}>
-          <img src={thumbnail_img} alt="고기사진" />
+          <img src={thumbnail_image} alt="고기사진" />
         </Link>
         <button className="cartBtn" onClick={onPopup}>
           <BsCart3 />
