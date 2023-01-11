@@ -50,20 +50,6 @@ export default function Cart() {
     });
   };
 
-  const changeCount = (index, offset) => {
-    setCartData(prev => {
-      return prev.map((product, i) => {
-        if (i === index) {
-          product.quantity += offset;
-          if (product.quantity < 0) {
-            product.quantity = 0;
-          }
-        }
-        return product;
-      });
-    });
-  };
-
   const totalPrice =
     cartData.reduce((prev, cur) => {
       prev += cur.price * cur.quantity;
@@ -86,15 +72,7 @@ export default function Cart() {
             </tr>
           </thead>
           {cartData.map((data, index) => {
-            return (
-              <Cartcount
-                key={data.id}
-                value={data}
-                onRemove={onRemove}
-                plusCount={() => changeCount(index, 1)}
-                minusCount={() => changeCount(index, -1)}
-              />
-            );
+            return <Cartcount key={data.id} value={data} onRemove={onRemove} />;
           })}
         </table>
         <aside className="cartSideContents">
