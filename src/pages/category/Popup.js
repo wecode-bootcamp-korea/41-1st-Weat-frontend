@@ -35,7 +35,7 @@ const Popup = ({ onPopup, id, name, price }) => {
   };
 
   const detailToCart = () => {
-    fetch(`${API_BASE}/carts/`, {
+    return fetch(`${API_BASE}/carts/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -46,11 +46,7 @@ const Popup = ({ onPopup, id, name, price }) => {
         productOptionId: optionNum,
         quantity: count,
       }),
-    })
-      .then(res => res.json())
-      .then();
-
-    navigate('/Cart');
+    });
   };
 
   return (
@@ -99,7 +95,7 @@ const Popup = ({ onPopup, id, name, price }) => {
         <button
           className="buyBtn"
           onClick={() => {
-            detailToCart();
+            detailToCart().then(() => navigate('/Cart'));
           }}
         >
           바로구매
