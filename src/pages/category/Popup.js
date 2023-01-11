@@ -100,7 +100,12 @@ const Popup = ({ onPopup, id, name, price }) => {
         >
           바로구매
         </button>
-        <button className="toCartBtn" onClick={detailToCart}>
+        <button
+          className="toCartBtn"
+          onClick={() => {
+            detailToCart().then(() => window.location.reload());
+          }}
+        >
           장바구니
         </button>
       </div>
