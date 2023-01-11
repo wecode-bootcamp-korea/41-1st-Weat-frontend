@@ -1,3 +1,9 @@
-* {
-  list-style: none;
+%buttonUI {
+  width: 50%;
+  height: 60px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
 }

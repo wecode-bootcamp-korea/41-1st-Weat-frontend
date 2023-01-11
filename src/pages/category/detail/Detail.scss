@@ -11,9 +11,17 @@
     color: white;
 
     .detailImg {
+      display: flex;
+      align-items: center;
       width: 500px;
       height: 500px;
-      background-color: white;
+
+      img {
+        width: 500px;
+        height: 300px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
     }
 
     .meatInfo {
