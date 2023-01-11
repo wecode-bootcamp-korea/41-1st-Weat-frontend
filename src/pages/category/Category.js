@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Category.scss';
 import CategoryList from './CategoryItem';
+import { API_BASE } from '../../apiData';
+
 
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
@@ -16,7 +18,7 @@ const Category = () => {
   const [names, setNames] = useState('돼지');
 
   useEffect(() => {
-    fetch('/data/dataCartegory.json')
+    fetch(`${API_BASE}`)
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
