@@ -48,12 +48,12 @@ const Payment = () => {
     })
       .then(response => response.json())
       .then(data => {});
-    Order();
+    goToFinal();
   };
 
   const navigate = useNavigate();
-  const Order = () => {
-    navigate('/Payment');
+  const goToFinal = () => {
+    navigate('/PaymentFinal');
   };
 
   return (
@@ -167,7 +167,7 @@ const Payment = () => {
         <button className="goToBack" type="button">
           이전으로
         </button>
-        <button onClick={goToOrder} className="goToNext" type="button">
+        <button onClick={goToFinal} className="goToNext" type="button">
           다음으로
         </button>
       </div>
