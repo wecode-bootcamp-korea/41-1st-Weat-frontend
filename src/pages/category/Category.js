@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BsCart3 } from 'react-icons/bs';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { API_BASE } from '../../apiData';
+import CategoryItem from './CategoryItem';
 import './Category.scss';
 
 const CATEGORY = [
@@ -44,8 +44,6 @@ const Category = () => {
 
   const num = Math.ceil(itemLength / 6);
 
-  // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
-
   return (
     <div className="category">
       <img src="/images/grill.jpg" alt="메인이미지" />
@@ -65,23 +63,18 @@ const Category = () => {
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map(({ id, name, price, thumbnail_image }) => {
-            return (
-              <li key={id}>
-                <div className="items">
-                  <Link to={`/Category/Detail/${id}`}>
-                    <img src={thumbnail_image} alt="고기사진" />
-                  </Link>
-                  <button>
-                    <BsCart3 />
-                  </button>
-                </div>
-                <div>
-                  <p className="itemName">{name}</p>
-                  <p className="itemPrice">{price}</p>
-                </div>
-              </li>
-            );
+          {items.map(({ id, name, price, category, thumbnail_img }) => {
+            if (names === category) {
+              return (
+                <CategoryItem
+                  key={id}
+                  id={id}
+                  name={name}
+                  price={price}
+                  thumbnail_img={thumbnail_img}
+                />
+              );
+            }
           })}
         </ul>
       </div>
