@@ -37,7 +37,7 @@ const Detail = () => {
   const [meat, setMeat] = useState({});
 
   useEffect(() => {
-    fetch(`http://10.58.52.225:3000/products/${userId}`)
+    fetch(`${API_LIST[0].api}/products/${userId}`)
       .then(res => res.json())
       .then(data => setMeat(data.data[0]));
   }, [userId]);
