@@ -5,12 +5,6 @@ import { API_BASE } from '../../apiData';
 import './Payment.scss';
 
 const Payment = () => {
-  const content = [
-    { title: '이메일', value: '' },
-    { title: '이름', value: '' },
-    { title: '전화번호', value: '' },
-  ];
-
   const [fromData, setFromData] = useState([]);
 
   const [toData, setToData] = useState({
@@ -87,10 +81,10 @@ const Payment = () => {
                   return (
                     <tr key={index}>
                       <td className="index">
-                        <div className="indexName">{data.title}</div>
+                        <div className="indexName">{data}</div>
                       </td>
                       <td className="indexInfo">
-                        <div className="indexInfoName">{data.value}hi</div>
+                        <div className="indexInfoName">hi</div>
                       </td>
                     </tr>
                   );
@@ -173,3 +167,5 @@ const Payment = () => {
 };
 
 export default Payment;
+
+const content = ['이메일', '이름', '전화번호'];
