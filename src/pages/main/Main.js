@@ -16,9 +16,9 @@ const Main = () => {
   const [style, setStyle] = useState({ marginLeft: `${current}00%` });
 
   useEffect(() => {
-    fetch('data/dataCartegory.json')
+    fetch(`${API_BASE}/products`)
       .then(result => result.json())
-      .then(data => setItemList(data));
+      .then(({ productList }) => setItemList(productList));
   }, []);
 
   useEffect(() => {
