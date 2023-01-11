@@ -12,7 +12,7 @@ const Nav = () => {
   const isToken = Boolean(localStorage.getItem('token'));
 
   useEffect(() => {
-    fetch(`${API_BASE}`, {
+    fetch(`${API_BASE}/carts`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem('token'),
