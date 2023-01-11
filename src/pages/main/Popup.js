@@ -1,16 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE } from '../../apiData';
 import './Popup.scss';
 
 const menuList = ['보통(16mm)', '얇게(11mm)', '두껍게(24mm)'];
 
-const Popup = ({ onPopup, id, name, price }) => {
-  const navigate = useNavigate();
+const Popup = ({ onPopup, item }) => {
   const [count, setCount] = useState(1);
-  const [optionNum, setOptionNum] = useState(1);
-  const [detilOption, setDetailOption] = useState('보통(16mm)');
+  const [detailOption, setDetailOption] = useState('선택');
+  const [optionId, setOptionId] = useState(1);
   const [toCart, setToCart] = useState(false);
+
+  const navigate = useNavigate();
+
+  const moveToCart = () => {
+    navigate('/Cart');
+  };
+
+  const mainToCart = () => {
+    fetch(`${API_BASE}/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('key'),
+      },
+      body: JSON.stringify({
+        productId: item.id,
+        productOptionId: optionId,
+        quantity: count,
+      }),
+    })
+      .then(response => response.json())
+      .then();
+  };
+
+  const directCart = () => {
+    fetch(`${API_BASE}/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('key'),
+      },
+      body: JSON.stringify({
+        productId: item.id,
+        productOptionId: optionId,
+        quantity: count,
+      }),
+    })
+      .then(response => response.json())
+      .then();
+    moveToCart();
+  };
 
   const addCount = () => {
     setCount(count + 1);
@@ -26,7 +66,7 @@ const Popup = ({ onPopup, id, name, price }) => {
 
   const handleOption = e => {
     setDetailOption(e.target.name);
-    setOptionNum(e.target.id + 1);
+    setOptionId(e.target.id + 1);
     setToCart(false);
   };
 
@@ -34,27 +74,12 @@ const Popup = ({ onPopup, id, name, price }) => {
     setToCart(true);
   };
 
-  const detailToCart = () => {
-    return fetch(`${API_BASE}/carts/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        productId: id,
-        productOptionId: optionNum,
-        quantity: count,
-      }),
-    });
-  };
-
   return (
     <div className="popup">
       <button onClick={onPopup} className="close">
         x
       </button>
-      <div className="name">{name}</div>
+      <div className="name">{item.name}</div>
       <div className="peace">
         <button onClick={decCount}> - </button>
         <div>{count}</div>
@@ -68,7 +93,7 @@ const Popup = ({ onPopup, id, name, price }) => {
             onClick={handleDrop}
             className="TypeCheckBox"
           >
-            {detilOption}
+            {detailOption}
           </button>
           <ul className="menu">
             {toCart &&
@@ -76,9 +101,9 @@ const Popup = ({ onPopup, id, name, price }) => {
                 return (
                   <li key={key}>
                     <button
+                      id={key + 1}
                       className="menuItem"
                       name={menu}
-                      id={key}
                       onClick={handleOption}
                     >
                       {menu}
@@ -90,22 +115,12 @@ const Popup = ({ onPopup, id, name, price }) => {
         </div>
       </div>
 
-      <div className="price">{Math.floor(price)}원</div>
+      <div className="price">{parseInt(item.price)}원</div>
       <div className="btnList">
-        <button
-          className="buyBtn"
-          onClick={() => {
-            detailToCart().then(() => navigate('/Cart'));
-          }}
-        >
+        <button className="buyBtn" onClick={directCart}>
           바로구매
         </button>
-        <button
-          className="toCartBtn"
-          onClick={() => {
-            detailToCart().then(() => window.location.reload());
-          }}
-        >
+        <button className="toCartBtn" onClick={mainToCart}>
           장바구니
         </button>
       </div>

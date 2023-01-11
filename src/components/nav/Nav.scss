@@ -15,7 +15,7 @@
   height: 100px;
   background-color: black;
   color: white;
-  z-index: 1;
+  z-index: 2;
 
   .navLeft {
     display: flex;
@@ -81,6 +81,14 @@
       font-size: 30px;
       border: none;
       cursor: pointer;
+    }
+    .cartCount {
+      border: none;
+      border-radius: 100%;
+      color: white;
+      background-color: red;
+      margin-top: -20px;
+      margin-left: -20px;
     }
   }
 }

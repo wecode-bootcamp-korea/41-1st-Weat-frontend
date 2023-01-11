@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
+import { BsCart3 } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import Popup from './Popup';
 
-import { BsCart3 } from 'react-icons/bs';
-
-import { Link } from 'react-router-dom';
-
-const CategoryItem = ({ id, name, price }) => {
+const CategoryItem = ({ id, name, price, thumbnail_image }) => {
   const [isPopup, setIsPopup] = useState(false);
 
   const onPopup = () => {
@@ -16,7 +14,7 @@ const CategoryItem = ({ id, name, price }) => {
       {isPopup && <Popup onPopup={onPopup} id={id} name={name} price={price} />}
       <div className="items">
         <Link to={`/Category/Detail/${id}`}>
-          <img src="/images/meat.jpg" alt="고기사진" />
+          <img src={thumbnail_image} alt="고기사진" />
         </Link>
         <button className="cartBtn" onClick={onPopup}>
           <BsCart3 />

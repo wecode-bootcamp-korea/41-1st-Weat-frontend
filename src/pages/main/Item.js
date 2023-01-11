@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Popup from './Popup';
 
 function Item({ item }) {
-  const navigate = useNavigate();
+  const [isPopup, setIsPopup] = useState(false);
 
-  const moveToDetail = () => {
-    navigate('/Category/detail');
+  const onPopup = () => {
+    setIsPopup(!isPopup);
   };
 
   return (
     <div>
-      <li>
-        <Link to={`/Category/Detail/${item.id}`}>
-          <img src={item.thumbnail_image} alt="thumbnail" />
-        </Link>
-        <button className="cart" onClick={moveToDetail}>
-          <BsCart3 />
-        </button>
+      <li className="popupWarp">
+        {isPopup && <Popup onPopup={onPopup} item={item} />}
+        <div>
+          <Link to={`/Category/Detail/${item.id}`}>
+            <img src={item.thumbnail_image} alt="thumbnail" />
+          </Link>
+          <button className="cart" onClick={onPopup}>
+            <BsCart3 />
+          </button>
+        </div>
       </li>
       <p>{item.name}</p>
       <p className="priceWeight">
