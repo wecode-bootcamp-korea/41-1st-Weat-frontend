@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { Link, useSearchParams } from 'react-router-dom';
 import './Category.scss';
+import CategoryList from './CategoryItem';
+import { API_BASE } from '../../apiData';
 
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
@@ -28,7 +30,7 @@ const Category = () => {
 
   useEffect(() => {
     // 백 통신으로 전체 아이템 혹은 카테고리나 페이지 별로 불러오기
-    fetch(`http://10.58.52.225:3000/products?${searchParams.toString()}`)
+    fetch(`${API_BASE}/products?${searchParams.toString()}`)
       .then(res => res.json())
       .then(({ productList, listLength }) => {
         setItemLength(listLength);
