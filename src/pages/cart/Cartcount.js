@@ -9,11 +9,11 @@ const Cartcount = ({ value, onRemove, plusCount, minusCount }) => {
           <img className="imgSize" src={value.thumbnail} alt="meat" />
         </th>
         <th className="cartItemName">
-          <p className="cartItemNameTitle">{value.productId}</p>
-          <span className="cartItemOption"> {value.productOptionId}</span>
+          <p className="cartItemNameTitle">{value.productName}</p>
+          <span className="cartItemOption"> {value.optionName}</span>
         </th>
         <th className="cartItemWeight">
-          {(value.baseUnit * value.quantity).toLocaleString()}g 기준
+          {(value.baseUnit * value.quantity).toLocaleString()} 기준
         </th>
         <th className="cartItemCount">
           <button className="clickMinusButton" onClick={minusCount}>

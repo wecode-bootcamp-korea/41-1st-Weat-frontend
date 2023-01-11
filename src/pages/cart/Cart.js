@@ -7,8 +7,47 @@ import { API_BASE } from '../../apiData';
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
 
+  useEffect(() => {
+    fetch(`${API_BASE}/carts`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(result => result.json())
+      .then(data => {
+        setCartData(data);
+      });
+  }, []);
+
+  const orderPage = () => {
+    fetch(`${API_BASE}/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        productId: cartData.productName,
+        productOptionId: cartData.optionName,
+        quantity: cartData.quantity,
+      }),
+    })
+      .then(result => result.json())
+      .then(data => {
+        setCartData(data);
+      });
+  };
+
   const onRemove = id => {
     setCartData(cartData.filter(value => value.id !== id));
+    fetch(`${API_BASE}/carts/id`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    });
   };
 
   const changeCount = (index, offset) => {
@@ -24,47 +63,6 @@ export default function Cart() {
       });
     });
   };
-
-  useEffect(() => {
-    fetch(`${API_BASE}/carts`, {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(result => result.json())
-      .then(data => {
-        setCartData(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`${API_BASE}/carts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(result => result.json())
-      .then(data => {
-        setCartData(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`${API_BASE}/carts`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(result => result.json())
-      .then(data => {
-        setCartData(data);
-      });
-  }, []);
 
   const totalPrice =
     cartData.reduce((prev, cur) => {
@@ -100,7 +98,7 @@ export default function Cart() {
           })}
         </table>
         <aside className="cartSideContents">
-          <Cartaside totalPrice={totalPrice} />
+          <Cartaside orderPage={orderPage} totalPrice={totalPrice} />
         </aside>
       </div>
     </div>
