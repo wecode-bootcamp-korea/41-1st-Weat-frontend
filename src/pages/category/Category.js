@@ -1,69 +1,96 @@
 import React, { useEffect, useState } from 'react';
-import { BsCart3 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { API_BASE } from '../../apiData';
+import CategoryItem from './CategoryItem';
 import './Category.scss';
 
 const CATEGORY = [
-  { id: 1, name: '돼지' },
-  { id: 2, name: '소' },
-  { id: 3, name: '닭' },
-  { id: 4, name: '우유' },
-  { id: 5, name: '달걀' },
-  { id: 6, name: '밀키트' },
+  { id: 1, category_name: '돼지' },
+  { id: 2, category_name: '소' },
+  { id: 3, category_name: '닭' },
+  { id: 4, category_name: '수산' },
+  { id: 5, category_name: '밀키트' },
+  { id: 6, category_name: '우유' },
 ];
 
 const Category = () => {
   const [items, setItems] = useState([]);
-  const [name, setName] = useState('돼지');
+  const [itemLength, setItemLength] = useState(0);
+  const [names, setNames] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page');
+
+  const categorySet = id => {
+    setNames(id);
+    searchParams.set('category', id);
+    searchParams.set('page', 1);
+    setSearchParams(searchParams);
+  };
 
   useEffect(() => {
-    fetch('/data/dataCartegory.json')
+    // 백 통신으로 전체 아이템 혹은 카테고리나 페이지 별로 불러오기
+    fetch(`${API_BASE}/products?${searchParams.toString()}`)
       .then(res => res.json())
-      .then(data => setItems(data));
-  }, []);
+      .then(({ productList, listLength }) => {
+        setItemLength(listLength);
+        setItems(productList);
+      });
+  }, [searchParams]);
 
-  const categorySet = e => {
-    setName(e.target.id);
+  const movePage = pageNumber => {
+    searchParams.set('page', pageNumber);
+    setSearchParams(searchParams);
   };
+
+  const num = Math.ceil(itemLength / 6);
 
   return (
     <div className="category">
       <img src="/images/grill.jpg" alt="메인이미지" />
       <ul className="categoryBtn">
-        {CATEGORY.map((i, key) => {
+        {CATEGORY.map(({ category_name, id }) => {
           return (
             <li
-              key={key}
-              id={i.name}
-              className={'btn' + (name === i.name ? 'active' : '')}
-              onClick={categorySet}
+              key={id}
+              id={id}
+              className={'btn' + (names === id ? 'active' : '')}
+              onClick={() => categorySet(id)}
             >
-              {i.name}
+              {category_name}
             </li>
           );
         })}
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map(meat => {
+          {items.map(({ id, name, price, thumbnail_image }) => {
             return (
-              <li key={meat.id}>
-                <div className="items">
-                  <Link to="/Category/Detail">
-                    <img src="/images/meat.jpg" alt="고기사진" />
-                  </Link>
-                  <button>
-                    <BsCart3 />
-                  </button>
-                </div>
-                <div>
-                  <p className="itemName">{meat.name}</p>
-                  <p className="itemPrice">{meat.price}</p>
-                </div>
-              </li>
+              <CategoryItem
+                key={id}
+                id={id}
+                name={name}
+                price={price}
+                thumbnail_image={thumbnail_image}
+              />
             );
           })}
         </ul>
+      </div>
+      <div>
+        {Array(num)
+          .fill()
+          .map((_, item) => {
+            return (
+              <button
+                className="pageNum"
+                onClick={() => movePage(item + 1)}
+                key={item + 1}
+                disabled={page === num}
+              >
+                {item + 1}
+              </button>
+            );
+          })}
       </div>
     </div>
   );
