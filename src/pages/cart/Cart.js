@@ -20,33 +20,31 @@ export default function Cart() {
       });
   }, []);
 
-  const orderPage = () => {
-    fetch(`${API_BASE}/carts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        productId: cartData.productName,
-        productOptionId: cartData.optionName,
-        quantity: cartData.quantity,
-      }),
-    })
-      .then(result => result.json())
-      .then(data => {
-        setCartData(data);
-      });
-  };
-
   const onRemove = id => {
-    setCartData(cartData.filter(value => value.id !== id));
-    fetch(`${API_BASE}/carts/id`, {
+    if (!id) {
+      return;
+    }
+    setCartData(prev => prev.filter(value => value.cartId !== id));
+    fetch(`${API_BASE}/carts/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
+    });
+  };
+
+  const onChange = (index, offset) => {
+    setCartData(prev => {
+      return prev.map((product, i) => {
+        if (i === index) {
+          product.quantity += offset;
+          if (product.quantity < 0) {
+            product.quantity = 0;
+          }
+        }
+        return product;
+      });
     });
   };
 
@@ -72,11 +70,19 @@ export default function Cart() {
             </tr>
           </thead>
           {cartData.map((data, index) => {
-            return <Cartcount key={data.id} value={data} onRemove={onRemove} />;
+            return (
+              <Cartcount
+                key={data.cartId}
+                index={index}
+                value={data}
+                onRemove={onRemove}
+                onChange={onChange}
+              />
+            );
           })}
         </table>
         <aside className="cartSideContents">
-          <Cartaside orderPage={orderPage} totalPrice={totalPrice} />
+          <Cartaside totalPrice={totalPrice} />
         </aside>
       </div>
     </div>

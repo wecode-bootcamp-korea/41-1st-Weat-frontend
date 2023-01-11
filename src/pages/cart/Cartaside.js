@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Cartaside.scss';
 
-const Cartaside = ({ totalPrice, orderPage }) => {
+const Cartaside = ({ totalPrice }) => {
   const shippingPrice = 3500;
   return (
     <div className="cartItemTotal">
@@ -33,14 +33,7 @@ const Cartaside = ({ totalPrice, orderPage }) => {
         </div>
       </div>
       <Link to="/Payment">
-        <button
-          onClick={() => {
-            orderPage();
-          }}
-          className="totalPayButton"
-        >
-          주문상품 결제하기
-        </button>
+        <button className="totalPayButton">주문상품 결제하기</button>
       </Link>
       <Link to="/Category">
         <button className="goToCategory">쇼핑 계속하기</button>
