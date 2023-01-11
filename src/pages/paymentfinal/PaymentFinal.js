@@ -5,7 +5,7 @@ import './PaymentFinal.scss';
 const PaymentFinal = () => {
   const [cartData, setCartData] = useState([]);
   useEffect(() => {
-    fetch(`${API_BASE}/pr/`)
+    fetch(`${API_BASE}/orders/id`)
       .then(result => result.json())
       .then(data => {
         setCartData(data);
