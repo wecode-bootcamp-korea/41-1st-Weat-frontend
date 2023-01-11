@@ -6,7 +6,7 @@ const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
 const Popup = ({ onPopup, id, name, price }) => {
   const [count, setCount] = useState(1);
   const [detilOption, setDetailOption] = useState('보통(16mm)');
-  const [open, setOpen] = useState(false);
+  const [toCart, setToCart] = useState(false);
 
   const addCount = () => {
     setCount(count + 1);
@@ -22,11 +22,11 @@ const Popup = ({ onPopup, id, name, price }) => {
 
   const handleOption = e => {
     setDetailOption(e.target.name);
-    setOpen(false);
+    setToCart(false);
   };
 
   const handleDrop = () => {
-    setOpen(true);
+    setToCart(true);
   };
 
   return (
@@ -43,20 +43,24 @@ const Popup = ({ onPopup, id, name, price }) => {
       <div className="detailOptionType">
         <span>옵션</span>
         <div className="selectOption">
-          <button disabled={open} onClick={handleDrop} className="TypeCheckBox">
+          <button
+            disabled={toCart}
+            onClick={handleDrop}
+            className="TypeCheckBox"
+          >
             {detilOption}
           </button>
           <ul className="menu">
-            {open &&
-              menuList.map((i, key) => {
+            {toCart &&
+              menuList.map((menu, key) => {
                 return (
                   <li key={key}>
                     <button
                       className="menuItem"
-                      name={i}
+                      name={menu}
                       onClick={handleOption}
                     >
-                      {i}
+                      {menu}
                     </button>
                   </li>
                 );

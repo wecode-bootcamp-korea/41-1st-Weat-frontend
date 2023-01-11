@@ -67,15 +67,15 @@ const Detail = () => {
               </button>
               <ul className="menu">
                 {open &&
-                  menuList.map((i, key) => {
+                  menuList.map((item, key) => {
                     return (
                       <li key={key}>
                         <button
                           className="menuItem"
-                          name={i}
+                          name={item}
                           onClick={handleOption}
                         >
-                          {i}
+                          {item}
                         </button>
                       </li>
                     );
