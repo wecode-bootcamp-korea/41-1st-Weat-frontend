@@ -14,10 +14,9 @@ const CATEGORY = [
 
 const Category = () => {
   const [items, setItems] = useState([]);
-  const [itemLength, setItemLength] = useState();
+  const [itemLength, setItemLength] = useState(0);
   const [names, setNames] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  const category = searchParams.get('category');
   const page = searchParams.get('page');
 
   const categorySet = id => {
@@ -42,7 +41,7 @@ const Category = () => {
     setSearchParams(searchParams);
   };
 
-  const num = Math.ceil(60 / 6);
+  const num = Math.ceil(itemLength / 6);
 
   // 통신 시 imtemLength 넣어서 버튼 갯수 구할 수 있음
 
