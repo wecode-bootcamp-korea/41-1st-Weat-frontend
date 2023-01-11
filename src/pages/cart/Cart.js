@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cartcount from './Cartcount';
 import Cartaside from './Cartaside';
 import './Cart.scss';
+import { API_BASE } from '../../apiData';
 
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
@@ -25,7 +26,7 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    fetch('/data/meatData.json')
+    fetch(`${API_BASE}/carts`)
       .then(result => result.json())
       .then(data => {
         const newData = data.map(item => ({ ...item, count: 0 }));

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { API_BASE } from '../../../apiData';
 import './Detail.scss';
 
 const Detail = () => {
@@ -38,8 +38,7 @@ const Detail = () => {
   const [meat, setMeat] = useState({});
 
   useEffect(() => {
-
-    fetch(`10.58.52.137:3000/products/${itemId}`)
+    fetch(`${API_BASE}/products/detail/${userId}`)
       .then(res => res.json())
       .then(data => setMeat(data.data[0]));
   }, [itemId]);
