@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_LIST } from '../../apiData';
+import { API_BASE } from '../../apiData';
 import './Signup.scss';
 
 const Signup = () => {
@@ -42,7 +42,7 @@ const Signup = () => {
     } else if (!validNumber) {
       setNumberError(true);
     } else {
-      fetch(`${API_LIST[0].api}/users/signup`, {
+      fetch(`${API_BASE}/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({

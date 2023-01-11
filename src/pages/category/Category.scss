@@ -44,8 +44,10 @@
       width: 1308px;
       margin-bottom: 50px;
 
-      li {
+      .itemList {
         position: relative;
+        display: flex;
+        flex-direction: column;
         margin: 50px 30px 0px 30px;
 
         .items {
@@ -55,13 +57,19 @@
           width: 376px;
           height: 416px;
           background-color: #f9f7f8;
+          .modalOff {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            bottom: 10px;
+          }
         }
 
         img {
           width: 300px;
           height: 200px;
         }
-        button {
+        .cartBtn {
           position: absolute;
           width: 70px;
           height: 70px;
@@ -90,5 +98,12 @@
     font-size: 16px;
     margin-top: 10px;
     color: #9b9b9b;
+  }
+  .pageNum {
+    width: 30px;
+    border: none;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
   }
 }
