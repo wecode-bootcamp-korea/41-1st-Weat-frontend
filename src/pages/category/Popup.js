@@ -94,7 +94,7 @@ const Popup = ({ onPopup, id, name, price }) => {
         </div>
       </div>
 
-      <div className="price">{price}</div>
+      <div className="price">{Math.floor(price)}원</div>
       <div className="btnList">
         <button
           className="buyBtn"
