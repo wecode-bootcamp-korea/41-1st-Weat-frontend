@@ -82,5 +82,13 @@
       border: none;
       cursor: pointer;
     }
+    .cartCount {
+      border: none;
+      border-radius: 100%;
+      color: white;
+      background-color: red;
+      margin-top: -20px;
+      margin-left: -20px;
+    }
   }
 }
