@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BsCart3 } from 'react-icons/bs';
 import './Nav.scss';
-import { API_LIST } from '../../apiData';
+import { API_BASE } from '../../apiData';
 
 const Nav = () => {
   const [cartList, setCartList] = useState([]);
@@ -12,7 +12,7 @@ const Nav = () => {
   const isToken = Boolean(localStorage.getItem('token'));
 
   useEffect(() => {
-    fetch(`${API_LIST}`, {
+    fetch(`${API_BASE}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem('token'),
