@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API_BASE } from '../../apiData';
 import './Popup.scss';
 
@@ -7,8 +7,52 @@ const menuList = ['보통(16mm)', '얇게(11mm)', '두껍게(24mm)'];
 
 const Popup = ({ onPopup, item }) => {
   const [count, setCount] = useState(1);
-  const [detilOption, setDetailOption] = useState('보통(16mm)');
+  const [detailOption, setDetailOption] = useState('선택');
+  const [optionId, setOptionId] = useState(1);
   const [toCart, setToCart] = useState(false);
+
+  const navigate = useNavigate();
+
+  const moveToCart = () => {
+    navigate('/Cart');
+  };
+
+  const mainToCart = () => {
+    fetch(`${API_BASE}/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+      body: JSON.stringify({
+        productId: item.id,
+        productOptionId: optionId,
+        quantity: count,
+      }),
+    })
+      .then(response => response.json())
+      .then();
+  };
+
+  const directCart = () => {
+    fetch(`${API_BASE}/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+      },
+      body: JSON.stringify({
+        productId: item.id,
+        productOptionId: optionId,
+        quantity: count,
+      }),
+    })
+      .then(response => response.json())
+      .then();
+    moveToCart();
+  };
 
   const addCount = () => {
     setCount(count + 1);
@@ -24,6 +68,7 @@ const Popup = ({ onPopup, item }) => {
 
   const handleOption = e => {
     setDetailOption(e.target.name);
+    setOptionId(e.target.id + 1);
     setToCart(false);
   };
 
@@ -50,7 +95,7 @@ const Popup = ({ onPopup, item }) => {
             onClick={handleDrop}
             className="TypeCheckBox"
           >
-            {detilOption}
+            {detailOption}
           </button>
           <ul className="menu">
             {toCart &&
@@ -58,6 +103,7 @@ const Popup = ({ onPopup, item }) => {
                 return (
                   <li key={key}>
                     <button
+                      id={key + 1}
                       className="menuItem"
                       name={menu}
                       onClick={handleOption}
@@ -73,24 +119,10 @@ const Popup = ({ onPopup, item }) => {
 
       <div className="price">{parseInt(item.price)}원</div>
       <div className="btnList">
-        <button className="buyBtn">바로구매</button>
-        <button
-          className="toCartBtn"
-          onClick={useEffect(() => {
-            fetch(`${API_BASE}/carts`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-                Authoriztion: localStorage.getItem('token'),
-              },
-              body: JSON.stringify({
-                productId: item.id,
-                productOptionId: detilOption,
-                quantity: count,
-              }),
-            }).then(response => response.json());
-          }, [count, detilOption])}
-        >
+        <button className="buyBtn" onClick={directCart}>
+          바로구매
+        </button>
+        <button className="toCartBtn" onClick={mainToCart}>
           장바구니
         </button>
       </div>
