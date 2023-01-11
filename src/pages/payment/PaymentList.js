@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../../apiData';
 import './PaymentList.scss';
 
 const PaymentList = () => {
   const [cartData, setCartData] = useState('');
   useEffect(() => {
-    fetch('http://10.58.52.225:3000/carts/', {
+    fetch(`${API_BASE}/carts`, {
       headers: {
         Authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',

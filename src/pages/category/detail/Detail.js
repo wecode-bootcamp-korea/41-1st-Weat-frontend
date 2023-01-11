@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { API_LIST } from '../../../apiData';
+import { API_BASE } from '../../../apiData';
 import './Detail.scss';
 
 const Detail = () => {
   const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
   const [option, setOption] = useState('보통(16mm)');
+  const [optionNum, setOptionNum] = useState(0);
   const [count, setCount] = useState(1);
   const [open, setOpen] = useState(false);
 
@@ -27,23 +28,39 @@ const Detail = () => {
 
   const handleOption = e => {
     setOption(e.target.name);
+    setOptionNum(e.target.id);
     setOpen(false);
   };
-
   // 백 통신
 
   const params = useParams();
-  const userId = params.id;
+  const itemId = params.id;
   const [meat, setMeat] = useState({});
 
   useEffect(() => {
-    fetch(`http://10.58.52.126:3000/products/detail/${userId}`)
+    fetch(`${API_BASE}/products/detail/${userId}`)
       .then(res => res.json())
       .then(data => setMeat(data.data[0]));
-  }, [userId]);
+  }, [itemId]);
 
   // 백 통신
   const { thumbnail_image, name, price } = meat;
+  const toCart = () => {
+    fetch(`http://10.58.52.225:3000/carts/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        productId: itemId,
+        productOptionId: optionNum,
+        quantity: count,
+      }),
+    })
+      .then(res => res.json())
+      .then();
+  };
 
   return (
     <div className="deatilPage">
@@ -67,15 +84,16 @@ const Detail = () => {
               </button>
               <ul className="menu">
                 {open &&
-                  menuList.map((i, key) => {
+                  menuList.map((item, key) => {
                     return (
                       <li key={key}>
                         <button
                           className="menuItem"
-                          name={i}
+                          id={key + 1}
+                          name={item}
                           onClick={handleOption}
                         >
-                          {i}
+                          {item}
                         </button>
                       </li>
                     );
@@ -94,7 +112,9 @@ const Detail = () => {
           <div />
           <div className="oderBtn">
             <button className="buyBtn">바로구매</button>
-            <button className="cartBtn">장바구니</button>
+            <button className="cartBtn" onClick={toCart}>
+              장바구니
+            </button>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BsCart3 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
 import './Category.scss';
+import CategoryList from './CategoryItem';
+import { API_BASE } from '../../apiData';
+
 
 const CATEGORY = [
   { id: 1, category_name: '돼지' },
@@ -17,7 +18,7 @@ const Category = () => {
   const [names, setNames] = useState('돼지');
 
   useEffect(() => {
-    fetch('/data/dataCartegory.json')
+    fetch(`${API_BASE}`)
       .then(res => res.json())
       .then(data => setItems(data));
   }, []);
@@ -30,15 +31,15 @@ const Category = () => {
     <div className="category">
       <img src="/images/grill.jpg" alt="메인이미지" />
       <ul className="categoryBtn">
-        {CATEGORY.map((i, key) => {
+        {CATEGORY.map(({ id, category_name }) => {
           return (
             <li
-              key={key}
-              id={i.category_name}
-              className={'btn' + (names === i.category_name ? 'active' : '')}
+              key={id}
+              id={category_name}
+              className={'btn' + (names === category_name ? 'active' : '')}
               onClick={categorySet}
             >
-              {i.category_name}
+              {category_name}
             </li>
           );
         })}
@@ -48,20 +49,7 @@ const Category = () => {
           {items.map(({ id, name, price, category }) => {
             if (names === category) {
               return (
-                <li key={id}>
-                  <div className="items">
-                    <Link to={`/Category/Detail/${id}`}>
-                      <img src="/images/meat.jpg" alt="고기사진" />
-                    </Link>
-                    <button>
-                      <BsCart3 />
-                    </button>
-                  </div>
-                  <div>
-                    <p className="itemName">{name}</p>
-                    <p className="itemPrice">{price}</p>
-                  </div>
-                </li>
+                <CategoryList key={id} id={id} name={name} price={price} />
               );
             }
           })}

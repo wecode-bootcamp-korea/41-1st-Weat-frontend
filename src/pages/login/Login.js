@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_LIST } from '../../apiData';
+import { API_BASE } from '../../apiData';
 import './Login.scss';
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const clickLogin = () => {
-    fetch(`${API_LIST[0].api}/login`, {
+    fetch(`${API_BASE}/users/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

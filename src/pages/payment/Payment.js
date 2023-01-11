@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PaymentList from './PaymentList';
+import { API_BASE } from '../../apiData';
 import './Payment.scss';
 
 const Payment = () => {
@@ -19,7 +20,7 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    fetch('http://10.58.52.225:3000/orders', {
+    fetch(`${API_BASE}/orders`, {
       headers: {
         Authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
