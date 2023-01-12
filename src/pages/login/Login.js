@@ -49,7 +49,7 @@ const Login = () => {
     navigate('/SignUp');
   };
   const goToMain = () => {
-    navigate('/Main');
+    navigate('/');
   };
 
   return (

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import PaymentList from './PaymentList';
 import { API_BASE } from '../../apiData';
 import './Payment.scss';
-
 const Payment = () => {
   const navigate = useNavigate();
   const [fromData, setFromData] = useState([]);
@@ -12,7 +11,7 @@ const Payment = () => {
     mobile: '',
     address: '',
   });
-
+  
   useEffect(() => {
     fetch(`${API_BASE}/users/userinfo`, {
       headers: {
@@ -25,14 +24,14 @@ const Payment = () => {
         setFromData(data[0]);
       });
   }, []);
-
+  
   const handelChange = e => {
     const { name, value } = e.target;
     setToData(prev => {
       return { ...prev, [name]: value };
     });
   };
-
+  
   const goToOrder = () => {
     return fetch(`${API_BASE}/orders`, {
       method: 'POST',
@@ -50,13 +49,10 @@ const Payment = () => {
         return res.json();
       })
       .then(data => {
-        console.log(data, '@@');
         alert('주문이 완료되었습니다.');
-
         return data.orderId;
       });
   };
-
   return (
     <div className="payment">
       <h1 className="title">주문하기</h1>
@@ -105,7 +101,6 @@ const Payment = () => {
         </div>
         <div className="inputContainer">
           <label className="sendTitle">받으시는분</label>
-
           <div className="inputBox">
             <table className="table">
               <tbody>
@@ -182,5 +177,4 @@ const Payment = () => {
     </div>
   );
 };
-
 export default Payment;
