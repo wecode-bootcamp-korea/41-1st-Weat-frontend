@@ -5,8 +5,8 @@ import { API_BASE } from '../../apiData';
 import './Payment.scss';
 
 const Payment = () => {
+  const navigate = useNavigate();
   const [fromData, setFromData] = useState([]);
-
   const [toData, setToData] = useState({
     userName: '',
     mobile: '',
@@ -33,8 +33,8 @@ const Payment = () => {
     });
   };
 
-  const goToOrder = e => {
-    fetch(`${API_BASE}/orders`, {
+  const goToOrder = () => {
+    return fetch(`${API_BASE}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -47,16 +47,14 @@ const Payment = () => {
       }),
     })
       .then(res => {
-        if (!res.ok) return;
-        alert('주문이 완료되었습니다.');
-        goToFinal();
+        return res.json();
       })
-      .then(data => {});
-  };
+      .then(data => {
+        console.log(data, '@@');
+        alert('주문이 완료되었습니다.');
 
-  const navigate = useNavigate();
-  const goToFinal = () => {
-    navigate('/PaymentFinal', { state: fromData.orderId });
+        return data.orderId;
+      });
   };
 
   return (
@@ -170,9 +168,16 @@ const Payment = () => {
         <button className="goToBack" type="button">
           이전으로
         </button>
-        <button onClick={goToOrder} className="goToNext" type="button">
+        <button
+          onClick={() => {
+            goToOrder().then(data => navigate(`/PaymentFinal/${data}`));
+          }}
+          className="goToNext"
+          type="button"
+        >
           다음으로
         </button>
+        ß
       </div>
     </div>
   );

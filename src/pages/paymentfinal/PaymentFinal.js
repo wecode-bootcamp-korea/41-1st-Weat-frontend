@@ -1,49 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { API_BASE } from '../../apiData';
 import './PaymentFinal.scss';
 
 const mockData = {
   deliveryObj: {
-    from_name: '박정은',
-    from_mobile: '010-1004-1004',
-    from_email: 'angel@wecode.com',
-    to_name: '배경민',
-    to_mobile: '010-1111-1111',
-    to_address: '선릉 2호점',
-    delivery_charge: '3500.00',
+    from_name: '',
+    from_mobile: '',
+    from_email: '',
+    to_name: '',
+    to_mobile: '',
+    to_address: '',
+    delivery_charge: '',
   },
   productOrderList: [
     {
-      thumbnail:
-        'https://user-images.githubusercontent.com/53294075/210498031-5020d9b8-b847-46b6-8576-be70e06435c9.jpg',
-      productName: '돼지 삼겹살 구이용',
-      optionName: '보통(16mm)',
-      baseUnit: '600g',
-      price: '19800.00',
+      thumbnail: '',
+      productName: '',
+      optionName: '',
+      baseUnit: '',
+      price: '',
       quantity: 1,
     },
   ],
-  point: '708570.00',
+  point: '',
 };
 
 const shippingPrice = 3500;
 
 const PaymentFinal = () => {
-  const location = useLocation();
-  const orderId = location?.state?.orderId;
-
+  const params = useParams();
   const [paymentData, setPaymentData] = useState(mockData);
   useEffect(() => {
-    if (!orderId) {
-      return;
-    }
-    fetch(`${API_BASE}/orders/${orderId}`)
+    fetch(`${API_BASE}/orders/${params.id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(result => result.json())
       .then(data => {
         setPaymentData(data);
       });
-  }, [orderId]);
+  }, []);
 
   const totalPrice =
     paymentData.productOrderList.reduce((prev, cur) => {
