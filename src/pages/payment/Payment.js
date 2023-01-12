@@ -5,7 +5,7 @@ import { API_BASE } from '../../apiData';
 import './Payment.scss';
 
 const Payment = () => {
-  const [fromData, setFromData] = useState('');
+  const [fromData, setFromData] = useState([]);
 
   const [toData, setToData] = useState({
     userName: '',
@@ -38,8 +38,7 @@ const Payment = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+        Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         toName: toData.userName,
@@ -47,14 +46,17 @@ const Payment = () => {
         toAddress: toData.address,
       }),
     })
-      .then(response => response.json())
+      .then(res => {
+        if (!res.ok) return;
+        alert('주문이 완료되었습니다.');
+        goToFinal();
+      })
       .then(data => {});
-    goToFinal();
   };
 
   const navigate = useNavigate();
   const goToFinal = () => {
-    navigate('/Login');
+    navigate('/PaymentFinal');
   };
 
   return (
