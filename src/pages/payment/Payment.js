@@ -11,6 +11,7 @@ const Payment = () => {
     mobile: '',
     address: '',
   });
+  
   useEffect(() => {
     fetch(`${API_BASE}/users/userinfo`, {
       headers: {
@@ -23,12 +24,14 @@ const Payment = () => {
         setFromData(data[0]);
       });
   }, []);
+  
   const handelChange = e => {
     const { name, value } = e.target;
     setToData(prev => {
       return { ...prev, [name]: value };
     });
   };
+  
   const goToOrder = () => {
     return fetch(`${API_BASE}/orders`, {
       method: 'POST',
@@ -169,6 +172,7 @@ const Payment = () => {
         >
           다음으로
         </button>
+        ß
       </div>
     </div>
   );
