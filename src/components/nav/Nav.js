@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { BsCart3 } from 'react-icons/bs';
 import './Nav.scss';
+import { API_BASE } from '../../apiData';
 
 const Nav = () => {
+  const [cartList, setCartList] = useState([]);
+
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isToken = Boolean(localStorage.getItem('token'));
+
+  useEffect(() => {
+    fetch(`${API_BASE}/carts`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => setCartList(data));
+  }, []);
 
   const moveToLogin = () => {
     navigate('/Login');
@@ -17,9 +32,19 @@ const Nav = () => {
     navigate('/Cart');
   };
 
-  const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-    isLoggedIn ? moveToMain() : moveToLogin();
+  const handleLogout = () => {
+    localStorage.clear();
+    moveToMain();
+    alert('로그아웃 되었습니다.');
+    window.location.reload();
+  };
+
+  const handleMoveToCart = () => {
+    if (isToken) {
+      moveToCart();
+    } else {
+      alert('로그인 후 이용 가능합니다.');
+    }
   };
 
   return (
@@ -40,12 +65,12 @@ const Nav = () => {
       <div className="navRight">
         <ul className="navigate">
           <li>
-            {isLoggedIn ? (
-              <button className="moveToMain" onClick={handleLogin}>
+            {isToken ? (
+              <button className="moveToMain" onClick={handleLogout}>
                 로그아웃
               </button>
             ) : (
-              <button className="moveToLogin" onClick={handleLogin}>
+              <button className="moveToLogin" onClick={moveToLogin}>
                 로그인
               </button>
             )}
@@ -56,9 +81,10 @@ const Nav = () => {
             </Link>
           </li>
         </ul>
-        <button onClick={moveToCart} className="navLogo">
+        <button className="navLogo" onClick={handleMoveToCart}>
           <BsCart3 />
         </button>
+        <button className="cartCount">{cartList.length}</button>
       </div>
     </div>
   );

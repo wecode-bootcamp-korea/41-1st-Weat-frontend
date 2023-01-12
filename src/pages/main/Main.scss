@@ -63,7 +63,7 @@
       grid-gap: 30px 0px;
 
       div {
-        margin-left: 10px;
+        // margin-left: 10px;
         text-align: center;
 
         p {
@@ -76,7 +76,7 @@
           color: #9b9b9b;
         }
 
-        li {
+        .popupWarp {
           position: relative;
           display: flex;
           flex-direction: column;

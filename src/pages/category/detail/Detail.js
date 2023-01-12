@@ -4,9 +4,8 @@ import { API_BASE } from '../../../apiData';
 import './Detail.scss';
 
 const Detail = () => {
-  const menuList = ['두껍게(24mm)', '얇게(11mm)', '보통(16mm)'];
-  const [option, setOption] = useState('보통(16mm)');
-  const [optionNum, setOptionNum] = useState(0);
+  const [option, setOption] = useState('옵션을 선택 해 주세요');
+  const [optionNum, setOptionNum] = useState(1);
   const [count, setCount] = useState(1);
   const [open, setOpen] = useState(false);
 
@@ -31,36 +30,41 @@ const Detail = () => {
     setOptionNum(e.target.id);
     setOpen(false);
   };
+
   // 백 통신
 
   const params = useParams();
   const itemId = params.id;
-  const [meat, setMeat] = useState({});
+  const [meat, setMeat] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/products/detail/${itemId}`)
+    fetch(`${API_BASE}/products/${itemId}`)
       .then(res => res.json())
       .then(data => setMeat(data.data[0]));
   }, [itemId]);
 
-  // 백 통신
   const { thumbnail_image, name, price } = meat;
   const toCart = () => {
-    fetch(`${API_BASE}/carts/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        productId: itemId,
-        productOptionId: optionNum,
-        quantity: count,
-      }),
-    })
-      .then(res => res.json())
-      .then();
+    if (option === '옵션을 선택 해 주세요') {
+      alert('옵션을 선택 해 주세요');
+    } else {
+      fetch(`${API_BASE}/carts/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          productId: itemId,
+          productOptionId: optionNum,
+          quantity: count,
+        }),
+      })
+        .then(res => res.json())
+        .then();
+    }
   };
+  const optionList = meat.options;
 
   return (
     <div className="deatilPage">
@@ -70,7 +74,6 @@ const Detail = () => {
         </div>
         <div className="meatInfo">
           <p className="meatName">{name}</p>
-          <p className="meatPrice">{Math.floor(price)}원</p>
           <p className="meatPriceTotal">{Math.floor(price)}원</p>
           <div className="detailOptionType">
             <span>옵션</span>
@@ -84,16 +87,16 @@ const Detail = () => {
               </button>
               <ul className="menu">
                 {open &&
-                  menuList.map((item, key) => {
+                  optionList.map(({ option_id, option_name }) => {
                     return (
-                      <li key={key}>
+                      <li key={option_id}>
                         <button
                           className="menuItem"
-                          id={key + 1}
-                          name={item}
+                          id={option_id}
+                          name={option_name}
                           onClick={handleOption}
                         >
-                          {item}
+                          {option_name}
                         </button>
                       </li>
                     );

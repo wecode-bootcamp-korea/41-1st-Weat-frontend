@@ -8,9 +8,9 @@ const CATEGORY = [
   { id: 1, category_name: '돼지' },
   { id: 2, category_name: '소' },
   { id: 3, category_name: '닭' },
-  { id: 4, category_name: '우유' },
-  { id: 5, category_name: '달걀' },
-  { id: 6, category_name: '밀키트' },
+  { id: 4, category_name: '수산' },
+  { id: 5, category_name: '밀키트' },
+  { id: 6, category_name: '우유' },
 ];
 
 const Category = () => {
@@ -63,18 +63,16 @@ const Category = () => {
       </ul>
       <div className="itemList">
         <ul className="categoryItem">
-          {items.map(({ id, name, price, category, thumbnail_img }) => {
-            if (names === category) {
-              return (
-                <CategoryItem
-                  key={id}
-                  id={id}
-                  name={name}
-                  price={price}
-                  thumbnail_img={thumbnail_img}
-                />
-              );
-            }
+          {items.map(({ id, name, price, thumbnail_image }) => {
+            return (
+              <CategoryItem
+                key={id}
+                id={id}
+                name={name}
+                price={price}
+                thumbnail_image={thumbnail_image}
+              />
+            );
           })}
         </ul>
       </div>
