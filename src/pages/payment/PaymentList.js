@@ -38,16 +38,14 @@ const PaymentList = ({ point }) => {
                 return (
                   <div className="list" key={key}>
                     <div className="paymentFinalItemLeft">
-                      {item.productName}삼겹살
+                      {item.productName}
                     </div>
                     <div className="paymentFinalItemWeight">
-                      {item.optionName}옵션
+                      {item.optionName}
                     </div>
-                    <div className="paymentFinalItemCount">
-                      {item.quantity}1팩 갯수
-                    </div>
+                    <div className="paymentFinalItemCount">{item.quantity}</div>
                     <div className="paymentFinalItemPrice">
-                      {item.price}가격
+                      {Math.floor(item.price)} 원
                     </div>
                   </div>
                 );

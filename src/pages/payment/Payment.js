@@ -56,7 +56,7 @@ const Payment = () => {
 
   const navigate = useNavigate();
   const goToFinal = () => {
-    navigate('/PaymentFinal');
+    navigate('/PaymentFinal', { state: fromData.orderId });
   };
 
   return (

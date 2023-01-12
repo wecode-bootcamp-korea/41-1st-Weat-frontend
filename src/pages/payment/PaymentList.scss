@@ -45,8 +45,19 @@
           font-size: 17px;
           color: #555555;
 
-          .paymentFinalItemLeft {
-            width: 300px;
+          .paymentFinalItem {
+            &Left {
+              width: 200px;
+            }
+            &Weight {
+              width: 100px;
+            }
+            &Count {
+              width: 10px;
+            }
+            &Price {
+              width: 100px;
+            }
           }
         }
       }
