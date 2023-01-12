@@ -33,7 +33,6 @@ export default function Cart() {
       },
     });
   };
-
   const onChange = (index, offset) => {
     setCartData(prev => {
       return prev.map((product, i) => {

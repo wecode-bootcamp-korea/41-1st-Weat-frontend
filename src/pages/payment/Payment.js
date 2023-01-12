@@ -14,21 +14,18 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    fetch(`${API_BASE}/signup`, {
+    fetch(`${API_BASE}/users/userinfo`, {
       headers: {
+        'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('token'),
       },
     })
       .then(result => result.json())
       .then(data => {
-        // setFromData.email(data.email);
-        // setFromData.name(data.username);
-        // setFromData.mobile(data.mobile);
-        //적립금 받기
-        setFromData(data);
+        setFromData(data[0]);
       });
   }, []);
-  console.log(fromData);
+
   const handelChange = e => {
     const { name, value } = e.target;
     setToData(prev => {
@@ -38,9 +35,10 @@ const Payment = () => {
 
   const goToOrder = e => {
     fetch(`${API_BASE}/orders`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         toName: toData.userName,
@@ -48,14 +46,17 @@ const Payment = () => {
         toAddress: toData.address,
       }),
     })
-      .then(response => response.json())
+      .then(res => {
+        if (!res.ok) return;
+        alert('주문이 완료되었습니다.');
+        goToFinal();
+      })
       .then(data => {});
-    Order();
   };
 
   const navigate = useNavigate();
-  const Order = () => {
-    navigate('/Payment');
+  const goToFinal = () => {
+    navigate('/PaymentFinal', { state: fromData.orderId });
   };
 
   return (
@@ -76,18 +77,30 @@ const Payment = () => {
           <div className="inputBox">
             <table className="table">
               <tbody>
-                {content.map((data, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className="index">
-                        <div className="indexName">{data}</div>
-                      </td>
-                      <td className="indexInfo">
-                        <div className="indexInfoName">hi</div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                <tr>
+                  <td className="index">
+                    <div className="indexName">이름</div>
+                  </td>
+                  <td className="indexInfo">
+                    <div className="indexInfoName">{fromData.username}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="index">
+                    <div className="indexName">이메일</div>
+                  </td>
+                  <td className="indexInfo">
+                    <div className="indexInfoName">{fromData.email}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="index">
+                    <div className="indexName">전화번호</div>
+                  </td>
+                  <td className="indexInfo">
+                    <div className="indexInfoName">{fromData.mobile}</div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -153,7 +166,7 @@ const Payment = () => {
             </table>
           </div>
         </div>
-        <PaymentList />
+        <PaymentList point={fromData.point} />
         <button className="goToBack" type="button">
           이전으로
         </button>
@@ -166,5 +179,3 @@ const Payment = () => {
 };
 
 export default Payment;
-
-const content = ['이메일', '이름', '전화번호'];

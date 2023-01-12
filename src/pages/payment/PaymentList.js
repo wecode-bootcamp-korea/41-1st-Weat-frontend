@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { API_BASE } from '../../apiData';
 import './PaymentList.scss';
 
-const PaymentList = () => {
+const PaymentList = ({ point }) => {
   const [cartData, setCartData] = useState([]);
   useEffect(() => {
     fetch(`${API_BASE}/carts`, {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE2NzI5ODIzMzJ9.pvIOMpksPoho8JSwWFmXh9UzKBgVPnzYq9a_8ZM31ZA',
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
       },
     })
       .then(result => result.json())
@@ -18,9 +18,9 @@ const PaymentList = () => {
   }, []);
 
   const totalAmount =
-    cartData.reduce((acc, cur) => {
-      acc += cur.price * cur.count;
-      return acc;
+    cartData.reduce((prev, cur) => {
+      prev += parseInt(cur.price) * cur.quantity;
+      return prev;
     }, 0) || 0;
 
   const shipPrice = 3500;
@@ -29,23 +29,27 @@ const PaymentList = () => {
     <div>
       <div className="paymentContents">
         <h4 className="paymentContentsTitle">결제방법</h4>
-        <h5 className="paymentPoint">포인트: 1,234 p</h5>
+        <h5 className="paymentPoint">포인트: {point}</h5>
         <h4 className="paymentFinalTitle">주문 상품</h4>
         <div className="paymentFinal">
           <div className="paymentFinalItems">
             <div className="paymentFinalItemMap">
-              <div className="paymentFinalItemLeft">
-                {cartData.productId}삼겹살
-              </div>
-              <div className="paymentFinalItemRight">
-                <div className="paymentFinalItemWeight">
-                  {cartData.baseUnit} 중량
-                </div>
-                <div className="paymentFinalItemCount">1팩 갯수</div>
-                <div className="paymentFinalItemPrice">
-                  {cartData.price} 가격
-                </div>
-              </div>
+              {cartData.map((item, key) => {
+                return (
+                  <div className="list" key={key}>
+                    <div className="paymentFinalItemLeft">
+                      {item.productName}
+                    </div>
+                    <div className="paymentFinalItemWeight">
+                      {item.optionName}
+                    </div>
+                    <div className="paymentFinalItemCount">{item.quantity}</div>
+                    <div className="paymentFinalItemPrice">
+                      {Math.floor(item.price)} 원
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             <div className="totalPriceList">
               <div className="totalPrice">

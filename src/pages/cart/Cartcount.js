@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Cartcount.scss';
 const Cartcount = ({ index, value, onRemove, onChange }) => {
   const {
