@@ -8,7 +8,7 @@
     "cateogory": "돼지"
   },
   {
-    "id": 1,
+    "id": 2,
     "img": "blahblahblah",
     "name": "삼겹살",
     "weight": "100g당 3,300원",
@@ -16,7 +16,7 @@
     "cateogory": "돼지"
   },
   {
-    "id": 1,
+    "id": 3,
     "img": "blahblahblah",
     "name": "삼겹살",
     "weight": "100g당 3,300원",
@@ -24,7 +24,7 @@
     "cateogory": "돼지"
   },
   {
-    "id": 1,
+    "id": 4,
     "img": "blahblahblah",
     "name": "삼겹살",
     "weight": "100g당 3,300원",
@@ -32,7 +32,7 @@
     "cateogory": "돼지"
   },
   {
-    "id": 1,
+    "id": 5,
     "img": "blahblahblah",
     "name": "삼겹살",
     "weight": "100g당 3,300원",
