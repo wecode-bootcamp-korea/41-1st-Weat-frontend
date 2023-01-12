@@ -13,25 +13,21 @@ const Popup = ({ onPopup, item }) => {
 
   const navigate = useNavigate();
 
-  const moveToCart = () => {
-    navigate('/Cart');
-  };
-
   const mainToCart = () => {
     fetch(`${API_BASE}/carts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('key'),
+        Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         productId: item.id,
         productOptionId: optionId,
         quantity: count,
       }),
-    })
-      .then(response => response.json())
-      .then();
+    }).then(res => {
+      window.location.reload();
+    });
   };
 
   const directCart = () => {
@@ -39,17 +35,16 @@ const Popup = ({ onPopup, item }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('key'),
+        Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         productId: item.id,
         productOptionId: optionId,
         quantity: count,
       }),
-    })
-      .then(response => response.json())
-      .then();
-    moveToCart();
+    }).then(res => {
+      navigate('/cart');
+    });
   };
 
   const addCount = () => {
@@ -117,7 +112,12 @@ const Popup = ({ onPopup, item }) => {
 
       <div className="price">{parseInt(item.price)}원</div>
       <div className="btnList">
-        <button className="buyBtn" onClick={directCart}>
+        <button
+          className="buyBtn"
+          onClick={() => {
+            directCart().then(() => window.location.reload());
+          }}
+        >
           바로구매
         </button>
         <button className="toCartBtn" onClick={mainToCart}>
