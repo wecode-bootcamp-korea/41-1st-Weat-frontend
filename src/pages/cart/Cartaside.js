@@ -33,7 +33,7 @@ const Cartaside = ({ totalPrice }) => {
         </div>
       </div>
       <Link to="/Payment">
-        <button className="totalPayButton">전체상품 주문하기</button>
+        <button className="totalPayButton">주문상품 결제하기</button>
       </Link>
       <Link to="/Category">
         <button className="goToCategory">쇼핑 계속하기</button>
