@@ -7,16 +7,45 @@ import { API_BASE } from '../../apiData';
 export default function Cart() {
   const [cartData, setCartData] = useState([]);
 
-  const onRemove = id => {
-    setCartData(cartData.filter(value => value.id !== id));
-  };
   useEffect(() => {
-    fetch(`${API_BASE}/carts`)
+    fetch(`${API_BASE}/carts`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(result => result.json())
       .then(data => {
         setCartData(data);
       });
   }, []);
+
+  const onRemove = id => {
+    if (!id) {
+      return;
+    }
+    setCartData(prev => prev.filter(value => value.cartId !== id));
+    fetch(`${API_BASE}/carts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
+      },
+    });
+  };
+  const onChange = (index, offset) => {
+    setCartData(prev => {
+      return prev.map((product, i) => {
+        if (i === index) {
+          product.quantity += offset;
+          if (product.quantity < 0) {
+            product.quantity = 0;
+          }
+        }
+        return product;
+      });
+    });
+  };
 
   const totalPrice =
     cartData.reduce((prev, cur) => {
@@ -40,7 +69,15 @@ export default function Cart() {
             </tr>
           </thead>
           {cartData.map((data, index) => {
-            return <Cartcount key={data.id} value={data} onRemove={onRemove} />;
+            return (
+              <Cartcount
+                key={data.cartId}
+                index={index}
+                value={data}
+                onRemove={onRemove}
+                onChange={onChange}
+              />
+            );
           })}
         </table>
         <aside className="cartSideContents">
