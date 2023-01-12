@@ -3,16 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import PaymentList from './PaymentList';
 import { API_BASE } from '../../apiData';
 import './Payment.scss';
-
 const Payment = () => {
+  const navigate = useNavigate();
   const [fromData, setFromData] = useState([]);
-
   const [toData, setToData] = useState({
     userName: '',
     mobile: '',
     address: '',
   });
-
   useEffect(() => {
     fetch(`${API_BASE}/users/userinfo`, {
       headers: {
@@ -25,16 +23,14 @@ const Payment = () => {
         setFromData(data[0]);
       });
   }, []);
-
   const handelChange = e => {
     const { name, value } = e.target;
     setToData(prev => {
       return { ...prev, [name]: value };
     });
   };
-
-  const goToOrder = e => {
-    fetch(`${API_BASE}/orders`, {
+  const goToOrder = () => {
+    return fetch(`${API_BASE}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -47,18 +43,13 @@ const Payment = () => {
       }),
     })
       .then(res => {
-        if (!res.ok) return;
-        alert('주문이 완료되었습니다.');
-        goToFinal();
+        return res.json();
       })
-      .then(data => {});
+      .then(data => {
+        alert('주문이 완료되었습니다.');
+        return data.orderId;
+      });
   };
-
-  const navigate = useNavigate();
-  const goToFinal = () => {
-    navigate('/PaymentFinal', { state: fromData.orderId });
-  };
-
   return (
     <div className="payment">
       <h1 className="title">주문하기</h1>
@@ -107,7 +98,6 @@ const Payment = () => {
         </div>
         <div className="inputContainer">
           <label className="sendTitle">받으시는분</label>
-
           <div className="inputBox">
             <table className="table">
               <tbody>
@@ -170,12 +160,17 @@ const Payment = () => {
         <button className="goToBack" type="button">
           이전으로
         </button>
-        <button onClick={goToOrder} className="goToNext" type="button">
+        <button
+          onClick={() => {
+            goToOrder().then(data => navigate(`/PaymentFinal/${data}`));
+          }}
+          className="goToNext"
+          type="button"
+        >
           다음으로
         </button>
       </div>
     </div>
   );
 };
-
 export default Payment;

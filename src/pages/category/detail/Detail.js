@@ -48,7 +48,7 @@ const Detail = () => {
     if (option === '옵션을 선택 해 주세요') {
       alert('옵션을 선택 해 주세요');
     } else {
-      fetch(`${API_BASE}/carts/`, {
+      return fetch(`${API_BASE}/carts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -59,11 +59,10 @@ const Detail = () => {
           productOptionId: optionNum,
           quantity: count,
         }),
-      })
-        .then(res => res.json())
-        .then();
+      }).then(res => res.json());
     }
   };
+
   const optionList = meat.options;
 
   return (
@@ -115,7 +114,12 @@ const Detail = () => {
           <div />
           <div className="oderBtn">
             <button className="buyBtn">바로구매</button>
-            <button className="cartBtn" onClick={toCart}>
+            <button
+              className="cartBtn"
+              onClick={() => {
+                toCart().then(() => window.location.reload());
+              }}
+            >
               장바구니
             </button>
           </div>
