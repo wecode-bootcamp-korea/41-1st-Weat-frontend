@@ -22,7 +22,7 @@ const CategoryItem = ({ id, name, price, thumbnail_image }) => {
       </div>
       <div>
         <p className="itemName">{name}</p>
-        <p className="itemPrice">{price}</p>
+        <p className="itemPrice">{Math.floor(price)}원</p>
       </div>
     </li>
   );
