@@ -35,18 +35,23 @@ const Popup = ({ onPopup, id, name, price }) => {
   };
 
   const detailToCart = () => {
-    return fetch(`${API_BASE}/carts/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        productId: id,
-        productOptionId: optionNum,
-        quantity: count,
-      }),
-    });
+    if (localStorage.getItem('token') === true) {
+      return fetch(`${API_BASE}/carts/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('token'),
+        },
+        body: JSON.stringify({
+          productId: id,
+          productOptionId: optionNum,
+          quantity: count,
+        }),
+      });
+    } else {
+      alert('로그인 먼저 해주세요.');
+      navigate('/Login');
+    }
   };
 
   return (
