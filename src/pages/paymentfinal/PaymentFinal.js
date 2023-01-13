@@ -41,6 +41,7 @@ const PaymentFinal = () => {
     })
       .then(result => result.json())
       .then(data => {
+        console.log(data);
         setPaymentData(data);
       });
   }, []);

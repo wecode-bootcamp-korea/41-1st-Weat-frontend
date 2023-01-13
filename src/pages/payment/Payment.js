@@ -11,7 +11,7 @@ const Payment = () => {
     mobile: '',
     address: '',
   });
-  
+
   useEffect(() => {
     fetch(`${API_BASE}/users/userinfo`, {
       headers: {
@@ -24,14 +24,14 @@ const Payment = () => {
         setFromData(data[0]);
       });
   }, []);
-  
+
   const handelChange = e => {
     const { name, value } = e.target;
     setToData(prev => {
       return { ...prev, [name]: value };
     });
   };
-  
+
   const goToOrder = () => {
     return fetch(`${API_BASE}/orders`, {
       method: 'POST',
@@ -160,19 +160,20 @@ const Payment = () => {
           </div>
         </div>
         <PaymentList point={fromData.point} />
-        <button className="goToBack" type="button">
-          이전으로
-        </button>
-        <button
-          onClick={() => {
-            goToOrder().then(data => navigate(`/PaymentFinal/${data}`));
-          }}
-          className="goToNext"
-          type="button"
-        >
-          다음으로
-        </button>
-        ß
+        <div className="buttonBox">
+          <button className="goToBack" type="button">
+            이전으로
+          </button>
+          <button
+            onClick={() => {
+              goToOrder().then(data => navigate(`/PaymentFinal/${data}`));
+            }}
+            className="goToNext"
+            type="button"
+          >
+            다음으로
+          </button>
+        </div>
       </div>
     </div>
   );
