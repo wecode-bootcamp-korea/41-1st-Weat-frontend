@@ -24,6 +24,8 @@
   }
 
   .paymentFinal {
+    width: 780px;
+
     &Items {
       border: 1px solid #e1dedf;
       padding: 10px 5px 5px 10px;
@@ -47,7 +49,7 @@
 
           .paymentFinalItem {
             &Left {
-              width: 200px;
+              width: 150px;
             }
             &Weight {
               width: 100px;
@@ -68,10 +70,8 @@
         align-items: center;
         height: 100px;
         background-color: #f7f7f7;
-        margin-top: 40px;
-        margin-right: auto;
-        margin-bottom: 20px;
-        margin-left: auto;
+        margin-top: 40px auto 20px auto;
+
         .totalPrice {
           margin-left: 35px;
           &Name {

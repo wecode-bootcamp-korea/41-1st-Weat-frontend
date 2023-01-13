@@ -93,14 +93,19 @@
       }
     }
   }
+  .buttonBox {
+    display: flex;
+    justify-content: center;
+    .goToBack {
+      @extend %buttonUI;
+      background-color: #888888;
+      width: 390px;
+    }
 
-  .goToBack {
-    @extend %buttonUI;
-    background-color: #888888;
-  }
-
-  .goToNext {
-    @extend %buttonUI;
-    background-color: #000000;
+    .goToNext {
+      @extend %buttonUI;
+      background-color: #000000;
+      width: 390px;
+    }
   }
 }
